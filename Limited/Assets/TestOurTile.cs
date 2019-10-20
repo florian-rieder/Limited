@@ -11,7 +11,6 @@ public class TestOurTile : MonoBehaviour {
 	private void Update () {
 		if (Input.GetMouseButtonDown(0))
 		{
-			Debug.Log("Click");
 			Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			var tilePos = tilemap.WorldToCell(point);
 
@@ -19,7 +18,7 @@ public class TestOurTile : MonoBehaviour {
 
 			if (tiles.TryGetValue(tilePos, out _tile)) 
 			{
-				Debug.Log("Tile " + _tile.Name);
+				Debug.Log("Tile " + _tile.Name + ": " + _tile.TileBase.ToString());
 				_tile.TilemapMember.SetTileFlags(_tile.LocalPlace, TileFlags.None);
 				_tile.TilemapMember.SetColor(_tile.LocalPlace, Color.green);
 			}
