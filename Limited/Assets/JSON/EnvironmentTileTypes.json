@@ -1,0 +1,61 @@
+{
+	"tileTypes": [
+		{
+			"Name": "Water",
+			"SpriteNames": [
+				"Tileset_environment_0",
+				"Tileset_environment_3",
+				"Tileset_environment_4",
+				"Tileset_environment_5",
+				"Tileset_environment_6",
+				"Tileset_environment_7",
+				"Tileset_environment_9",
+				"Tileset_environment_11",
+				"Tileset_environment_12",
+				"Tileset_environment_13",
+				"Tileset_environment_14",
+				"Tileset_environment_15",
+				"Tileset_environment_16"
+			],
+			"Oil": 0,
+			"Coal": 0,
+			"Wood": 0
+		},
+		{
+			"Name": "Coal Vein",
+			"SpriteNames": [
+				"Tileset_environment_1"
+			],
+			"Oil": 0,
+			"Coal": 100,
+			"Wood": 0
+		},
+		{
+			"Name": "Oil Pocket",
+			"SpriteNames": [
+				"Tileset_environment_2"
+			],
+			"Oil": 100,
+			"Coal": 0,
+			"Wood": 0
+		},
+		{
+			"Name": "Forest",
+			"SpriteNames": [
+				"Tileset_environment_8"
+			],
+			"Oil": 0,
+			"Coal": 0,
+			"Wood": 100
+		},
+		{
+			"Name": "Plain",
+			"SpriteNames": [
+				"Tileset_environment_10"
+			],
+			"Oil": 0,
+			"Coal": 0,
+			"Wood": 0
+		}
+	]
+}
