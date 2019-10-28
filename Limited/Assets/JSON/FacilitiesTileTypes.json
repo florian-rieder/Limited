@@ -54,6 +54,39 @@
 			"Goods": 2,
 			"Food": 0,
 			"PollutionRadius": 1
+		},
+		{
+			"Name": "Oil Power Plant",
+			"SpriteName": "Tileset_facilities_5",
+			"Oil": -1,
+			"Coal": 0,
+			"Wood": 0,
+			"Power": 3,
+			"Goods": 0,
+			"Food": 0,
+			"PollutionRadius": 3
+		},
+		{
+			"Name": "Coal Power Plant",
+			"SpriteName": "Tileset_facilities_6",
+			"Oil": 0,
+			"Coal": -1,
+			"Wood": 0,
+			"Power": 2,
+			"Goods": 0,
+			"Food": 0,
+			"PollutionRadius": 2
+		},
+		{
+			"Name": "Wind Turbine",
+			"SpriteName": "Tileset_facilities_7",
+			"Oil": 0,
+			"Coal": 0,
+			"Wood": 0,
+			"Power": 1,
+			"Goods": 0,
+			"Food": 0,
+			"PollutionRadius": 0
 		}
 	]
 }

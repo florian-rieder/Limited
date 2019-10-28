@@ -1,20 +1,32 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BuildDialogBoxAPI : MonoBehaviour
 {
-    public void MoveTo(Vector3 destination){
-        transform.position = destination;
-    }
+    private Image image;
+    private RectTransform rectTransform;
 
-    public bool isOpen(){
-        var imageComponent = GetComponent<Image>();
-        return imageComponent.enabled;
-    }
+    public Tilemap environment;
 
+    void Awake(){
+        image = GetComponent<Image>();
+        rectTransform = (RectTransform)gameObject.transform;
+    }
+    public void MoveTo(Vector3Int destination){
+        // Offset dialog box so that it's top left corner is in the middle of the clicked tile
+        Vector3 adjustedDestination = new Vector3(destination.x + 0.5f, destination.y + 0.5f, transform.position.z);
+        transform.position = adjustedDestination;
+    }
+    public bool IsOpen(){
+        return image.enabled;
+    }
+    public void Enabled(bool value){
+        image.enabled = value;
+    }
     public Vector2 GetSize(){
-        var imageComponent = GetComponent<Image>();
-        Vector2 size = new Vector2(0, 0);
-        return  size;
+        // create return object
+        Vector2 size = new Vector2(rectTransform.rect.width, rectTransform.rect.height);
+        return size;
     }
 }

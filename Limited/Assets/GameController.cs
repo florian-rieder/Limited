@@ -12,6 +12,13 @@ public class GameController : MonoBehaviour
 
         // ...
 
+        Debug.Log("update inventory");
+        var inv = playerInventory.countInventory();
+        Debug.Log("Oil: "+inv.Oil);
+        Debug.Log("Coal: "+inv.Coal);
+        Debug.Log("Power: " + inv.Power);
+        Debug.Log("Goods: " + inv.Goods);
+
         // start next turn (or first turn)
         NextTurn();
     }

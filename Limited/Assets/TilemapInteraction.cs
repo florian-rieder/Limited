@@ -6,6 +6,7 @@ public class TilemapInteraction : MonoBehaviour
 {
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
+	public BuildDialogBoxAPI dialogBox;
 
 	// Update is called once per frame
 	void Update()
@@ -21,12 +22,12 @@ public class TilemapInteraction : MonoBehaviour
 			{
 				EnvironmentTile _environmentTile;
 				FacilityTile _facilityTile;
+
 				// get the position of the tile being clicked on
 				Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				var tilePos = environmentTilemap.WorldToCell(point);
 
-				var buildDialogBoxAPI = GameObject.FindWithTag("UI_BuildDialogBox").GetComponent<BuildDialogBoxAPI>();
-				buildDialogBoxAPI.MoveTo(environmentTilemap.CellToWorld(tilePos) + new Vector3(1, -1, 0));
+				doDialogBox(tilePos);
 
 				var environmentTiles = GameTiles.instance.environmentTiles; // This is our Dictionary of tiles
 				var facilitiesTiles = GameTiles.instance.facilitiesTiles;
@@ -81,6 +82,15 @@ public class TilemapInteraction : MonoBehaviour
 		str += "\nWood: " + et.Wood;
 
 		return str;
+	}
+
+	private void doDialogBox(Vector3Int pos){
+		if(dialogBox.IsOpen()){
+			dialogBox.Enabled(false);
+		} else {
+			dialogBox.MoveTo(pos);
+			dialogBox.Enabled(true);
+		}
 	}
 
 }
