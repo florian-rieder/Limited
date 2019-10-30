@@ -19,7 +19,8 @@
 			],
 			"Oil": 0,
 			"Coal": 0,
-			"Wood": 0
+			"Wood": 0,
+			"Metal": 0
 		},
 		{
 			"Name": "Coal Vein",
@@ -28,7 +29,8 @@
 			],
 			"Oil": 0,
 			"Coal": 100,
-			"Wood": 0
+			"Wood": 0,
+			"Metal": 100
 		},
 		{
 			"Name": "Oil Pocket",
@@ -37,7 +39,8 @@
 			],
 			"Oil": 100,
 			"Coal": 0,
-			"Wood": 0
+			"Wood": 0,
+			"Metal": 100
 		},
 		{
 			"Name": "Forest",
@@ -46,7 +49,9 @@
 			],
 			"Oil": 0,
 			"Coal": 0,
-			"Wood": 100
+			"Wood": 100,
+			"Metal": 100
+			
 		},
 		{
 			"Name": "Plain",
@@ -55,7 +60,8 @@
 			],
 			"Oil": 0,
 			"Coal": 0,
-			"Wood": 0
+			"Wood": 0,
+			"Metal": 100
 		}
 	]
 }
