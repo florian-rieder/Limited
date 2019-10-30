@@ -19,10 +19,10 @@ public class BuildDialogBoxAPI : MonoBehaviour
         transform.position = adjustedDestination;
     }
     public bool IsOpen(){
-        return image.enabled;
+        return gameObject.activeSelf;
     }
     public void Enabled(bool value){
-        image.enabled = value;
+        gameObject.SetActive(value);
     }
     public Vector2 GetSize(){
         // create return object
