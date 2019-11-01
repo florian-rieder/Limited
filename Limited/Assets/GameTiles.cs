@@ -29,6 +29,21 @@ public class GameTiles : MonoBehaviour
 		GetWorldTiles();
 	}
 
+	public EnvironmentTileTypeRoot GetEnvironmentTypes(){
+		// Get tile type definitions from JSON file
+		string environmentJSONContents = environmentTileTypesJSON.text;
+		// Get array of types
+		EnvironmentTileTypeRoot environmentRoot = JsonUtility.FromJson<EnvironmentTileTypeRoot>(environmentJSONContents);
+
+		return environmentRoot;
+	}
+	public FacilitiesTileTypeRoot getFacilitiesTypes(){
+		string facilitiesJSONContents = facilitiesTileTypesJSON.text;
+		FacilitiesTileTypeRoot facilitiesRoot = JsonUtility.FromJson<FacilitiesTileTypeRoot>(facilitiesJSONContents);
+		
+		return facilitiesRoot;
+	}
+
 	// Use this for initialization
 	private void GetWorldTiles()
 	{
@@ -41,7 +56,7 @@ public class GameTiles : MonoBehaviour
 		EnvironmentTileTypeRoot environmentRoot = JsonUtility.FromJson<EnvironmentTileTypeRoot>(environmentJSONContents);
 
 		string facilitiesJSONContents = facilitiesTileTypesJSON.text;
-		FacilitiesTileTypeRoot facilitiesRoot = JsonUtility.FromJson<FacilitiesTileTypeRoot>(facilitiesJSONContents);
+		FacilitiesTileTypeRoot facilitiesRoot = getFacilitiesTypes();
 
 		// Add game tiles to our tile dictionary for further referencing, should it be the case (spoiler alert: it will!)
 		// iterate through all tiles in the tilemap

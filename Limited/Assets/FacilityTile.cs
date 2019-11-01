@@ -19,6 +19,7 @@ public class FacilityTile
 	public int Power { get; set; }
 	public int Goods { get; set; }
 	public int Food { get; set; }
+	public int Metal { get; set; }
 
 	public int PollutionRadius { get; set; }
 }
@@ -35,6 +36,7 @@ public class FacilitiesTileType
 	public int Oil;
 	public int Coal;
 	public int Wood;
+	public int Metal;
 	public int Power;
 	public int Goods;
 	public int Food;

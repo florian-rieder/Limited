@@ -13,8 +13,20 @@
 			"PollutionRadius": 0
 		},
 		{
-			"Name": "Coal Mine",
+			"Name": "Farm",
 			"SpriteName": "Tileset_facilities_1",
+			"Oil": 0,
+			"Coal": 0,
+			"Wood": 0,
+			"Metal": 0,
+			"Power": -1,
+			"Goods": 0,
+			"Food": 1,
+			"PollutionRadius": 0
+		},
+		{
+			"Name": "Coal Mine",
+			"SpriteName": "Tileset_facilities_2",
 			"Oil": 0,
 			"Coal": 2,
 			"Wood": 0,
@@ -26,7 +38,7 @@
 		},
 		{
 			"Name": "Oil Derrick",
-			"SpriteName": "Tileset_facilities_2",
+			"SpriteName": "Tileset_facilities_3",
 			"Oil": 2,
 			"Coal": 0,
 			"Wood": 0,
@@ -38,7 +50,7 @@
 		},
 		{
 			"Name": "Sawmill",
-			"SpriteName": "Tileset_facilities_3",
+			"SpriteName": "Tileset_facilities_4",
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 2,
@@ -50,7 +62,7 @@
 		},
 		{
 			"Name": "Factory",
-			"SpriteName": "Tileset_facilities_4",
+			"SpriteName": "Tileset_facilities_5",
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": -1,
@@ -62,7 +74,7 @@
 		},
 		{
 			"Name": "Oil Power Plant",
-			"SpriteName": "Tileset_facilities_5",
+			"SpriteName": "Tileset_facilities_6",
 			"Oil": -1,
 			"Coal": 0,
 			"Wood": 0,
@@ -74,7 +86,7 @@
 		},
 		{
 			"Name": "Coal Power Plant",
-			"SpriteName": "Tileset_facilities_6",
+			"SpriteName": "Tileset_facilities_7",
 			"Oil": 0,
 			"Coal": -1,
 			"Wood": 0,
@@ -86,7 +98,7 @@
 		},
 		{
 			"Name": "Wind Turbine",
-			"SpriteName": "Tileset_facilities_7",
+			"SpriteName": "Tileset_facilities_8",
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 0,
@@ -98,7 +110,7 @@
 		},
 		{
 			"Name": "Metal Mine",
-			"SpriteName": "Tileset_facilities_8",
+			"SpriteName": "Tileset_facilities_9",
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 0,
@@ -110,7 +122,7 @@
 		},
 		{
 			"Name": "Recycling Center",
-			"SpriteName": "Tileset_facilities_9",
+			"SpriteName": "Tileset_facilities_10",
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 0,

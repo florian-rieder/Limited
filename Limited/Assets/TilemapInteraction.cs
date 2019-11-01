@@ -7,6 +7,7 @@ public class TilemapInteraction : MonoBehaviour
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
 	public BuildDialogBoxAPI dialogBox;
+	public 
 
 	// Update is called once per frame
 	void Update()
@@ -25,7 +26,7 @@ public class TilemapInteraction : MonoBehaviour
 
 				// get the position of the tile being clicked on
 				Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				var tilePos = environmentTilemap.WorldToCell(point);
+				Vector3Int tilePos = environmentTilemap.WorldToCell(point);
 
 				doDialogBox(tilePos);
 
@@ -59,7 +60,7 @@ public class TilemapInteraction : MonoBehaviour
 	private string createFacilityLog(FacilityTile ft)
 	{
 		string str = "";
-		str += "name: " + ft.Name;
+		str += "Name: " + ft.Name;
 		str += "\nSprite: " + ft.TileBase.ToString();
 		str += "\nOil: " + ft.Oil;
 		str += "\nCoal: " + ft.Coal;
@@ -67,6 +68,7 @@ public class TilemapInteraction : MonoBehaviour
 		str += "\nPower: " + ft.Power;
 		str += "\nGoods: " + ft.Goods;
 		str += "\nFood: " + ft.Food;
+		str += "\nMetal: " + ft.Metal;
 		str += "\nPollution radius: " + ft.PollutionRadius;
 
 		return str;
@@ -75,11 +77,12 @@ public class TilemapInteraction : MonoBehaviour
 	private string createEnvironmentLog(EnvironmentTile et)
 	{
 		string str = "";
-		str += "name: " + et.Name;
+		str += "Name: " + et.Name;
 		str += "\nSprite: " + et.TileBase.ToString();
 		str += "\nOil: " + et.Oil;
 		str += "\nCoal: " + et.Coal;
 		str += "\nWood: " + et.Wood;
+		str += "\nMetal: " + et.Metal;
 
 		return str;
 	}
@@ -88,6 +91,7 @@ public class TilemapInteraction : MonoBehaviour
 		if(dialogBox.IsOpen()){
 			dialogBox.Enabled(false);
 		} else {
+			dialogBox.UpdateButtons(pos);
 			dialogBox.MoveTo(pos);
 			dialogBox.Enabled(true);
 		}
