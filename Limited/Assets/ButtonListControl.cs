@@ -16,7 +16,7 @@ public class ButtonListControl : MonoBehaviour
 	public void UpdateButtons(EnvironmentTile tile)
 	{
 
-		var facilitiesTypes = GameTiles.instance.getFacilitiesTypes();
+		var facilitiesTypes = GameTiles.instance.GetFacilitiesTypes();
 		// empty parent object
 
 		// iterate through all children of our content object and destroy them
@@ -28,15 +28,15 @@ public class ButtonListControl : MonoBehaviour
 			GameObject.Destroy(child.gameObject);
 		}
 
-        // repopulate our dialog box
+		// repopulate our dialog box
 
-        // if there is no tile there is nothing that can be built
+		// if there is no tile there is nothing that can be built
 		if (tile != null)
 		{
 			// can't build anything on water
 			if (tile.Name == "Water") return;
 
-            // maybe sort types in some manner
+			// maybe sort types in some manner
 
 			// create a button for each possible facility that can be built
 			foreach (FacilitiesTileType type in facilitiesTypes.tileTypes)
@@ -46,7 +46,7 @@ public class ButtonListControl : MonoBehaviour
 				// can't build cities like that
 				if (type.Name == "City") continue;
 				// if the type is a farm, and the tile is polluted, don't create the button
-				if(type.Name == "Farm" && tile.Polluted == true) continue; 
+				if (type.Name == "Farm" && tile.Polluted == true) continue;
 
 				// create a button for this facility and add it to the parent object
 				// instantiate new button

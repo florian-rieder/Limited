@@ -37,10 +37,10 @@ public class GameTiles : MonoBehaviour
 
 		return environmentRoot;
 	}
-	public FacilitiesTileTypeRoot getFacilitiesTypes(){
+	public FacilitiesTileTypeRoot GetFacilitiesTypes(){
 		string facilitiesJSONContents = facilitiesTileTypesJSON.text;
 		FacilitiesTileTypeRoot facilitiesRoot = JsonUtility.FromJson<FacilitiesTileTypeRoot>(facilitiesJSONContents);
-		
+
 		return facilitiesRoot;
 	}
 
@@ -50,13 +50,10 @@ public class GameTiles : MonoBehaviour
 		environmentTiles = new Dictionary<Vector3Int, EnvironmentTile>();
 		facilitiesTiles = new Dictionary<Vector3Int, FacilityTile>();
 
-		// Get tile type definitions from JSON file
-		string environmentJSONContents = environmentTileTypesJSON.text;
-		// Get array of types
-		EnvironmentTileTypeRoot environmentRoot = JsonUtility.FromJson<EnvironmentTileTypeRoot>(environmentJSONContents);
-
-		string facilitiesJSONContents = facilitiesTileTypesJSON.text;
-		FacilitiesTileTypeRoot facilitiesRoot = getFacilitiesTypes();
+		
+		// Get types
+		EnvironmentTileTypeRoot environmentRoot = GetEnvironmentTypes();
+		FacilitiesTileTypeRoot facilitiesRoot = GetFacilitiesTypes();
 
 		// Add game tiles to our tile dictionary for further referencing, should it be the case (spoiler alert: it will!)
 		// iterate through all tiles in the tilemap
@@ -84,6 +81,7 @@ public class GameTiles : MonoBehaviour
 					Oil = tileType.Oil,
 					Coal = tileType.Coal,
 					Wood = tileType.Wood,
+					Metal = tileType.Metal
 				};
 
 				// add the tile representation to our dictionnary of tiles
@@ -108,12 +106,12 @@ public class GameTiles : MonoBehaviour
 					Oil = tileType.Oil,
 					Coal = tileType.Coal,
 					Wood = tileType.Wood,
+					Metal = tileType.Metal,
 					Power = tileType.Power,
 					Goods = tileType.Goods,
 					Food = tileType.Food,
 
 					PollutionRadius = tileType.PollutionRadius
-
 				};
 
 				facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);

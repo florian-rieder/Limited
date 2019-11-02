@@ -5,9 +5,16 @@ using System.Reflection;
 public class PlayerInventory : MonoBehaviour
 {
 
-	public Inventory countInventory()
+	public Dictionary<string, int> getCount()
 	{
-        var inventory = new Inventory();
+		var inventory = new Dictionary<string, int>();
+		string[] resourceNames = new string[7] { "Oil", "Coal", "Wood", "Metal", "Power", "Goods", "Food" };
+
+		// initialize dictionary
+		foreach (string name in resourceNames)
+		{
+			inventory[name] = 0;
+		}
 
 		// get dictionary of facility tiles
 		var facilityTiles = GameTiles.instance.facilitiesTiles;
@@ -16,24 +23,12 @@ public class PlayerInventory : MonoBehaviour
 		{
 			var tile = entry.Value;
 
-            inventory.Oil += tile.Oil;
-            inventory.Coal += tile.Coal;
-            inventory.Wood += tile.Wood;
-            inventory.Power += tile.Power;
-            inventory.Goods += tile.Goods;
-            inventory.Food += tile.Food;
+			foreach (string name in resourceNames)
+			{
+				inventory[name] += (int)typeof(FacilityTile).GetProperty(name).GetValue(tile);
+			}
 		}
 
-        return inventory;
+		return inventory;
 	}
-}
-
-public class Inventory
-{
-	public int Oil = 0;
-	public int Coal = 0;
-	public int Wood = 0;
-	public int Power = 0;
-	public int Goods = 0;
-	public int Food = 0;
 }

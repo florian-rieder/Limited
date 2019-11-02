@@ -7,7 +7,7 @@ public class TilemapInteraction : MonoBehaviour
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
 	public BuildDialogBoxAPI dialogBox;
-	public 
+	public
 
 	// Update is called once per frame
 	void Update()
@@ -57,6 +57,20 @@ public class TilemapInteraction : MonoBehaviour
 		}
 	}
 
+	private void doDialogBox(Vector3Int pos)
+	{
+		if (dialogBox.IsOpen())
+		{
+			dialogBox.Enabled(false);
+		}
+		else
+		{
+			dialogBox.UpdateButtons(pos);
+			dialogBox.MoveTo(pos);
+			dialogBox.Enabled(true);
+		}
+	}
+
 	private string createFacilityLog(FacilityTile ft)
 	{
 		string str = "";
@@ -86,15 +100,4 @@ public class TilemapInteraction : MonoBehaviour
 
 		return str;
 	}
-
-	private void doDialogBox(Vector3Int pos){
-		if(dialogBox.IsOpen()){
-			dialogBox.Enabled(false);
-		} else {
-			dialogBox.UpdateButtons(pos);
-			dialogBox.MoveTo(pos);
-			dialogBox.Enabled(true);
-		}
-	}
-
 }
