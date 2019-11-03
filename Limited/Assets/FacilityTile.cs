@@ -13,15 +13,10 @@ public class FacilityTile
 
 	public string Name { get; set; }
 
-	public int Oil { get; set; }
-	public int Coal { get; set; }
-	public int Wood { get; set; }
-	public int Power { get; set; }
-	public int Goods { get; set; }
-	public int Food { get; set; }
-	public int Metal { get; set; }
-
+	public Dictionary<string, int> Resources { get; set; }
+	
 	public int PollutionRadius { get; set; }
+	public bool Extractor { get; set; }
 }
 
 // Classes used to retrieve tile data from JSON file
@@ -42,6 +37,20 @@ public class FacilitiesTileType
 	public int Food;
 
 	public int PollutionRadius;
+	public bool Extractor;
+
+	public Dictionary<string, int> GenerateResourcesDictionary()
+	{
+		return new Dictionary<string, int>{
+			{"Oil", Oil},
+			{"Coal", Coal},
+			{"Wood", Wood},
+			{"Metal", Metal},
+			{"Power", Power},
+			{"Goods", Goods},
+			{"Food", Food}
+		};
+	}
 }
 
 [Serializable]
@@ -53,9 +62,9 @@ public class FacilitiesTileTypeRoot
 
 	public FacilitiesTileType FindType(string spriteName)
 	{
-        /* finds the type of a certain tile based on its sprite name
+		/* finds the type of a certain tile based on its sprite name
 		   returns null if there is no type corresponding to the given name */
-        
+
 		FacilitiesTileType returnType = null;
 		for (int i = 0; i < tileTypes.Length; i++)
 		{

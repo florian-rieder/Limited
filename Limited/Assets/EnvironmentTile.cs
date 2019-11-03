@@ -1,23 +1,16 @@
 ﻿using System;
 using UnityEngine.Tilemaps;
 using UnityEngine;
-
+using System.Collections.Generic;
 [Serializable]
 public class EnvironmentTile
 {
 	public Vector3Int LocalPlace { get; set; }
-
 	public TileBase TileBase { get; set; }
-
 	public Tilemap TilemapMember { get; set; }
 
 	public string Name { get; set; }
-
-	public int Oil { get; set; }
-
-	public int Coal { get; set; }
-	public int Wood { get; set; }
-	public int Metal { get; set; }
+	public Dictionary<string, int> Resources { get; set; }
 	public bool Polluted { get; set; }
 }
 
@@ -29,10 +22,19 @@ public class EnvironmentTileType
 	public string[] SpriteNames;
 
 	public int Oil;
-
 	public int Coal;
 	public int Wood;
 	public int Metal;
+
+	public Dictionary<string, int> GenerateResourcesDictionary()
+	{
+		return new Dictionary<string, int>{
+			{"Oil", Oil},
+			{"Coal", Coal},
+			{"Wood", Wood},
+			{"Metal", Metal},
+		};
+	}
 }
 
 // Root class used because the jsonUtility needs the JSON to represent 

@@ -48,7 +48,12 @@ public class GameController : MonoBehaviour
 			}
 		}
 
-		// get TilemapInteractions script
-		var tilemapInteractions = GetComponent<TilemapInteraction>();
+		// Get all possible tiles to found a city
+
+		// highlight them in green
+
+		// listen to clicks
+
+		// Create city
 	}
 }

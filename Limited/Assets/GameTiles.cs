@@ -15,6 +15,9 @@ public class GameTiles : MonoBehaviour
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
 	public Dictionary<Vector3Int, FacilityTile> facilitiesTiles;
 
+	public List<string> EnvironmentResourceNames;
+	public List<string> FacilitiesResourceNames;
+
 	private void Awake()
 	{
 		if (instance == null)
@@ -29,7 +32,8 @@ public class GameTiles : MonoBehaviour
 		GetWorldTiles();
 	}
 
-	public EnvironmentTileTypeRoot GetEnvironmentTypes(){
+	public EnvironmentTileTypeRoot GetEnvironmentTypes()
+	{
 		// Get tile type definitions from JSON file
 		string environmentJSONContents = environmentTileTypesJSON.text;
 		// Get array of types
@@ -37,7 +41,8 @@ public class GameTiles : MonoBehaviour
 
 		return environmentRoot;
 	}
-	public FacilitiesTileTypeRoot GetFacilitiesTypes(){
+	public FacilitiesTileTypeRoot GetFacilitiesTypes()
+	{
 		string facilitiesJSONContents = facilitiesTileTypesJSON.text;
 		FacilitiesTileTypeRoot facilitiesRoot = JsonUtility.FromJson<FacilitiesTileTypeRoot>(facilitiesJSONContents);
 
@@ -50,10 +55,20 @@ public class GameTiles : MonoBehaviour
 		environmentTiles = new Dictionary<Vector3Int, EnvironmentTile>();
 		facilitiesTiles = new Dictionary<Vector3Int, FacilityTile>();
 
-		
+
 		// Get types
 		EnvironmentTileTypeRoot environmentRoot = GetEnvironmentTypes();
 		FacilitiesTileTypeRoot facilitiesRoot = GetFacilitiesTypes();
+
+		// Generate resource names lists from the first type that is in our types lists
+		foreach (KeyValuePair<string, int> type in environmentRoot.tileTypes[0].GenerateResourcesDictionary())
+		{
+			EnvironmentResourceNames.Add(type.Key);
+		}
+		foreach (KeyValuePair<string, int> type in facilitiesRoot.tileTypes[0].GenerateResourcesDictionary())
+		{
+			FacilitiesResourceNames.Add(type.Key);
+		}
 
 		// Add game tiles to our tile dictionary for further referencing, should it be the case (spoiler alert: it will!)
 		// iterate through all tiles in the tilemap
@@ -78,15 +93,11 @@ public class GameTiles : MonoBehaviour
 
 					// Amount of resources available in this tile
 					Name = tileType.Name,
-					Oil = tileType.Oil,
-					Coal = tileType.Coal,
-					Wood = tileType.Wood,
-					Metal = tileType.Metal
+					Resources = tileType.GenerateResourcesDictionary()
 				};
 
 				// add the tile representation to our dictionnary of tiles
 				environmentTiles.Add(environmentTile.LocalPlace, environmentTile);
-				
 			}
 			// FACILITY TILES
 			if (facilitiesTilemap.HasTile(localPlace))
@@ -103,22 +114,15 @@ public class GameTiles : MonoBehaviour
 					// Here, we represent consumption by negative values for its resource
 					// and we represent production by positive values
 					Name = tileType.Name,
-					Oil = tileType.Oil,
-					Coal = tileType.Coal,
-					Wood = tileType.Wood,
-					Metal = tileType.Metal,
-					Power = tileType.Power,
-					Goods = tileType.Goods,
-					Food = tileType.Food,
-
+					Resources = tileType.GenerateResourcesDictionary(),
+					Extractor = tileType.Extractor,
 					PollutionRadius = tileType.PollutionRadius
 				};
 
 				facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
 			}
 		}
-		
+
 	}
 
-	
 }

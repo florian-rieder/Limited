@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 public class GameSystem : MonoBehaviour
 {
 	/* Object that permits use of different non specific "utility" functions 

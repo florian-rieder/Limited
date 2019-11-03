@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Reflection;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class PlayerInventory : MonoBehaviour
 	public Dictionary<string, int> getCount()
 	{
 		var inventory = new Dictionary<string, int>();
-		string[] resourceNames = new string[7] { "Oil", "Coal", "Wood", "Metal", "Power", "Goods", "Food" };
+		List<string> resourceNames = GameTiles.instance.FacilitiesResourceNames;
 
 		// initialize dictionary
 		foreach (string name in resourceNames)
@@ -19,15 +18,22 @@ public class PlayerInventory : MonoBehaviour
 		// get dictionary of facility tiles
 		var facilityTiles = GameTiles.instance.facilitiesTiles;
 
+		// for each facility tile on the tilemap...
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilityTiles)
 		{
 			var tile = entry.Value;
 
+			// iterate through the resource consumption/production and add its value to our total
 			foreach (string name in resourceNames)
 			{
-				inventory[name] += (int)typeof(FacilityTile).GetProperty(name).GetValue(tile);
+				inventory[name] += tile.Resources[name];
 			}
 		}
+
+		/* Debug.Log("Player inventory: ");
+		foreach(string name in resourceNames){
+			Debug.Log("\n"+name+": "+inventory[name]);
+		} */
 
 		return inventory;
 	}
