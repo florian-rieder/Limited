@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class ButtonListControl : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject buttonTemplate;
+	private Tilemap facilitiesTilemap;
 
 	private List<GameObject> buttons = new List<GameObject>();
 
+	private EnvironmentTile lastTileClicked;
+	private FacilitiesTileTypeRoot facilitiesTypes;
+
 	public void Initialize(EnvironmentTile firstPosition)
 	{
-		var facilitiesTypes = GameTiles.instance.GetFacilitiesTypes();
+		facilitiesTypes = GameTiles.instance.GetFacilitiesTypes();
 
 		foreach (FacilitiesTileType type in facilitiesTypes.tileTypes)
 		{
@@ -26,7 +31,14 @@ public class ButtonListControl : MonoBehaviour
 			btnScript.SetText(type.Name);
 			btnScript.SetType(type);
 
-			if(btnScript.IsBuildable(firstPosition))
+			if (btnScript.IsBuildable(firstPosition))
+			{
+				button.SetActive(true);
+			}
+			else
+			{
+				button.SetActive(false);
+			}
 
 			// set parent of the button with the parent of the button template's parent 
 			// (our content object)
@@ -54,11 +66,24 @@ public class ButtonListControl : MonoBehaviour
 					button.SetActive(false);
 				}
 			}
+
+			lastTileClicked = tile;
 		}
 		else
 		{
 			Debug.Log("There is no tile here!");
 		}
+	}
+
+	public void ButtonClicked(FacilitiesTileType type){
+		Vector3Int pos = lastTileClicked.LocalPlace;
+
+		// builds new tile
+		GameTiles.instance.BuildFacility(type, pos);
+
+		// close dialog box
+		var dialogBox = GameObject.FindWithTag("UI_BuildDialogBox").GetComponent<BuildDialogBoxAPI>();
+		dialogBox.Enabled(false);
 	}
 
 }

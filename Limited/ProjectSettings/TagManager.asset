@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UI_NotificationBig
   - UI_BuildDialogBox
+  - UI_TileSelector
   layers:
   - Default
   - TransparentFX

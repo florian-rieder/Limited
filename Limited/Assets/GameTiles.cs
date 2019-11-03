@@ -11,6 +11,7 @@ public class GameTiles : MonoBehaviour
 	public Tilemap facilitiesTilemap;
 	public TextAsset environmentTileTypesJSON;
 	public TextAsset facilitiesTileTypesJSON;
+	public Texture2D facilitiesTileset;
 
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
 	public Dictionary<Vector3Int, FacilityTile> facilitiesTiles;
@@ -109,7 +110,7 @@ public class GameTiles : MonoBehaviour
 				{
 					LocalPlace = localPlace,
 					TileBase = facilitiesTilemap.GetTile(localPlace),
-					TilemapMember = environmentTilemap,
+					TilemapMember = facilitiesTilemap,
 
 					// Here, we represent consumption by negative values for its resource
 					// and we represent production by positive values
@@ -122,7 +123,44 @@ public class GameTiles : MonoBehaviour
 				facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
 			}
 		}
-
 	}
 
+	public void BuildFacility(FacilitiesTileType facilityType, Vector3Int position)
+	{
+		// get all sliced tiles from our tileset
+		Sprite[] tileSprites = Resources.LoadAll<Sprite>(facilitiesTileset.name);
+		Sprite matchingSprite = tileSprites[0];
+
+		// find the sprite 
+		foreach (Sprite sprite in tileSprites)
+		{
+			if (sprite.name == facilityType.SpriteName)
+			{
+				matchingSprite = sprite;
+				break;
+			}
+		}
+
+		var tile = ScriptableObject.CreateInstance<Tile>();
+		tile.sprite = matchingSprite;
+
+		facilitiesTilemap.SetTile(position, tile);
+
+		// create virtual representation of the new tile
+		var facilityTile = new FacilityTile
+		{
+			LocalPlace = position,
+			TileBase = facilitiesTilemap.GetTile(position),
+			TilemapMember = facilitiesTilemap,
+
+			// Here, we represent consumption by negative values for its resource
+			// and we represent production by positive values
+			Name = facilityType.Name,
+			Resources = facilityType.GenerateResourcesDictionary(),
+			Extractor = facilityType.Extractor,
+			PollutionRadius = facilityType.PollutionRadius
+		};
+
+		facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
+	}
 }
