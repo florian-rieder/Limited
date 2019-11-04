@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro; // Text Mesh Pro namespace
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class BuildButton : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class BuildButton : MonoBehaviour
 	private TextMeshProUGUI m_text; // the text component of our button
 	[SerializeField]
 	private ButtonListControl btnControl;
-	[SerializeField]
-	private PlayerInventory playerInventory;
-
+	public Image m_icon;
+	public GameObject resourceDisplayTemplate;
+	public Texture2D resourcesSpritesheet;
 	private string m_textString;
 	private FacilitiesTileType m_type;
 
@@ -28,63 +29,76 @@ public class BuildButton : MonoBehaviour
 	{
 		m_type = type;
 	}
+	public void SetImage(Sprite sprite){
+		m_icon.sprite = sprite;
+	}
+
+	public FacilitiesTileType GetTileType()
+	{
+		return m_type;
+	}
 
 	public void OnClick()
 	{
 		btnControl.ButtonClicked(m_type);
 	}
 
-	public bool IsBuildable(EnvironmentTile tile)
+	public void GenerateResourcesDisplay()
 	{
-		Dictionary<string, int> inventory = playerInventory.getCount();
-		Dictionary<string, int> typeResourcesDictionary = m_type.GenerateResourcesDictionary();
+		var resources = m_type.GenerateResourcesDictionary();
+		List<string> emptyResourceIndexes = new List<string>();
 
-		bool canBuild = true;
-
-		// check if the player has the resources that are needed to build this facility
-		foreach (KeyValuePair<string, int> resource in inventory)
+		// remove entries with a value of 0
+		foreach (KeyValuePair<string, int> entry in resources)
 		{
-			string name = resource.Key;
-			int availableAmount = resource.Value;
-
-			int typeAmountForThisRessource = typeResourcesDictionary[name];
-
-			if (m_type.Extractor && GameTiles.instance.EnvironmentResourceNames.Contains(name))
-			{
-				// get the amount of this ressource in the tile we want to build on
-				int tileAmountOfThisRessource = tile.Resources[name];
-
-				// if the amount of this resource in the ground is insufficient
-				if (tileAmountOfThisRessource < typeAmountForThisRessource)
-				{
-					canBuild = false;
-					break;
-				}
-			}
-			// if the resource is extracted from the tile by the facility and the resource can be extracted from the ground
-			// for example, a coal mine needs power, and coal in the ground, but power can't be extracted from the ground, but
-			// taken from the player's inventory.
-			// TL;DR - we only apply this "ground" check for the resources that can be in the ground.
-
-			// if the resource is taken from the inventory by the facility
-			// only for the numbers indicating a consumption (negative numbers)
-			else if (typeAmountForThisRessource < 0)
-			{
-				// if the amount in the inventory of the player is insufficient
-				if (availableAmount < Mathf.Abs(typeAmountForThisRessource))
-				{
-					canBuild = false;
-					break;
-				}
-			}
+			if (entry.Value == 0) emptyResourceIndexes.Add(entry.Key);
+		}
+		foreach (string key in emptyResourceIndexes)
+		{
+			resources.Remove(key);
 		}
 
-		if (canBuild)
+		// generate displays
+		foreach (KeyValuePair<string, int> entry in resources)
 		{
-			// custom rules
-			if (m_type.Name == "Farm" && tile.Polluted == true) canBuild = false;
-		}
+			string name = entry.Key;
+			int value = entry.Value;
 
-		return canBuild;
+			// format value
+			string valueString = "";
+			if (value > 0)
+			{
+				valueString = "+" + value;
+			}
+			else
+			{
+				valueString = value.ToString();
+			}
+
+			// get sprite
+			var names = new Dictionary<string, int>{
+				{"Oil", 0},
+				{"Coal", 1},
+				{"Wood", 2},
+				{"Metal", 6},
+				{"Power", 3},
+				{"Goods", 4},
+				{"Food", 5}
+			};
+			
+			// get all sliced tiles from our tileset
+			Sprite[] resourceSprites = Resources.LoadAll<Sprite>(resourcesSpritesheet.name);
+			Sprite sprite = resourceSprites[names[name]];
+
+			// apply sprite and value to item
+			GameObject display = Instantiate(resourceDisplayTemplate);
+			BuildButtonResourceDisplay displayScript = display.GetComponent<BuildButtonResourceDisplay>();
+			display.SetActive(true);
+			displayScript.SetImage(sprite);
+			displayScript.SetText(valueString);
+
+			// place display in the hierarachy
+			display.transform.SetParent(resourceDisplayTemplate.transform.parent);
+		}
 	}
 }

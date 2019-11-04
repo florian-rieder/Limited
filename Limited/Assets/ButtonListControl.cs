@@ -12,6 +12,7 @@ public class ButtonListControl : MonoBehaviour
 
 	private EnvironmentTile lastTileClicked;
 	private FacilitiesTileTypeRoot facilitiesTypes;
+	public Texture2D facilitiesTileset;
 
 	public void Initialize(EnvironmentTile firstPosition)
 	{
@@ -29,9 +30,28 @@ public class ButtonListControl : MonoBehaviour
 
 			// change text of the button
 			btnScript.SetText(type.Name);
-			btnScript.SetType(type);
 
-			if (btnScript.IsBuildable(firstPosition))
+			// change the icon of the button
+			// get all sliced tiles from our tileset
+			Sprite[] tileSprites = Resources.LoadAll<Sprite>(facilitiesTileset.name);
+			Sprite matchingSprite = tileSprites[0];
+
+			// find the sprite 
+			foreach (Sprite sprite in tileSprites)
+			{
+				if (sprite.name == type.SpriteName)
+				{
+					matchingSprite = sprite;
+					break;
+				}
+			}
+
+			btnScript.SetImage(matchingSprite);
+
+			btnScript.SetType(type);
+			btnScript.GenerateResourcesDisplay();
+
+			if (type.IsBuildable(firstPosition))
 			{
 				button.SetActive(true);
 			}
@@ -56,8 +76,9 @@ public class ButtonListControl : MonoBehaviour
 			// check which facilities can be built on the specified tile
 			foreach (GameObject button in buttons)
 			{
+				var type = button.GetComponent<BuildButton>().GetTileType();
 				// hide/show buttons according to if they are buildable on this tile
-				if (button.GetComponent<BuildButton>().IsBuildable(tile))
+				if (type.IsBuildable(tile))
 				{
 					button.SetActive(true);
 				}
@@ -75,7 +96,8 @@ public class ButtonListControl : MonoBehaviour
 		}
 	}
 
-	public void ButtonClicked(FacilitiesTileType type){
+	public void ButtonClicked(FacilitiesTileType type)
+	{
 		Vector3Int pos = lastTileClicked.LocalPlace;
 
 		// builds new tile

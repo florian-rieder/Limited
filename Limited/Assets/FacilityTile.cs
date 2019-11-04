@@ -51,6 +51,61 @@ public class FacilitiesTileType
 			{"Food", Food}
 		};
 	}
+
+	public bool IsBuildable(EnvironmentTile tile)
+	{
+		PlayerInventory playerInventory = GameController.instance.playerInventory;
+		Dictionary<string, int> inventory = playerInventory.getCount();
+		Dictionary<string, int> typeResourcesDictionary = GenerateResourcesDictionary();
+
+		bool canBuild = true;
+
+		// check if the player has the resources that are needed to build this facility
+		foreach (KeyValuePair<string, int> resource in inventory)
+		{
+			string name = resource.Key;
+			int availableAmount = resource.Value;
+
+			int typeAmountForThisRessource = typeResourcesDictionary[name];
+
+			if (Extractor && GameTiles.instance.EnvironmentResourceNames.Contains(name))
+			{
+				// get the amount of this ressource in the tile we want to build on
+				int tileAmountOfThisRessource = tile.Resources[name];
+
+				// if the amount of this resource in the ground is insufficient
+				if (tileAmountOfThisRessource < typeAmountForThisRessource)
+				{
+					canBuild = false;
+					break;
+				}
+			}
+			// if the resource is extracted from the tile by the facility and the resource can be extracted from the ground
+			// for example, a coal mine needs power, and coal in the ground, but power can't be extracted from the ground, but
+			// taken from the player's inventory.
+			// TL;DR - we only apply this "ground" check for the resources that can be in the ground.
+
+			// if the resource is taken from the inventory by the facility
+			// only for the numbers indicating a consumption (negative numbers)
+			else if (typeAmountForThisRessource < 0)
+			{
+				// if the amount in the inventory of the player is insufficient
+				if (availableAmount < Mathf.Abs(typeAmountForThisRessource))
+				{
+					canBuild = false;
+					break;
+				}
+			}
+		}
+
+		if (canBuild)
+		{
+			// custom rules
+			if (Name == "Farm" && tile.Polluted == true) canBuild = false;
+		}
+
+		return canBuild;
+	}
 }
 
 [Serializable]

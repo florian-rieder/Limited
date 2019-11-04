@@ -2,12 +2,24 @@
 
 public class GameController : MonoBehaviour
 {
+	public static GameController instance;
 	public PlayerInventory playerInventory;
 	public int currentTurn = 0;
 
 	private GameObject notificationBig;
+
 	void Awake()
 	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else if (instance != this)
+		{
+			Destroy(gameObject);
+		}
+
+
 		// load savegame (eventually)
 
 		// ...
