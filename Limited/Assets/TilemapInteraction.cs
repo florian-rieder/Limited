@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class TilemapInteraction : MonoBehaviour
 {
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
 	public BuildDialogBoxAPI dialogBox;
+
+	// registry of highlighted tiles
+	private List<Vector3Int> highlightedPositions = new List<Vector3Int>();
 
 	// Update is called once per frame
 	void Update()
@@ -20,8 +24,8 @@ public class TilemapInteraction : MonoBehaviour
 			}
 			else
 			{
-				EnvironmentTile _environmentTile;
-				FacilityTile _facilityTile;
+				EnvironmentTile eTile;
+				FacilityTile fTile;
 
 				// get the position of the tile being clicked on
 				Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -33,35 +37,42 @@ public class TilemapInteraction : MonoBehaviour
 				bool environmentTileHere = false;
 				bool facilityTileHere = false;
 
-				if (facilitiesTiles.TryGetValue(tilePos, out _facilityTile))
+				if (facilitiesTiles.TryGetValue(tilePos, out fTile))
 				{
 					// debug
-					Debug.Log(createFacilityLog(_facilityTile));
+					Debug.Log(createFacilityLog(fTile));
 
 					facilityTileHere = true;
 				}
 				// if we have a tile registered at this position
-				if (environmentTiles.TryGetValue(tilePos, out _environmentTile))
+				if (environmentTiles.TryGetValue(tilePos, out eTile))
 				{
 					// Debug
-					Debug.Log(createEnvironmentLog(_environmentTile));
+					Debug.Log(createEnvironmentLog(eTile));
 
-					// turn tile green
-					// _environmentTile.TilemapMember.SetTileFlags(_environmentTile.LocalPlace, TileFlags.None);
-					// _environmentTile.TilemapMember.SetColor(_environmentTile.LocalPlace, Color.green);
+
 
 					environmentTileHere = true;
 				}
 
 				if (environmentTileHere)
 				{
-					if (_environmentTile.Name != "Water")
+					// check if tile is highlighted
+					if (eTile.TilemapMember.GetColor(eTile.LocalPlace) == Color.green)
+					{
+						// build new city
+						GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().FindType("Tileset_facilities_0"), eTile.LocalPlace);
+						removeHighlights();
+					}
+					else if (eTile.Name != "Water")
 					{
 						if (!facilityTileHere)
 						{
 							doBuildDialogBox(tilePos);
 						}
 					}
+
+
 				}
 				else
 				{
@@ -75,6 +86,28 @@ public class TilemapInteraction : MonoBehaviour
 			}
 
 		}
+	}
+
+	public void HighlightTile(EnvironmentTile tile)
+	{
+		// turn tile green
+		tile.TilemapMember.SetTileFlags(tile.LocalPlace, TileFlags.None);
+		tile.TilemapMember.SetColor(tile.LocalPlace, Color.green);
+		Debug.Log(tile.TilemapMember.GetColor(tile.LocalPlace));
+
+		highlightedPositions.Add(tile.LocalPlace);
+	}
+
+	public void removeHighlights()
+	{
+		foreach (Vector3Int pos in highlightedPositions)
+		{
+			// to remove the tint, just set the color to white
+			environmentTilemap.SetColor(pos, Color.white);
+		}
+
+		// reset registry
+		highlightedPositions = new List<Vector3Int>();
 	}
 
 	private void doBuildDialogBox(Vector3Int pos)

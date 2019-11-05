@@ -14,6 +14,12 @@ public class GameSystem : MonoBehaviour
 		Debug.Log(output);
 	}
 
+	public bool xor(bool a, bool b)
+	{
+		/* exclusive or (xor) logical operator. */
+		return (a && !b) || (!a && b);
+	}
+
 	void Awake()
 	{
 		if (instance == null)

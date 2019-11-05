@@ -4,6 +4,7 @@ public class GameController : MonoBehaviour
 {
 	public static GameController instance;
 	public PlayerInventory playerInventory;
+	public TilemapInteraction tilemapInteraction;
 	public int currentTurn = 0;
 
 	private GameObject notificationBig;
@@ -33,6 +34,11 @@ public class GameController : MonoBehaviour
 		{
 			FirstTurn();
 		}
+		// if turn is a multiple of 3
+		else if (currentTurn % 3 == 0)
+		{
+			NewCity();
+		}
 
 		// next turn code
 
@@ -60,12 +66,20 @@ public class GameController : MonoBehaviour
 			}
 		}
 
+		NewCity();
+	}
+
+	private void NewCity()
+	{
 		// Get all possible tiles to found a city
+		var possibleLocations = GameTiles.instance.GetPossibleCityTiles();
 
 		// highlight them in green
-
-		// listen to clicks
-
-		// Create city
+		foreach (EnvironmentTile eTile in possibleLocations)
+		{
+			tilemapInteraction.HighlightTile(eTile);
+		}
 	}
 }
+
+
