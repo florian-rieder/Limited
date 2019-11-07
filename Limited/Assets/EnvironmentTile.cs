@@ -12,6 +12,10 @@ public class EnvironmentTile
 	public string Name { get; set; }
 	public Dictionary<string, int> Resources { get; set; }
 	public bool Polluted { get; set; }
+
+	public bool IsHighlighted(){
+		return TilemapMember.GetColor(LocalPlace) == Color.green;
+	}
 }
 
 // Classes used to retrieve tile data from JSON file

@@ -235,7 +235,7 @@ public class GameTiles : MonoBehaviour
 		return possibleLocations;
 	}
 
-	private Dictionary<Vector3Int, FacilityTile> GetCities()
+	public Dictionary<Vector3Int, FacilityTile> GetCities()
 	{
 		var cities = new Dictionary<Vector3Int, FacilityTile>();
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilitiesTiles)

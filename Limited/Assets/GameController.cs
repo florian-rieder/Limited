@@ -4,10 +4,14 @@ public class GameController : MonoBehaviour
 {
 	public static GameController instance;
 	public PlayerInventory playerInventory;
+	public BigNotificationAPI notificationBig;
 	public TilemapInteraction tilemapInteraction;
-	public int currentTurn = 0;
-
-	private GameObject notificationBig;
+	public TimerDisplay timerDisplay;
+	// time in [s] that has elapsed
+	private float timer = 0f;
+	// controls if we count the time elapsed
+	private bool updateTimer = false;
+	private float nextGrowthTime = 1f;
 
 	void Awake()
 	{
@@ -20,53 +24,41 @@ public class GameController : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-
 		// load savegame (eventually)
 
 		// ...
 
-		// start next turn (or first turn)
-		NextTurn();
-	}
-	public void NextTurn()
-	{
-		if (currentTurn == 0)
-		{
-			FirstTurn();
-		}
-		// if turn is a multiple of 3
-		else if (currentTurn % 3 == 0)
-		{
-			NewCity();
-		}
 
-		// next turn code
+		StartGame();
+	}
+
+	void Update()
+	{
+		// do stuff
 
 		// ...
 
-		// finally, increase turn counter
-		currentTurn++;
-	}
-
-	private void FirstTurn()
-	{
-		/* First turn script */
-
-		// activate notification and fade it out
-		notificationBig = GameObject.FindWithTag("UI_NotificationBig");
-
-		if (notificationBig != null)
-		{
-			BigNotificationAPI notificationBig_script = notificationBig.GetComponent<BigNotificationAPI>(); // get the script attached to the notification object
-
-			if (notificationBig_script != null)
-			{
-				notificationBig_script.SetText("Choose an initial location for your city.");
-				notificationBig_script.FadeOut();
-			}
+		if(timer >= nextGrowthTime){
+			EnableTimer(false);
+			ResetTimer();
+			NewCity();
 		}
 
+		// count the time that has elapsed
+		if (updateTimer)
+		{
+			timer += Time.deltaTime;
+		}
+	}
+
+	private void StartGame()
+	{
+		/* First turn script */
+		notificationBig.SetText("Choose an initial location for your city.");
+		notificationBig.FadeOut();
+
 		NewCity();
+
 	}
 
 	private void NewCity()
@@ -79,6 +71,39 @@ public class GameController : MonoBehaviour
 		{
 			tilemapInteraction.HighlightTile(eTile);
 		}
+	}
+
+	public void CityBuilt(){
+		/* triggers when the first city is built on the map */
+		nextGrowthTime = GetNextCityGrowthTime();
+		EnableTimer(true);
+	}
+
+	private float GetNextCityGrowthTime(){
+		// parameters
+		float maxTime = 15f;
+		float steepness = 9f;
+
+		float time = 0f;
+
+		int cities = GameTiles.instance.GetCities().Count;
+
+		time = maxTime / (1 + cities/steepness);
+
+		return time;
+	}
+
+	public void EnableTimer(bool value){
+		timerDisplay.Enable(value);
+		updateTimer = value;
+	}
+	
+	public void ResetTimer(){
+		timer = 0f;
+	}
+
+	public float GetTimeRemaining(){
+		return nextGrowthTime - timer;
 	}
 }
 

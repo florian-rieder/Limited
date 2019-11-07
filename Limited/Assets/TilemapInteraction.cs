@@ -57,11 +57,13 @@ public class TilemapInteraction : MonoBehaviour
 
 				if (environmentTileHere)
 				{
-					// check if tile is highlighted
-					if (eTile.TilemapMember.GetColor(eTile.LocalPlace) == Color.green)
+					if (eTile.IsHighlighted())
 					{
 						// build new city
-						GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().FindType("Tileset_facilities_0"), eTile.LocalPlace);
+						GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().tileTypes[0], eTile.LocalPlace);
+						// send signal to controller that a new city has been built
+						GameController.instance.CityBuilt();
+
 						removeHighlights();
 					}
 					else if (eTile.Name != "Water")
@@ -93,7 +95,6 @@ public class TilemapInteraction : MonoBehaviour
 		// turn tile green
 		tile.TilemapMember.SetTileFlags(tile.LocalPlace, TileFlags.None);
 		tile.TilemapMember.SetColor(tile.LocalPlace, Color.green);
-		Debug.Log(tile.TilemapMember.GetColor(tile.LocalPlace));
 
 		highlightedPositions.Add(tile.LocalPlace);
 	}
