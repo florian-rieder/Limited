@@ -30,11 +30,6 @@ public class PlayerInventory : MonoBehaviour
 			}
 		}
 
-		/* Debug.Log("Player inventory: ");
-		foreach(string name in resourceNames){
-			Debug.Log("\n"+name+": "+inventory[name]);
-		} */
-
 		return inventory;
 	}
 }

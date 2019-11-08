@@ -3,7 +3,23 @@ guid: ac5481dafdc18124f85d3c3397caf3c4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerInventory: {instanceID: 0}
+  - itemTemplate: {instanceID: 0}
+  - oilIcon: {fileID: -5650137688854127968, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
+  - coalIcon: {fileID: 3463778228977924227, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
+  - woodIcon: {fileID: -2038607626553853471, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
+  - metalIcon: {fileID: -7461350774432504301, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
+  - powerIcon: {fileID: -8675179632421524668, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
+  - goodsIcon: {fileID: 6372101702241186445, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
+  - foodIcon: {fileID: -4849871534884844075, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

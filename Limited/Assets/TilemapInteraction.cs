@@ -20,7 +20,7 @@ public class TilemapInteraction : MonoBehaviour
 			// prevents clicking through UI
 			if (EventSystem.current.IsPointerOverGameObject())
 			{
-				Debug.Log("Clicked on the UI");
+				//Debug.Log("Clicked on the UI");
 			}
 			else
 			{
