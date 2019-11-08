@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class GameController : MonoBehaviour
 	private float timer = 0f;
 	// controls if we count the time elapsed
 	private bool updateTimer = false;
-	private float nextGrowthTime = 1f;
+	private float nextGrowthTime = 0f;
+
+	private bool firstCityTutorialEnabled = true;
+	private bool firstTimerLaunched = false;
 
 	void Awake()
 	{
@@ -38,15 +42,44 @@ public class GameController : MonoBehaviour
 
 		// ...
 
-		if(timer >= nextGrowthTime){
-			EnableTimer(false);
-			ResetTimer();
-			NewCity();
+		if (!firstTimerLaunched && GameTiles.instance.GetCities().Count == 1)
+		{
+			bool cityNeedsSatisfied = true;
+
+			if (firstCityTutorialEnabled)
+			{
+				foreach (KeyValuePair<string, int> entry in playerInventory.getCount())
+				{
+					//Debug.Log(entry.Key + ": " + entry.Value);
+					if (entry.Value < 0)
+					{
+						cityNeedsSatisfied = false;
+						break;
+					}
+				}
+			}
+
+			//Debug.Log(cityNeedsSatisfied);
+
+			if (cityNeedsSatisfied)
+			{
+				nextGrowthTime = GetNextCityGrowthTime();
+				EnableTimer(true);
+
+				firstTimerLaunched = true;
+			}
 		}
 
 		// count the time that has elapsed
 		if (updateTimer)
 		{
+			if (timer > nextGrowthTime)
+			{
+				EnableTimer(false);
+				ResetTimer();
+				NewCity();
+			}
+
 			timer += Time.deltaTime;
 		}
 	}
@@ -73,13 +106,22 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	public void CityBuilt(){
-		/* triggers when the first city is built on the map */
+	public void CityBuilt()
+	{
+		if (GameTiles.instance.GetCities().Count == 1)
+		{
+			// first turn: don't launch the timer yet, we'll wait until
+			// the player has figured out things and has successfully supplied
+			// what was necessary to feed its first city.
+			return;
+		}
+		/* triggers when a city is built on the map */
 		nextGrowthTime = GetNextCityGrowthTime();
 		EnableTimer(true);
 	}
 
-	private float GetNextCityGrowthTime(){
+	private float GetNextCityGrowthTime()
+	{
 		// parameters
 		float maxTime = 15f;
 		float steepness = 9f;
@@ -88,21 +130,25 @@ public class GameController : MonoBehaviour
 
 		int cities = GameTiles.instance.GetCities().Count;
 
-		time = maxTime / (1 + cities/steepness);
+		time = maxTime / (1 + cities / steepness);
 
 		return time;
 	}
 
-	public void EnableTimer(bool value){
+	public void EnableTimer(bool value)
+	{
+		Debug.Log("Enable timer: " + value);
 		timerDisplay.Enable(value);
 		updateTimer = value;
 	}
-	
-	public void ResetTimer(){
+
+	public void ResetTimer()
+	{
 		timer = 0f;
 	}
 
-	public float GetTimeRemaining(){
+	public float GetTimeRemaining()
+	{
 		return nextGrowthTime - timer;
 	}
 }

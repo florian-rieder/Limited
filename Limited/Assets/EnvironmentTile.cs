@@ -13,7 +13,8 @@ public class EnvironmentTile
 	public Dictionary<string, int> Resources { get; set; }
 	public bool Polluted { get; set; }
 
-	public bool IsHighlighted(){
+	public bool IsHighlighted()
+	{
 		return TilemapMember.GetColor(LocalPlace) == Color.green;
 	}
 }

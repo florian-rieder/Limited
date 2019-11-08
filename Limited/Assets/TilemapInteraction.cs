@@ -68,7 +68,8 @@ public class TilemapInteraction : MonoBehaviour
 					}
 					else if (eTile.Name != "Water")
 					{
-						if (!facilityTileHere)
+						// don't allow to open when choosing the city expansion
+						if (!facilityTileHere && highlightedPositions.Count == 0)
 						{
 							doBuildDialogBox(tilePos);
 						}

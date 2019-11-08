@@ -20,7 +20,7 @@
 			"Coal": 0,
 			"Wood": 0,
 			"Metal": 0,
-			"Power": -1,
+			"Power": 0,
 			"Goods": 0,
 			"Food": 1,
 			"PollutionRadius": 0,
