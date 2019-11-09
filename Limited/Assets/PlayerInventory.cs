@@ -32,4 +32,22 @@ public class PlayerInventory : MonoBehaviour
 
 		return inventory;
 	}
+
+	public bool hasCityNeeds()
+	{
+		var inventory = getCount();
+		List<string> basicNeeds = new List<string>() { "Food", "Goods", "Power" };
+		bool hasNeeds = true;
+
+		foreach (KeyValuePair<string, int> entry in inventory)
+		{
+			if (basicNeeds.Contains(entry.Key) && entry.Value < 0)
+			{
+				hasNeeds = false;
+				break;
+			}
+		}
+
+		return hasNeeds;
+	}
 }

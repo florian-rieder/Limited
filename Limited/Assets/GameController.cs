@@ -4,14 +4,20 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour
 {
 	public static GameController instance;
+	public float famineTimerBase = 30f; // duration of famine until the game is lost
+	public float growthTimerBase = 60f;
 	public PlayerInventory playerInventory;
 	public BigNotificationAPI notificationBig;
 	public TilemapInteraction tilemapInteraction;
 	public TimerDisplay timerDisplay;
+	public GameOverPanel gameOverPanel;
+	public FamineTimerDisplay famineTimerDisplay;
 	// time in [s] that has elapsed
 	private float timer = 0f;
+	private float famineTimer = 0f;
 	// controls if we count the time elapsed
 	private bool updateTimer = false;
+	private bool updateFamineTimer = false;
 	private float nextGrowthTime = 0f;
 
 	private bool firstCityTutorialEnabled = true;
@@ -79,6 +85,33 @@ public class GameController : MonoBehaviour
 
 			timer += Time.deltaTime;
 		}
+
+		bool hasCityNeeds = playerInventory.hasCityNeeds();
+
+		if (firstTimerLaunched)
+		{
+			if (!hasCityNeeds && !updateFamineTimer)
+			{
+				EnableFamineTimer(true);
+			}
+			if (hasCityNeeds && updateFamineTimer)
+			{
+				EnableFamineTimer(false);
+				ResetFamineTimer();
+			}
+		}
+
+		if (updateFamineTimer)
+		{
+
+			if (famineTimer > famineTimerBase)
+			{
+				EnableFamineTimer(false);
+				GameOver("The need for basic resources turned your city into chaos.");
+			}
+
+			famineTimer += Time.deltaTime;
+		}
 	}
 
 	private void StartGame()
@@ -96,8 +129,9 @@ public class GameController : MonoBehaviour
 		// Get all possible tiles to found a city
 		var possibleLocations = GameTiles.instance.GetPossibleCityTiles();
 
-		if (possibleLocations.Count == 0){
-			GameOver();
+		if (possibleLocations.Count == 0)
+		{
+			GameOver("Your city ran out of space to expand on !");
 		}
 
 		// highlight them in green
@@ -126,8 +160,7 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float maxTime = 120f;
-		float steepness = 9f;
+		float steepness = 6f;
 
 		float time = 0f;
 
@@ -135,7 +168,7 @@ public class GameController : MonoBehaviour
 
 		// get the time before the next expansion of the city
 		// in function of the number of cities owned and our parameters
-		time = maxTime / (1 + cities / steepness);
+		time = growthTimerBase / (1 + cities / steepness);
 
 		return time;
 	}
@@ -148,15 +181,37 @@ public class GameController : MonoBehaviour
 
 	public void ResetTimer()
 	{
+
 		timer = 0f;
 	}
 
+	public void EnableFamineTimer(bool value)
+	{
+		updateFamineTimer = value;
+		famineTimerDisplay.Enable(value);
+	}
+	public void ResetFamineTimer()
+	{
+		famineTimer = 0f;
+	}
+	public float GetFamineTimeRemaining()
+	{
+		return famineTimerBase - famineTimer;
+	}
 	public float GetTimeRemaining()
 	{
 		return nextGrowthTime - timer;
 	}
-	private void GameOver()
+	private void GameOver(string reason = "No reason specified.")
 	{
-		Debug.Log("Game Over."); 
+		Debug.Log("Game Over.");
+
+		// hide selector
+		TileSelector.instance.gameObject.SetActive(false);
+
+		// open game over panel
+		gameOverPanel.SetReason(reason);
+		gameOverPanel.gameObject.SetActive(true);
+
 	}
 }
