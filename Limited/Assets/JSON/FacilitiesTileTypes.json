@@ -7,9 +7,9 @@
 			"Coal": 0,
 			"Wood": 0,
 			"Metal": 0,
-			"Power": -1,
+			"Power": -2,
 			"Goods": -1,
-			"Food": -1,
+			"Food": -2,
 			"PollutionRadius": 0,
 			"Extractor": false
 		},
@@ -30,13 +30,13 @@
 			"Name": "Coal Mine",
 			"SpriteName": "Tileset_facilities_2",
 			"Oil": 0,
-			"Coal": 2,
+			"Coal": 1,
 			"Wood": 0,
 			"Metal": 0,
 			"Power": 0,
 			"Goods": 0,
 			"Food": 0,
-			"PollutionRadius": 2,
+			"PollutionRadius": 1,
 			"Extractor": true
 		},
 		{
@@ -49,7 +49,7 @@
 			"Power": -1,
 			"Goods": 0,
 			"Food": 0,
-			"PollutionRadius": 3,
+			"PollutionRadius": 2,
 			"Extractor": true
 		},
 		{
@@ -57,7 +57,7 @@
 			"SpriteName": "Tileset_facilities_4",
 			"Oil": 0,
 			"Coal": 0,
-			"Wood": 2,
+			"Wood": 1,
 			"Metal": 0,
 			"Power": 0,
 			"Goods": 0,
@@ -88,7 +88,7 @@
 			"Power": 3,
 			"Goods": 0,
 			"Food": 0,
-			"PollutionRadius": 3,
+			"PollutionRadius": 2,
 			"Extractor": false
 		},
 		{

@@ -20,6 +20,14 @@ public class GameSystem : MonoBehaviour
 		return (a && !b) || (!a && b);
 	}
 
+	    // in Vector3Int
+    public static int ManhattanDistance(Vector3Int a, Vector3Int b){
+        checked {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
+    }
+
+
 	void Awake()
 	{
 		if (instance == null)

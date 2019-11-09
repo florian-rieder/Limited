@@ -17,6 +17,15 @@ public class EnvironmentTile
 	{
 		return TilemapMember.GetColor(LocalPlace) == Color.green;
 	}
+
+	public void Pollute(){
+		Color PollutionColor = new Color(0.58f, 0.3f, 0.57f, 1f);
+		Polluted = true;
+
+		// tint the tile to our pollution color
+		TilemapMember.SetTileFlags(LocalPlace, TileFlags.None);
+		TilemapMember.SetColor(LocalPlace, PollutionColor);
+	}
 }
 
 // Classes used to retrieve tile data from JSON file

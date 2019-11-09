@@ -161,6 +161,22 @@ public class GameTiles : MonoBehaviour
 			PollutionRadius = facilityType.PollutionRadius
 		};
 
+		if (facilityTile.PollutionRadius > 0){
+			List<EnvironmentTile> pollutedTiles = new List<EnvironmentTile>();
+
+			// iterate through all tiles on the environment tilemap
+			foreach (Vector3Int pos in environmentTilemap.cellBounds.allPositionsWithin){
+				if (GameSystem.ManhattanDistance(facilityTile.LocalPlace, pos) <= facilityTile.PollutionRadius){
+					pollutedTiles.Add(environmentTiles[pos]);
+				}
+			}
+
+			foreach (EnvironmentTile tileToPollute in pollutedTiles){
+				//Debug.Log(tileToPollute.LocalPlace);
+				tileToPollute.Pollute();
+			}
+		}
+
 		facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
 	}
 
