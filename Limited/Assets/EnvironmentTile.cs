@@ -18,13 +18,14 @@ public class EnvironmentTile
 		return TilemapMember.GetColor(LocalPlace) == Color.green;
 	}
 
-	public void Pollute(){
-		Color PollutionColor = new Color(0.58f, 0.3f, 0.57f, 1f);
+	public void Pollute()
+	{
+		//Color PollutionColor = new Color(0.4f, 0.3f, 0.4f, 1f);
 		Polluted = true;
 
 		// tint the tile to our pollution color
 		TilemapMember.SetTileFlags(LocalPlace, TileFlags.None);
-		TilemapMember.SetColor(LocalPlace, PollutionColor);
+		TilemapMember.SetColor(LocalPlace, GameTiles.instance.PollutionColor);
 	}
 }
 
@@ -73,6 +74,19 @@ public class EnvironmentTileTypeRoot
 					returnType = type;
 					break;
 				}
+			}
+		}
+		return returnType;
+	}
+
+	public EnvironmentTileType FindTypeByName(string name)
+	{
+		EnvironmentTileType returnType = null;
+		foreach (EnvironmentTileType type in tileTypes)
+		{
+			if(type.Name == name){
+				returnType = type;
+				break;
 			}
 		}
 		return returnType;

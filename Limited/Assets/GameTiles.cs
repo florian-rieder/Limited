@@ -13,11 +13,15 @@ public class GameTiles : MonoBehaviour
 	public TextAsset facilitiesTileTypesJSON;
 	public Texture2D facilitiesTileset;
 
+	public GameObject healthBarTemplate;
+
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
 	public Dictionary<Vector3Int, FacilityTile> facilitiesTiles;
 
 	public List<string> EnvironmentResourceNames;
 	public List<string> FacilitiesResourceNames;
+
+	public Color PollutionColor;
 
 	private void Awake()
 	{
@@ -105,6 +109,19 @@ public class GameTiles : MonoBehaviour
 			{
 				var TileBase = facilitiesTilemap.GetTile(localPlace);
 				FacilitiesTileType tileType = facilitiesRoot.FindType(TileBase.name); // find the type of this tile by the name of its sprite
+				HealthBar healthBar = null;
+
+				if (tileType.Extractor)
+				{
+					// Attach healthbar if facility is an extractor
+
+					var bar = Instantiate(healthBarTemplate);
+					bar.SetActive(true);
+					HealthBar script = bar.GetComponent<HealthBar>();
+					script.MoveTo(localPlace);
+					healthBar = script;
+
+				}
 
 				var facilityTile = new FacilityTile
 				{
@@ -117,6 +134,7 @@ public class GameTiles : MonoBehaviour
 					Name = tileType.Name,
 					Resources = tileType.GenerateResourcesDictionary(),
 					Extractor = tileType.Extractor,
+					HealthBar = healthBar,
 					PollutionRadius = tileType.PollutionRadius
 				};
 
@@ -146,6 +164,18 @@ public class GameTiles : MonoBehaviour
 
 		facilitiesTilemap.SetTile(position, tile);
 
+		HealthBar healthBar = null;
+
+		// Attach healthbar if facility is an extractor
+		if (facilityType.Extractor)
+		{
+			var bar = Instantiate(healthBarTemplate);
+			bar.SetActive(true);
+			HealthBar script = bar.GetComponent<HealthBar>();
+			script.MoveTo(position);
+			healthBar = script;
+		}
+
 		// create virtual representation of the new tile
 		var facilityTile = new FacilityTile
 		{
@@ -157,23 +187,31 @@ public class GameTiles : MonoBehaviour
 			// and we represent production by positive values
 			Name = facilityType.Name,
 			Resources = facilityType.GenerateResourcesDictionary(),
+
 			Extractor = facilityType.Extractor,
+			HealthBar = healthBar,
 			PollutionRadius = facilityType.PollutionRadius
 		};
 
-		if (facilityTile.PollutionRadius > 0){
+		if (facilityTile.PollutionRadius > 0)
+		{
 			List<EnvironmentTile> pollutedTiles = new List<EnvironmentTile>();
 
 			// iterate through all tiles on the environment tilemap
-			foreach (Vector3Int pos in environmentTilemap.cellBounds.allPositionsWithin){
-				if (GameSystem.ManhattanDistance(facilityTile.LocalPlace, pos) <= facilityTile.PollutionRadius){
+			foreach (Vector3Int pos in environmentTilemap.cellBounds.allPositionsWithin)
+			{
+				if (GameSystem.ManhattanDistance(facilityTile.LocalPlace, pos) <= facilityTile.PollutionRadius)
+				{
 					pollutedTiles.Add(environmentTiles[pos]);
 				}
 			}
 
-			foreach (EnvironmentTile tileToPollute in pollutedTiles){
-				//Debug.Log(tileToPollute.LocalPlace);
-				tileToPollute.Pollute();
+			foreach (EnvironmentTile tileToPollute in pollutedTiles)
+			{
+				if(tileToPollute.Name != "Water"){
+					tileToPollute.Pollute();
+				}
+				
 			}
 		}
 

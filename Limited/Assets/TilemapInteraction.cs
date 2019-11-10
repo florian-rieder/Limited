@@ -60,7 +60,7 @@ public class TilemapInteraction : MonoBehaviour
 					if (eTile.IsHighlighted())
 					{
 						// build new city
-						GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().tileTypes[0], eTile.LocalPlace);
+						GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().FindTypeByName("City"), eTile.LocalPlace);
 						// send signal to controller that a new city has been built
 						GameController.instance.CityBuilt();
 

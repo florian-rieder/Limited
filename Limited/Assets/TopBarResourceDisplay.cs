@@ -19,11 +19,11 @@ public class TopBarResourceDisplay : MonoBehaviour
 
 	public void SetValue(int value)
 	{
-		/* if(value > 0){
+		if(value < 0){
 			text.color = negativeColor;
 		} else {
 			text.color = positiveColor;
-		} */
+		}
 
 		text.text = value.ToString();
 	}

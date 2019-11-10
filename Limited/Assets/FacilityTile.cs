@@ -18,6 +18,8 @@ public class FacilityTile
 	public int PollutionRadius { get; set; }
 	public bool Extractor { get; set; }
 
+	public HealthBar HealthBar;
+
 	public void Extract()
 	{
 		if (Extractor)
@@ -34,6 +36,10 @@ public class FacilityTile
 					eTile.Resources[resourceName] -= Resources[resourceName];
 					if (eTile.Resources[resourceName] < 0) eTile.Resources[resourceName] = 0;
 				}
+
+				// update health bar
+				float ratio = GetResourcesRatio();
+				HealthBar.SetValue(ratio);
 			}
 		}
 		else
@@ -66,6 +72,38 @@ public class FacilityTile
 		}
 
 
+	}
+
+	public float GetResourcesRatio()
+	{
+		EnvironmentTile ground = GameTiles.instance.environmentTiles[LocalPlace];
+		var groundTypeResources = GameTiles.instance.GetEnvironmentTypes().FindTypeByName(ground.Name).GenerateResourcesDictionary();
+
+		Dictionary<string, int> extractedResources = new Dictionary<string, int>();
+
+		// get ratio in function of ground resources
+
+		// list the resources consumed by the facility and record their amount in the ground tile
+		foreach (string resourceName in GameTiles.instance.EnvironmentResourceNames)
+		{
+			if (Resources[resourceName] > 0)
+			{
+				extractedResources[resourceName] = ground.Resources[resourceName];
+			}
+		}
+
+		// total in the ground among all resources extracted
+		float groundTotal = 0;
+		// total in the ground before any mining was performed
+		float groundMax = 0;
+
+		foreach (KeyValuePair<string, int> entry in extractedResources)
+		{
+			groundTotal += entry.Value;
+			groundMax += groundTypeResources[entry.Key];
+		}
+
+		return groundTotal / groundMax;
 	}
 }
 
@@ -137,7 +175,8 @@ public class FacilitiesTileType
 					if (typeAmountForThisRessource < 0)
 					{
 						// if amount in player inventory is insufficient
-						if (inventory[resourceName] < typeAmountForThisRessource){
+						if (inventory[resourceName] < typeAmountForThisRessource)
+						{
 							canBuild = false;
 							break;
 						}
@@ -206,6 +245,19 @@ public class FacilitiesTileTypeRoot
 
 			if (spriteName == type.SpriteName)
 			{
+				returnType = type;
+				break;
+			}
+		}
+		return returnType;
+	}
+
+	public FacilitiesTileType FindTypeByName(string name)
+	{
+		FacilitiesTileType returnType = null;
+		foreach (FacilitiesTileType type in tileTypes)
+		{
+			if(type.Name == name){
 				returnType = type;
 				break;
 			}

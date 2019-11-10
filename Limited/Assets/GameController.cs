@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
 		NewCity();
 
 		// start extracting resources every x second
-		InvokeRepeating("ExtractResources", 0, 1);
+		InvokeRepeating("ExtractResources", 0, 5);
 	}
 
 	private void NewCity()
@@ -162,7 +162,7 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float steepness = 6f;
+		float steepness = 10f;
 
 		float time = 0f;
 
