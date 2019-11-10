@@ -21,13 +21,18 @@ public class PlayerInventory : MonoBehaviour
 		// for each facility tile on the tilemap...
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilityTiles)
 		{
-			var tile = entry.Value;
+			var facility = entry.Value;
 
-			// iterate through the resource consumption/production and add its value to our total
-			foreach (string name in resourceNames)
+			// if the facility is an extractor and has resources in its ground
+			if ((facility.Extractor && facility.GroundHasResources()) || !facility.Extractor)
 			{
-				inventory[name] += tile.Resources[name];
+				// iterate through the resource consumption/production and add its value to our total
+				foreach (string resourceName in resourceNames)
+				{
+					inventory[resourceName] += facility.Resources[resourceName];
+				}
 			}
+
 		}
 
 		return inventory;

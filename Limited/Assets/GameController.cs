@@ -122,6 +122,8 @@ public class GameController : MonoBehaviour
 
 		NewCity();
 
+		// start extracting resources every x second
+		InvokeRepeating("ExtractResources", 0, 1);
 	}
 
 	private void NewCity()
@@ -173,6 +175,23 @@ public class GameController : MonoBehaviour
 		return time;
 	}
 
+	private void ExtractResources()
+	{
+		var facilities = GameTiles.instance.facilitiesTiles;
+
+		// for each facility
+		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilities)
+		{
+			var facility = entry.Value;
+
+			// if the facility extracts natural resources
+			if (facility.Extractor)
+			{
+				// extract resources
+				facility.Extract();
+			}
+		}
+	}
 	public void EnableTimer(bool value)
 	{
 		timerDisplay.Enable(value);

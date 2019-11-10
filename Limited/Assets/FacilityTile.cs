@@ -17,6 +17,56 @@ public class FacilityTile
 
 	public int PollutionRadius { get; set; }
 	public bool Extractor { get; set; }
+
+	public void Extract()
+	{
+		if (Extractor)
+		{
+			EnvironmentTile eTile = GameTiles.instance.environmentTiles[LocalPlace];
+			List<string> extractResources = GameTiles.instance.EnvironmentResourceNames;
+
+			// if there are still resources in the ground
+			if (GroundHasResources())
+			{
+				// extract it
+				foreach (string resourceName in extractResources)
+				{
+					eTile.Resources[resourceName] -= Resources[resourceName];
+					if (eTile.Resources[resourceName] < 0) eTile.Resources[resourceName] = 0;
+				}
+			}
+		}
+		else
+		{
+			Debug.LogError(Name + " can't extract resources.");
+		}
+	}
+
+	public bool GroundHasResources()
+	{
+		if (Extractor)
+		{
+			EnvironmentTile eTile = GameTiles.instance.environmentTiles[LocalPlace];
+			List<string> extractResources = GameTiles.instance.EnvironmentResourceNames;
+
+			foreach (string resourceName in extractResources)
+			{
+				if (!(eTile.Resources[resourceName] >= Resources[resourceName]))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+		else
+		{
+			Debug.LogError(Name + " can't extract resources.");
+			return true;
+		}
+
+
+	}
 }
 
 // Classes used to retrieve tile data from JSON file
@@ -117,6 +167,7 @@ public class FacilitiesTileType
 
 		return canBuild;
 	}
+
 }
 
 [Serializable]
