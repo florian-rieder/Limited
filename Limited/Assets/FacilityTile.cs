@@ -123,22 +123,39 @@ public class FacilitiesTileType
 			// check if the player has the resources that are needed to build this facility
 			foreach (KeyValuePair<string, int> resource in inventory)
 			{
-				string name = resource.Key;
+				string resourceName = resource.Key;
 				int availableAmount = resource.Value;
 
-				int typeAmountForThisRessource = typeResourcesDictionary[name];
+				int typeAmountForThisRessource = typeResourcesDictionary[resourceName];
 
-				if (Extractor && GameTiles.instance.EnvironmentResourceNames.Contains(name))
+				if (Extractor && GameTiles.instance.EnvironmentResourceNames.Contains(resourceName))
 				{
 					// get the amount of this ressource in the tile we want to build on
-					int tileAmountOfThisRessource = tile.Resources[name];
+					int tileAmountOfThisRessource = tile.Resources[resourceName];
 
-					// if the amount of this resource in the ground is insufficient
-					if (tileAmountOfThisRessource < typeAmountForThisRessource)
+					// if the amount is negative, means that the facility is consuming from the player inventory
+					if (typeAmountForThisRessource < 0)
 					{
-						canBuild = false;
-						break;
+						// if amount in player inventory is insufficient
+						if (inventory[resourceName] < typeAmountForThisRessource){
+							canBuild = false;
+							break;
+						}
 					}
+
+					// if it is positive, it means the facility extracts that amount of resources from the ground 
+					// and produces that amount for the player
+					if (typeAmountForThisRessource > 0)
+					{
+						// if the amount of this resource in the ground is insufficient
+						if (tileAmountOfThisRessource < typeAmountForThisRessource)
+						{
+							canBuild = false;
+							break;
+						}
+					}
+
+
 				}
 				// if the resource is extracted from the tile by the facility and the resource can be extracted from the ground
 				// for example, a coal mine needs power, and coal in the ground, but power can't be extracted from the ground, but

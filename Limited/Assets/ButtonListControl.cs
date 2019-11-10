@@ -77,15 +77,9 @@ public class ButtonListControl : MonoBehaviour
 			foreach (GameObject button in buttons)
 			{
 				var type = button.GetComponent<BuildButton>().GetTileType();
+				
 				// hide/show buttons according to if they are buildable on this tile
-				if (type.IsBuildable(tile))
-				{
-					button.SetActive(true);
-				}
-				else
-				{
-					button.SetActive(false);
-				}
+				button.SetActive(type.IsBuildable(tile));
 			}
 
 			lastTileClicked = tile;
