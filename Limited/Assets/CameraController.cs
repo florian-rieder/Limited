@@ -14,6 +14,12 @@ public class CameraController : MonoBehaviour
 	public float scrollLimitMin = 2f;
 	public float scrollLimitMax = 5f;
 
+	// shaking
+	private float shakeDuration = 0f;
+	private float shakeMagnitude = 0.1f;
+	private float dampingSpeed = 1f;
+	private Vector3 initialPosition;
+
 	// Update is called once per frame
 	void Update()
 	{
@@ -116,7 +122,30 @@ public class CameraController : MonoBehaviour
 		position.y = Mathf.Clamp(position.y, -panLimit.y, panLimit.y);
 		cameraObject.orthographicSize = Mathf.Clamp(cameraObject.orthographicSize, scrollLimitMin, scrollLimitMax);
 
-
 		transform.position = position;
+
+		// screen shake
+		if (shakeDuration > 0)
+		{
+			var random = Random.insideUnitCircle;
+			transform.position = initialPosition + new Vector3(random.x, random.y, 0) * shakeMagnitude;
+
+			shakeDuration -= Time.deltaTime * dampingSpeed;
+		}
+		else
+		{
+			shakeDuration = 0f;
+			transform.position = position;
+		}
+
+
+		
+	}
+
+	public void TriggerShake(float duration = 0.1f, float magnitude = 0.1f)
+	{
+		shakeDuration = duration;
+		shakeMagnitude = magnitude;
+		initialPosition = transform.position;
 	}
 }

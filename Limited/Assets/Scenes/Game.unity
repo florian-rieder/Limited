@@ -5239,6 +5239,7 @@ MonoBehaviour:
   healthBarTemplate: {fileID: 1676553321}
   EnvironmentResourceNames: []
   FacilitiesResourceNames: []
+  cameraCtrl: {fileID: 519420030}
   PollutionColor: {r: 0.8594899, g: 0.5058824, b: 0.78431374, a: 1}
 --- !u!156049354 &704622023
 Grid:

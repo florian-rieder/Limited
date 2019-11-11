@@ -21,6 +21,9 @@ public class GameTiles : MonoBehaviour
 	public List<string> EnvironmentResourceNames;
 	public List<string> FacilitiesResourceNames;
 
+	[SerializeField]
+	private CameraController cameraCtrl;
+
 	public Color PollutionColor;
 
 	private void Awake()
@@ -216,6 +219,7 @@ public class GameTiles : MonoBehaviour
 		}
 
 		facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
+		cameraCtrl.TriggerShake(0.2f);
 	}
 
 	public List<EnvironmentTile> GetPossibleCityTiles()
