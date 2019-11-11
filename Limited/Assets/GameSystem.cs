@@ -4,8 +4,6 @@ public class GameSystem : MonoBehaviour
 {
 	/* Object that permits use of different non specific "utility" functions 
        that can be used in any other part of the code */
-	public static GameSystem instance;
-
 
 	public static void DumpToConsole(object obj)
 	{
@@ -14,7 +12,7 @@ public class GameSystem : MonoBehaviour
 		Debug.Log(output);
 	}
 
-	public bool xor(bool a, bool b)
+	public static bool xor(bool a, bool b)
 	{
 		/* exclusive or (xor) logical operator. */
 		return (a && !b) || (!a && b);
@@ -26,17 +24,4 @@ public class GameSystem : MonoBehaviour
             return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
         }
     }
-
-
-	void Awake()
-	{
-		if (instance == null)
-		{
-			instance = this;
-		}
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-		}
-	}
 }

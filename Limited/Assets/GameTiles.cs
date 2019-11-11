@@ -258,7 +258,7 @@ public class GameTiles : MonoBehaviour
 					for (int y = -1; y <= 1; y++)
 					{
 						// restrict to only directly adjacent tiles (with a side touching)
-						if (GameSystem.instance.xor(Mathf.Abs(x) == 1, Mathf.Abs(y) == 1) && !(x == 0 && y == 0))
+						if (GameSystem.xor(Mathf.Abs(x) == 1, Mathf.Abs(y) == 1) && !(x == 0 && y == 0))
 						{
 							Vector3Int currPos = new Vector3Int(cityPos.x + x, cityPos.y + y, cityPos.z);
 
