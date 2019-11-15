@@ -6359,6 +6359,8 @@ MonoBehaviour:
   timerDisplay: {fileID: 1359416104}
   gameOverPanel: {fileID: 1728207892}
   famineTimerDisplay: {fileID: 204172301}
+  cameraController: {fileID: 519420030}
+  buildDialog: {fileID: 495423473}
 --- !u!4 &1296332053
 Transform:
   m_ObjectHideFlags: 0

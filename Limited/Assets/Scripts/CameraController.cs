@@ -137,9 +137,6 @@ public class CameraController : MonoBehaviour
 			shakeDuration = 0f;
 			transform.position = position;
 		}
-
-
-		
 	}
 
 	public void TriggerShake(float duration = 0.1f, float magnitude = 0.1f)

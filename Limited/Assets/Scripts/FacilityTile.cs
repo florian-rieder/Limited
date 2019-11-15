@@ -166,6 +166,7 @@ public class FacilitiesTileType
 
 				int typeAmountForThisRessource = typeResourcesDictionary[resourceName];
 
+				// if extractor
 				if (Extractor && GameTiles.instance.EnvironmentResourceNames.Contains(resourceName))
 				{
 					// get the amount of this ressource in the tile we want to build on
@@ -214,6 +215,26 @@ public class FacilitiesTileType
 				}
 			}
 
+			// can't build if there is a city or a farm in the pollution range of this tile
+			if (canBuild && PollutionRadius > 0)
+			{
+				List<Vector3Int> tilesInRange = GameSystem.FindInRange(tile.LocalPlace, PollutionRadius);
+
+				// iterate through all tiles in range
+				foreach (Vector3Int tilePos in tilesInRange)
+				{
+					// if there is a facility at these coordinates
+					FacilityTile facilityAtTheseCoordinates;
+					if (GameTiles.instance.facilitiesTiles.TryGetValue(tilePos, out facilityAtTheseCoordinates))
+					{
+						if(facilityAtTheseCoordinates.Name == "City" || facilityAtTheseCoordinates.Name == "Farm"){
+							canBuild = false;
+							break;
+						}
+					}
+				}
+			}
+
 			if (canBuild)
 			{
 				// custom rules
@@ -257,7 +278,8 @@ public class FacilitiesTileTypeRoot
 		FacilitiesTileType returnType = null;
 		foreach (FacilitiesTileType type in tileTypes)
 		{
-			if(type.Name == name){
+			if (type.Name == name)
+			{
 				returnType = type;
 				break;
 			}

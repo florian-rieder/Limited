@@ -57,9 +57,10 @@ public class GameTiles : MonoBehaviour
 		return facilitiesRoot;
 	}
 
-	// Use this for initialization
 	private void GetWorldTiles()
 	{
+		/* initialize tiles dictionaries */
+
 		environmentTiles = new Dictionary<Vector3Int, EnvironmentTile>();
 		facilitiesTiles = new Dictionary<Vector3Int, FacilityTile>();
 
@@ -196,29 +197,28 @@ public class GameTiles : MonoBehaviour
 			PollutionRadius = facilityType.PollutionRadius
 		};
 
+		// apply pollution
 		if (facilityTile.PollutionRadius > 0)
 		{
-			List<EnvironmentTile> pollutedTiles = new List<EnvironmentTile>();
+			List<Vector3Int> pollutedTiles = GameSystem.FindInRange(facilityTile.LocalPlace, facilityTile.PollutionRadius);
 
-			// iterate through all tiles on the environment tilemap
-			foreach (Vector3Int pos in environmentTilemap.cellBounds.allPositionsWithin)
+			// iterate through all tiles in the pollution radius
+			foreach (Vector3Int pos in pollutedTiles)
 			{
-				if (GameSystem.ManhattanDistance(facilityTile.LocalPlace, pos) <= facilityTile.PollutionRadius)
+				EnvironmentTile tileToPollute;
+				if (GameTiles.instance.environmentTiles.TryGetValue(pos, out tileToPollute))
 				{
-					pollutedTiles.Add(environmentTiles[pos]);
+					if (tileToPollute.Name != "Water")
+					{
+						tileToPollute.Pollute();
+					}
 				}
-			}
-
-			foreach (EnvironmentTile tileToPollute in pollutedTiles)
-			{
-				if(tileToPollute.Name != "Water"){
-					tileToPollute.Pollute();
-				}
-				
 			}
 		}
 
 		facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
+
+		// start screenshake
 		cameraCtrl.TriggerShake(0.2f);
 	}
 

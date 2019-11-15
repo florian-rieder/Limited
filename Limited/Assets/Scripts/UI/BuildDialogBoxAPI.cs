@@ -55,8 +55,6 @@ public class BuildDialogBoxAPI : MonoBehaviour
 		EnvironmentTile tile;
 		GameTiles.instance.environmentTiles.TryGetValue(tilePos, out tile);
 
-		Debug.Log("UpdateButtons: " + tile.Name);
-
 		// update buttons
 		btnListControl.UpdateButtons(tile);
 

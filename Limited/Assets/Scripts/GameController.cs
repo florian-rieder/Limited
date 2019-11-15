@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 	public TimerDisplay timerDisplay;
 	public GameOverPanel gameOverPanel;
 	public FamineTimerDisplay famineTimerDisplay;
+	public CameraController cameraController;
+	public BuildDialogBoxAPI buildDialog;
 	// time in [s] that has elapsed
 	private float timer = 0f;
 	private float famineTimer = 0f;
@@ -22,6 +24,7 @@ public class GameController : MonoBehaviour
 
 	private bool firstCityTutorialEnabled = true;
 	private bool firstTimerLaunched = false;
+	private bool gameOver = false;
 
 	void Awake()
 	{
@@ -128,6 +131,12 @@ public class GameController : MonoBehaviour
 
 	private void NewCity()
 	{
+		// if a dialog box is open, close it
+		if (buildDialog.IsOpen())
+		{
+			buildDialog.Enabled(false);
+		}
+
 		// Get all possible tiles to found a city
 		var possibleLocations = GameTiles.instance.GetPossibleCityTiles();
 
@@ -223,14 +232,19 @@ public class GameController : MonoBehaviour
 	}
 	private void GameOver(string reason = "No reason specified.")
 	{
-		Debug.Log("Game Over.");
+		if (!gameOver)
+		{
+			Debug.Log("Game Over.");
 
-		// hide selector
-		TileSelector.instance.gameObject.SetActive(false);
+			// hide selector
+			TileSelector.instance.gameObject.SetActive(false);
 
-		// open game over panel
-		gameOverPanel.SetReason(reason);
-		gameOverPanel.gameObject.SetActive(true);
+			// open game over panel
+			gameOverPanel.SetReason(reason);
+			gameOverPanel.gameObject.SetActive(true);
 
+			cameraController.TriggerShake(1f, 0.2f);
+			gameOver = true;
+		}
 	}
 }
