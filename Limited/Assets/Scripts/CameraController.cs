@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
 	public float scrollLimitMin = 2f;
 	public float scrollLimitMax = 5f;
 
-	// shaking
+	// screenshake
 	private float shakeDuration = 0f;
 	private float shakeMagnitude = 0.1f;
 	private float dampingSpeed = 1f;
@@ -121,8 +121,6 @@ public class CameraController : MonoBehaviour
 		position.x = Mathf.Clamp(position.x, -panLimit.x, panLimit.x);
 		position.y = Mathf.Clamp(position.y, -panLimit.y, panLimit.y);
 		cameraObject.orthographicSize = Mathf.Clamp(cameraObject.orthographicSize, scrollLimitMin, scrollLimitMax);
-
-		transform.position = position;
 
 		// screen shake
 		if (shakeDuration > 0)

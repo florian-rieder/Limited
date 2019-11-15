@@ -7,16 +7,39 @@ public class BuildDialogBoxAPI : MonoBehaviour
 	private Image image;
 	private RectTransform rectTransform;
 	public ButtonListControl btnListControl;
+	public TileSelector tileSelector;
 
 	public Tilemap environment;
 
 	private bool btnListControlInitialized = false;
+
+	// don't scale with zoom
+	private float orthoOrg;
+	private float orthoCurr;
+	private Vector3 scaleOrg;
+	private Vector3 posOrg;
 
 	void Awake()
 	{
 		// store references to other components of this gameobject
 		image = GetComponent<Image>();
 		rectTransform = (RectTransform)gameObject.transform;
+
+		orthoOrg = Camera.main.orthographicSize;
+		orthoCurr = orthoOrg;
+		scaleOrg = transform.localScale;
+		posOrg = Camera.main.WorldToViewportPoint(transform.position);
+	}
+
+	void Update()
+	{
+		// always stay the same size
+		var osize = Camera.main.orthographicSize;
+		if (orthoCurr != osize)
+		{
+			transform.localScale = scaleOrg * osize / orthoOrg;
+			orthoCurr = osize;
+		}
 	}
 	public void MoveTo(Vector3Int destination)
 	{
@@ -41,6 +64,7 @@ public class BuildDialogBoxAPI : MonoBehaviour
 	public void Enabled(bool value)
 	{
 		gameObject.SetActive(value);
+		tileSelector.LockPosition(value);
 	}
 	public Vector2 GetSize()
 	{

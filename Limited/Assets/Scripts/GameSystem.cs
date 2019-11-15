@@ -28,23 +28,23 @@ public class GameSystem : MonoBehaviour
 		}
 	}
 
-	public static List<Vector3Int> FindInRange(Vector3Int tilePosition, int range)
+	public static List<Vector3Int> FindInRange(Vector3Int originalPosition, int range)
 	{
-		/* Get all tiles within manhattan distance of an origin tile */
+		/* Get all positions within manhattan distance of an origin position */
 
 		List<Vector3Int> tilesInRange = new List<Vector3Int>();
 
-		int minX = tilePosition.x - range;
-		int maxX = tilePosition.x + range;
-		int minY = tilePosition.y - range;
-		int maxY = tilePosition.y + range;
+		int minX = originalPosition.x - range;
+		int maxX = originalPosition.x + range;
+		int minY = originalPosition.y - range;
+		int maxY = originalPosition.y + range;
 
 		for (int x = minX; x <= maxX; x++)
 		{
 			for (int y = minY; y <= maxY; y++)
 			{
 				Vector3Int thisPos = new Vector3Int(x, y, 0);
-				if (ManhattanDistance(tilePosition, thisPos) <= range)
+				if (ManhattanDistance(originalPosition, thisPos) <= range)
 				{
 					tilesInRange.Add(thisPos);
 				}
