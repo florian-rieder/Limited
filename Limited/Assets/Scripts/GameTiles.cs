@@ -219,7 +219,12 @@ public class GameTiles : MonoBehaviour
 		facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
 
 		// start screenshake
-		cameraCtrl.TriggerShake(0.2f);
+		if(facilityTile.Name == "City"){
+			cameraCtrl.TriggerShake(0.2f);
+		}
+		else {
+			cameraCtrl.TriggerShake(0.1f);
+		}
 	}
 
 	public List<EnvironmentTile> GetPossibleCityTiles()

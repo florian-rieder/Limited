@@ -4,16 +4,17 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour
 {
 	public static GameController instance;
-	public float famineTimerBase = 30f; // duration of famine until the game is lost
+	public float famineTimerBase = 30f; // duration of famine in [s] until the game is lost
 	public float growthTimerBase = 60f;
 	public PlayerInventory playerInventory;
 	public BigNotificationAPI notificationBig;
 	public TilemapInteraction tilemapInteraction;
-	public TimerDisplay timerDisplay;
 	public GameOverPanel gameOverPanel;
 	public FamineTimerDisplay famineTimerDisplay;
 	public CameraController cameraController;
 	public BuildDialogBoxAPI buildDialog;
+	public GrowthBar growthBar;
+
 	// time in [s] that has elapsed
 	private float timer = 0f;
 	private float famineTimer = 0f;
@@ -22,7 +23,7 @@ public class GameController : MonoBehaviour
 	private bool updateFamineTimer = false;
 	private float nextGrowthTime = 0f;
 
-	private bool firstCityTutorialEnabled = true;
+	private bool firstCityTutorialEnabled = false;
 	private bool firstTimerLaunched = false;
 	private bool gameOver = false;
 
@@ -87,6 +88,7 @@ public class GameController : MonoBehaviour
 			}
 
 			timer += Time.deltaTime;
+			UpdateGrowthBar();
 		}
 
 		bool hasCityNeeds = playerInventory.hasCityNeeds();
@@ -203,16 +205,14 @@ public class GameController : MonoBehaviour
 	}
 	public void EnableTimer(bool value)
 	{
-		timerDisplay.Enable(value);
+		growthBar.Enable(value);
 		updateTimer = value;
 	}
 
 	public void ResetTimer()
 	{
-
 		timer = 0f;
 	}
-
 	public void EnableFamineTimer(bool value)
 	{
 		updateFamineTimer = value;
@@ -226,9 +226,11 @@ public class GameController : MonoBehaviour
 	{
 		return famineTimerBase - famineTimer;
 	}
-	public float GetTimeRemaining()
+	public void UpdateGrowthBar()
 	{
-		return nextGrowthTime - timer;
+		float ratio = timer / nextGrowthTime;
+		growthBar.SetValue(ratio);
+
 	}
 	private void GameOver(string reason = "No reason specified.")
 	{
@@ -236,8 +238,9 @@ public class GameController : MonoBehaviour
 		{
 			Debug.Log("Game Over.");
 
-			// hide selector
-			TileSelector.instance.gameObject.SetActive(false);
+			// hide some UI elements
+			TileSelector.instance.Enabled(false);
+			growthBar.Enable(false);
 
 			// open game over panel
 			gameOverPanel.SetReason(reason);
