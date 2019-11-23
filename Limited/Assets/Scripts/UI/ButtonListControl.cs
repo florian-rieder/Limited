@@ -26,10 +26,11 @@ public class ButtonListControl : MonoBehaviour
 			// create a button for this facility and add it to the parent object
 			// instantiate new button
 			GameObject button = Instantiate(buttonTemplate) as GameObject;
+			button.SetActive(true);
 			BuildButton btnScript = button.GetComponent<BuildButton>();
 
 			// change text of the button
-			btnScript.SetText(type.Name);
+			//btnScript.SetText(type.Name);
 
 			// change the icon of the button
 			// get all sliced tiles from our tileset
@@ -49,15 +50,15 @@ public class ButtonListControl : MonoBehaviour
 			btnScript.SetImage(matchingSprite);
 
 			btnScript.SetType(type);
-			btnScript.GenerateResourcesDisplay();
+			//btnScript.GenerateResourcesDisplay();
 
 			if (type.IsBuildable(firstPosition))
 			{
-				button.SetActive(true);
+				btnScript.Enable(true);
 			}
 			else
 			{
-				button.SetActive(false);
+				btnScript.Enable(false);
 			}
 
 			// set parent of the button with the parent of the button template's parent 
@@ -76,10 +77,11 @@ public class ButtonListControl : MonoBehaviour
 			// check which facilities can be built on the specified tile
 			foreach (GameObject button in buttons)
 			{
-				var type = button.GetComponent<BuildButton>().GetTileType();
+				BuildButton buildButton = button.GetComponent<BuildButton>();
+				var type = buildButton.GetTileType();
 				
 				// hide/show buttons according to if they are buildable on this tile
-				button.SetActive(type.IsBuildable(tile));
+				buildButton.Enable(type.IsBuildable(tile));
 			}
 
 			lastTileClicked = tile;

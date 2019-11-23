@@ -10,6 +10,7 @@ public class BuildDialogBoxAPI : MonoBehaviour
 	public TileSelector tileSelector;
 
 	public Tilemap environment;
+	public BuildTooltip tooltip;
 
 	private bool btnListControlInitialized = false;
 
@@ -65,6 +66,7 @@ public class BuildDialogBoxAPI : MonoBehaviour
 	{
 		gameObject.SetActive(value);
 		tileSelector.LockPosition(value);
+		if (!value) tooltip.Enable(false);
 	}
 	public Vector2 GetSize()
 	{

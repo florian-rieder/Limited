@@ -112,6 +112,7 @@ public class FacilityTile
 public class FacilitiesTileType
 {
 	public string Name;
+	public string Description;
 	public string SpriteName;
 
 	// consumption of resources is represented by a negative value
@@ -227,7 +228,8 @@ public class FacilitiesTileType
 					FacilityTile facilityAtTheseCoordinates;
 					if (GameTiles.instance.facilitiesTiles.TryGetValue(tilePos, out facilityAtTheseCoordinates))
 					{
-						if(facilityAtTheseCoordinates.Name == "City" || facilityAtTheseCoordinates.Name == "Farm"){
+						if (facilityAtTheseCoordinates.Name == "City" || facilityAtTheseCoordinates.Name == "Farm")
+						{
 							canBuild = false;
 							break;
 						}

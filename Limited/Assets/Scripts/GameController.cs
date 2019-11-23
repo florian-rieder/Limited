@@ -42,7 +42,6 @@ public class GameController : MonoBehaviour
 
 		// ...
 
-
 		StartGame();
 	}
 

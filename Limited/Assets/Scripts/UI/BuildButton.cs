@@ -2,6 +2,7 @@
 using TMPro; // Text Mesh Pro namespace
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BuildButton : MonoBehaviour
 {
@@ -10,26 +11,18 @@ public class BuildButton : MonoBehaviour
 	[SerializeField]
 	private ButtonListControl btnControl;
 	public Image m_icon;
-	public GameObject resourceDisplayTemplate;
-	public Texture2D resourcesSpritesheet;
+	public BuildTooltip tooltip;
+	public Color disabledColor;
 	private string m_textString;
 	private FacilitiesTileType m_type;
+	private bool isEnabled = false;
 
-	public void SetText(string textString)
-	{
-		// we store the text string and assign it to our text component
-		m_textString = textString;
-		m_text.text = m_textString;
-	}
-	public string GetText()
-	{
-		return m_textString;
-	}
 	public void SetType(FacilitiesTileType type)
 	{
 		m_type = type;
 	}
-	public void SetImage(Sprite sprite){
+	public void SetImage(Sprite sprite)
+	{
 		m_icon.sprite = sprite;
 	}
 
@@ -40,65 +33,37 @@ public class BuildButton : MonoBehaviour
 
 	public void OnClick()
 	{
-		btnControl.ButtonClicked(m_type);
+		if (isEnabled)
+		{
+			btnControl.ButtonClicked(m_type);
+		}
 	}
 
-	public void GenerateResourcesDisplay()
+	public void Enable(bool value)
 	{
-		var resources = m_type.GenerateResourcesDictionary();
-		List<string> emptyResourceIndexes = new List<string>();
-
-		// remove entries with a value of 0
-		foreach (KeyValuePair<string, int> entry in resources)
+		if (value)
 		{
-			if (entry.Value == 0) emptyResourceIndexes.Add(entry.Key);
+			gameObject.GetComponent<Image>().color = Color.white;
 		}
-		foreach (string key in emptyResourceIndexes)
+		else
 		{
-			resources.Remove(key);
+			gameObject.GetComponent<Image>().color = disabledColor;
 		}
 
-		// generate displays
-		foreach (KeyValuePair<string, int> entry in resources)
-		{
-			string name = entry.Key;
-			int value = entry.Value;
+		isEnabled = value;
+	}
 
-			// format value
-			string valueString = "";
-			if (value > 0)
-			{
-				valueString = "+" + value;
-			}
-			else
-			{
-				valueString = value.ToString();
-			}
+	public void OnPointerEnter()
+	{
+		tooltip.MoveTo(gameObject.transform.position);
+		tooltip.Enable(true);
+		tooltip.SetTitle(m_type.Name);
+		tooltip.SetDescription(m_type.Description);
+		tooltip.SetResourceDisplay(m_type.GenerateResourcesDictionary());
+	}
 
-			// get sprite
-			var names = new Dictionary<string, int>{
-				{"Oil", 0},
-				{"Coal", 1},
-				{"Wood", 2},
-				{"Metal", 6},
-				{"Power", 3},
-				{"Goods", 4},
-				{"Food", 5}
-			};
-			
-			// get all sliced tiles from our tileset
-			Sprite[] resourceSprites = Resources.LoadAll<Sprite>(resourcesSpritesheet.name);
-			Sprite sprite = resourceSprites[names[name]];
-
-			// apply sprite and value to item
-			GameObject display = Instantiate(resourceDisplayTemplate);
-			BuildButtonResourceDisplay displayScript = display.GetComponent<BuildButtonResourceDisplay>();
-			display.SetActive(true);
-			displayScript.SetImage(sprite);
-			displayScript.SetText(valueString);
-
-			// place display in the hierarachy
-			display.transform.SetParent(resourceDisplayTemplate.transform.parent);
-		}
+	public void OnPointerExit()
+	{
+		tooltip.Enable(false);
 	}
 }
