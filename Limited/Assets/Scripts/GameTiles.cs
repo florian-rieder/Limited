@@ -175,27 +175,13 @@ public class GameTiles : MonoBehaviour
 		{
 			var bar = Instantiate(healthBarTemplate);
 			bar.SetActive(true);
-			HealthBar script = bar.GetComponent<HealthBar>();
-			script.MoveTo(position);
-			healthBar = script;
+			HealthBar healthBarController = bar.GetComponent<HealthBar>();
+			healthBarController.MoveTo(position);
+			healthBar = healthBarController;
 		}
 
 		// create virtual representation of the new tile
-		var facilityTile = new FacilityTile
-		{
-			LocalPlace = position,
-			TileBase = facilitiesTilemap.GetTile(position),
-			TilemapMember = facilitiesTilemap,
-
-			// Here, we represent consumption by negative values for its resource
-			// and we represent production by positive values
-			Name = facilityType.Name,
-			Resources = facilityType.GenerateResourcesDictionary(),
-
-			Extractor = facilityType.Extractor,
-			HealthBar = healthBar,
-			PollutionRadius = facilityType.PollutionRadius
-		};
+		var facilityTile = facilityType.GenerateTile(environmentTilemap, position, healthBar);
 
 		// apply pollution
 		if (facilityTile.PollutionRadius > 0)

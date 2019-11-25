@@ -17,6 +17,7 @@ public class FacilityTile
 
 	public int PollutionRadius { get; set; }
 	public bool Extractor { get; set; }
+	public int ScorePoints { get; set; }
 
 	public HealthBar HealthBar;
 
@@ -127,6 +128,7 @@ public class FacilitiesTileType
 
 	public int PollutionRadius;
 	public bool Extractor;
+	public int ScorePoints;
 
 	public Dictionary<string, int> GenerateResourcesDictionary()
 	{
@@ -247,6 +249,25 @@ public class FacilitiesTileType
 		return canBuild;
 	}
 
+	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar)
+	{
+		return new FacilityTile
+		{
+			LocalPlace = position,
+			TileBase = tilemap.GetTile(position),
+			TilemapMember = tilemap,
+
+			// Here, we represent consumption by negative values for its resource
+			// and we represent production by positive values
+			Name = Name,
+			Resources = GenerateResourcesDictionary(),
+
+			Extractor = Extractor,
+			HealthBar = healthBar,
+			PollutionRadius = PollutionRadius,
+			ScorePoints = ScorePoints
+		};
+	}
 }
 
 [Serializable]

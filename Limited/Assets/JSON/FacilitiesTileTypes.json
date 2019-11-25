@@ -12,7 +12,8 @@
 			"Goods": -1,
 			"Food": -2,
 			"PollutionRadius": 0,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 100
 		},
 		{
 			"Name": "Farm",
@@ -26,7 +27,8 @@
 			"Goods": 0,
 			"Food": 1,
 			"PollutionRadius": 0,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 25
 		},
 		{
 			"Name": "Wind Turbine",
@@ -40,7 +42,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 0,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 10
 		},
 		{
 			"Name": "Coal Mine",
@@ -54,7 +57,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 1,
-			"Extractor": true
+			"Extractor": true,
+			"ScorePoints": 35
 		},
 		{
 			"Name": "Sawmill",
@@ -68,7 +72,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 0,
-			"Extractor": true
+			"Extractor": true,
+			"ScorePoints": 25
 		},
 		{
 			"Name": "Factory",
@@ -82,7 +87,8 @@
 			"Goods": 2,
 			"Food": 0,
 			"PollutionRadius": 1,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 50
 		},
 		{
 			"Name": "Oil Derrick",
@@ -96,7 +102,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 2,
-			"Extractor": true
+			"Extractor": true,
+			"ScorePoints": 50
 		},
 		{
 			"Name": "Oil Power Plant",
@@ -110,7 +117,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 3,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 75
 		},
 		{
 			"Name": "Coal Power Plant",
@@ -124,7 +132,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 2,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 50
 		},
 		{
 			"Name": "Metal Mine",
@@ -138,7 +147,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 1,
-			"Extractor": true
+			"Extractor": true,
+			"ScorePoints": 25
 		},
 		{
 			"Name": "Recycling Center",
@@ -152,7 +162,8 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 0,
-			"Extractor": false
+			"Extractor": false,
+			"ScorePoints": 60
 		}
 	]
 }

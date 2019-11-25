@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 	public CameraController cameraController;
 	public BuildDialogBoxAPI buildDialog;
 	public GrowthBar growthBar;
+	public TopBar topBar;
 
 	// time in [s] that has elapsed
 	private float timer = 0f;
@@ -231,7 +232,7 @@ public class GameController : MonoBehaviour
 		growthBar.SetValue(ratio);
 
 	}
-	private void GameOver(string reason = "No reason specified.")
+	public void GameOver(string reason = "No reason specified.")
 	{
 		if (!gameOver)
 		{
@@ -240,6 +241,7 @@ public class GameController : MonoBehaviour
 			// hide some UI elements
 			TileSelector.instance.Enabled(false);
 			growthBar.Enable(false);
+			topBar.Enable(false);
 
 			// open game over panel
 			gameOverPanel.SetReason(reason);

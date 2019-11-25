@@ -14,9 +14,31 @@ public class BuildTooltip : MonoBehaviour
 
 	private Dictionary<string, BuildButtonResourceDisplay> resourceDisplays;
 
+	// don't scale with zoom
+	private float orthoOrg;
+	private float orthoCurr;
+	private Vector3 scaleOrg;
+	private Vector3 posOrg;
+
 	void Awake()
 	{
 		GenerateResourcesDisplays();
+
+		orthoOrg = Camera.main.orthographicSize;
+		orthoCurr = orthoOrg;
+		scaleOrg = transform.localScale;
+		posOrg = Camera.main.WorldToViewportPoint(transform.position);
+	}
+
+	void Update()
+	{
+		// always stay the same size
+		var osize = Camera.main.orthographicSize;
+		if (orthoCurr != osize)
+		{
+			transform.localScale = scaleOrg * osize / orthoOrg;
+			orthoCurr = osize;
+		}
 	}
 
 

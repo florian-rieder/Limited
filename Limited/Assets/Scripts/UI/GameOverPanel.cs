@@ -6,16 +6,23 @@ using TMPro;
 
 public class GameOverPanel : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI reasonText;
+	[SerializeField]
+	private TextMeshProUGUI reasonText;
 
-    public void SetReason(string text)
-    {
-        reasonText.text = text;
-    }
+	public void SetReason(string text)
+	{
+		reasonText.text = text;
+	}
 
-    public void BackToMainMenu(){
-        // go to main menu
+	public void BackToMainMenu()
+	{
+		// go to main menu
 		SceneManager.LoadScene("MainMenu");
-    }
+	}
+
+	public void Retry()
+	{
+		// reload the game
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
 }

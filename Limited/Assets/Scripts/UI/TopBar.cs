@@ -76,4 +76,9 @@ public class TopBar : MonoBehaviour
 			display.SetValue(values[display.GetName()]);
 		}
 	}
+
+	public void Enable(bool value)
+	{
+		gameObject.SetActive(value);
+	}
 }
