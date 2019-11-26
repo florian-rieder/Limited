@@ -51,7 +51,23 @@ public class GameSystem : MonoBehaviour
 			}
 		}
 
-
 		return tilesInRange;
+	}
+
+	public static Color SignColor(float value)
+	{
+		Color color;
+
+		if (value < 0)
+		{
+			color = GameController.instance.negativeColor;
+		}
+		else
+		{
+			color = GameController.instance.positiveColor;
+		}
+
+		return color;
+
 	}
 }

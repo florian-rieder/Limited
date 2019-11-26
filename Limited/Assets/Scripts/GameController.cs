@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour
 {
 	public static GameController instance;
+	public Color negativeColor;
+	public Color positiveColor;
 	public float famineTimerBase = 30f; // duration of famine in [s] until the game is lost
 	public float growthTimerBase = 60f;
 	public PlayerInventory playerInventory;
@@ -24,8 +26,8 @@ public class GameController : MonoBehaviour
 	private bool updateFamineTimer = false;
 	private float nextGrowthTime = 0f;
 
-	private bool firstCityTutorialEnabled = false;
-	private bool firstTimerLaunched = false;
+	private bool firstCityTutorialEnabled = true;
+	private bool firstCityBuilt = false;
 	private bool gameOver = false;
 
 	void Awake()
@@ -52,7 +54,7 @@ public class GameController : MonoBehaviour
 
 		// ...
 
-		if (!firstTimerLaunched && GameTiles.instance.GetCities().Count == 1)
+		if (!firstCityBuilt && GameTiles.instance.GetCities().Count == 1)
 		{
 			bool cityNeedsSatisfied = true;
 
@@ -70,10 +72,8 @@ public class GameController : MonoBehaviour
 
 			if (cityNeedsSatisfied)
 			{
-				nextGrowthTime = GetNextCityGrowthTime();
-				EnableTimer(true);
-
-				firstTimerLaunched = true;
+				NewCity();
+				firstCityBuilt = true;
 			}
 		}
 
@@ -93,14 +93,19 @@ public class GameController : MonoBehaviour
 
 		bool hasCityNeeds = playerInventory.hasCityNeeds();
 
-		if (firstTimerLaunched)
+		if (firstCityBuilt)
 		{
+			// if needs aren't met and famine timer is not running
 			if (!hasCityNeeds && !updateFamineTimer)
 			{
+				// start the famine
 				EnableFamineTimer(true);
 			}
+
+			// if the needs are met and the famine timer is running
 			if (hasCityNeeds && updateFamineTimer)
 			{
+				// stop the famine
 				EnableFamineTimer(false);
 				ResetFamineTimer();
 			}
@@ -167,6 +172,7 @@ public class GameController : MonoBehaviour
 		}
 
 		nextGrowthTime = GetNextCityGrowthTime();
+
 		EnableTimer(true);
 	}
 

@@ -12,19 +12,12 @@ public class TopBarResourceDisplay : MonoBehaviour
 	private TextMeshProUGUI text;
 	[SerializeField]
 	private SpriteRenderer iconRenderer;
-	[SerializeField]
-	private Color32 negativeColor;
-	[SerializeField]
-	private Color32 positiveColor;
 
 	public void SetValue(int value)
 	{
-		if(value < 0){
-			text.color = negativeColor;
-		} else {
-			text.color = positiveColor;
-		}
+		Color color = GameSystem.SignColor(value);
 
+		text.color = color;
 		text.text = value.ToString();
 	}
 

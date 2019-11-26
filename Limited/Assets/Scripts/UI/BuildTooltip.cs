@@ -81,24 +81,9 @@ public class BuildTooltip : MonoBehaviour
 			else
 			{
 				display.Enable(true);
-				display.SetText(formatResourceDisplayValue(value));
+				display.SetValue(value);
 			}
 		}
-	}
-
-	private string formatResourceDisplayValue(int value)
-	{
-		// format value
-		string valueString = "";
-		if (value > 0)
-		{
-			valueString = "+" + value;
-		}
-		else
-		{
-			valueString = value.ToString();
-		}
-		return valueString;
 	}
 
 	private void GenerateResourcesDisplays()
@@ -135,7 +120,7 @@ public class BuildTooltip : MonoBehaviour
 			// initialize this resource display
 			displayScript.Enable(false);
 			displayScript.SetImage(sprite);
-			displayScript.SetText(formatResourceDisplayValue(value));
+			displayScript.SetValue(value);
 
 			// place display in the hierarachy
 			display.transform.SetParent(resourceDisplayTemplate.transform.parent);

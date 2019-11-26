@@ -7186,7 +7186,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066748167}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1668980412}
@@ -7598,12 +7598,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 896862180}
   iconRenderer: {fileID: 127143472}
-  negativeColor:
-    serializedVersion: 2
-    rgba: 4286349789
-  positiveColor:
-    serializedVersion: 2
-    rgba: 4284398669
 --- !u!1 &1296332051
 GameObject:
   m_ObjectHideFlags: 0
@@ -7634,6 +7628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99807696d6da2744a43db01c0ccab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  negativeColor: {r: 0.8490566, g: 0.1481844, b: 0.1481844, a: 1}
+  positiveColor: {r: 0.12820399, g: 0.6320754, b: 0.16179538, a: 1}
   famineTimerBase: 30
   growthTimerBase: 30
   playerInventory: {fileID: 1523384063}
@@ -8088,23 +8084,23 @@ Tilemap:
     m_Data:
       e00: NaN
       e01: NaN
-      e02: 5.458146e-37
-      e03: 0
+      e02: 5.2157076e+13
+      e03: 4.3834505e+16
       e10: NaN
       e11: NaN
-      e12: 2.24e-43
-      e13: 0
-      e20: 0
-      e21: 5.4581387e-37
-      e22: 0
-      e23: 0
-      e30: 0
-      e31: 2.24e-43
-      e32: 0
-      e33: 0
+      e12: 7.03e-43
+      e13: 7.03e-43
+      e20: 373386.84
+      e21: 373389.5
+      e22: -6.199062e-20
+      e23: 373389.5
+      e30: 7.03e-43
+      e31: 7.03e-43
+      e32: 4.5908e-41
+      e33: 7.03e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 7.9372776e-35, g: 7.9372776e-35, b: 7.9372776e-35, a: 7.9372776e-35}
+    m_Data: {r: 2.047614e-28, g: 2.047614e-28, b: 2.047614e-28, a: 2.047614e-28}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: -8, z: 0}
