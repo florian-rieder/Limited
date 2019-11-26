@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 	public Color negativeColor;
 	public Color positiveColor;
 	public float famineTimerBase = 30f; // duration of famine in [s] until the game is lost
-	public float growthTimerBase = 60f;
+	public float growthTimerBase = 40f;
 	public PlayerInventory playerInventory;
 	public BigNotificationAPI notificationBig;
 	public TilemapInteraction tilemapInteraction;
@@ -179,7 +179,7 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float steepness = 10f;
+		float steepness = 30f;
 
 		float time = 0f;
 
