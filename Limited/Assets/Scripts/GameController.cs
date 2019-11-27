@@ -136,7 +136,7 @@ public class GameController : MonoBehaviour
 		InvokeRepeating("ExtractResources", 0, 5);
 	}
 
-	private void NewCity()
+	public void NewCity()
 	{
 		// if a dialog box is open, close it
 		if (buildDialog.IsOpen())
@@ -147,16 +147,35 @@ public class GameController : MonoBehaviour
 		// Get all possible tiles to found a city
 		var possibleLocations = GameTiles.instance.GetPossibleCityTiles();
 
-		if (possibleLocations.Count == 0)
-		{
-			GameOver("Your city ran out of space to expand on !");
-		}
+		if (possibleLocations.Count == 0) GameOver("Your city ran out of space to expand on !");
 
 		// highlight them in green
 		foreach (EnvironmentTile eTile in possibleLocations)
 		{
 			tilemapInteraction.HighlightTile(eTile);
 		}
+
+		// move the camera to the center of the city (but only if there is a city)
+		if(GameTiles.instance.GetCities().Count != 0) cameraController.MoveTo(GetCityCenter());
+	}
+
+	private Vector3 GetCityCenter()
+	{
+		Vector3 cityCenter = Vector3.zero;
+		var cities = GameTiles.instance.GetCities();
+
+		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in cities)
+		{
+			Vector3Int position = entry.Key;
+			
+			cityCenter += position;
+		}
+
+		cityCenter.x = cityCenter.x / cities.Count;
+		cityCenter.y = cityCenter.y / cities.Count;
+
+		return cityCenter;
+
 	}
 
 	public void CityBuilt()

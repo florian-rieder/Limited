@@ -28,6 +28,15 @@ public class GameSystem : MonoBehaviour
 		}
 	}
 
+	public static float EuclideanDistance(Vector3 a, Vector3 b)
+	{
+		/* returns the euclidean Distance over x and y axis between to vectors */
+		checked
+		{
+			return Mathf.Pow(a.x - b.x, 2) + Mathf.Pow(a.y - b.y, 2);
+		}
+	}
+
 	public static List<Vector3Int> FindInRange(Vector3Int originalPosition, int range)
 	{
 		/* Get all positions within manhattan distance of an origin position */

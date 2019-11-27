@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class CameraController : MonoBehaviour
 	private float shakeMagnitude = 0.1f;
 	private float dampingSpeed = 1f;
 	private Vector3 initialPosition;
+
+	// click movement
+	private float moveDuration = 0.3f;
+	private Vector3 moveInitial;
+	private Vector3 moveDestination;
 
 	// Update is called once per frame
 	void Update()
@@ -142,5 +148,31 @@ public class CameraController : MonoBehaviour
 		shakeDuration = duration;
 		shakeMagnitude = magnitude;
 		initialPosition = transform.position;
+	}
+
+	public void MoveTo(Vector3 destination)
+	{
+		// don't change the z position of the camera, only move on x and y axis
+		moveDestination = new Vector3(destination.x, destination.y, transform.position.z);
+		moveInitial = transform.position;
+
+		// calculate duration in function of the distance to cover, we also apply a maximum duration
+		float distanceToCover = GameSystem.EuclideanDistance(moveInitial, moveDestination);
+		float divider = 10f;
+		float maxDuration = 0.4f;
+		moveDuration = distanceToCover > maxDuration / divider ? maxDuration : distanceToCover / divider;
+
+		StartCoroutine("MoveToRoutine");
+
+	}
+
+	private IEnumerator MoveToRoutine()
+	{
+		for (float t = 0.01f; t < moveDuration; t += Time.deltaTime)
+		{
+			// fade out the alpha value
+			transform.position = Vector3.Lerp(moveInitial, moveDestination, t / moveDuration);
+			yield return null;
+		}
 	}
 }
