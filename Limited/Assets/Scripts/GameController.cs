@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 	public BuildDialogBoxAPI buildDialog;
 	public GrowthBar growthBar;
 	public TopBar topBar;
+	public AudioManager audioManager;
 
 	// time in [s] that has elapsed
 	private float timer = 0f;
@@ -156,7 +157,11 @@ public class GameController : MonoBehaviour
 		}
 
 		// move the camera to the center of the city (but only if there is a city)
-		if(GameTiles.instance.GetCities().Count != 0) cameraController.MoveTo(GetCityCenter());
+		if(GameTiles.instance.GetCities().Count != 0) 
+		{
+			cameraController.MoveTo(GetCityCenter());
+			audioManager.Play("new_city");
+		}
 	}
 
 	private Vector3 GetCityCenter()

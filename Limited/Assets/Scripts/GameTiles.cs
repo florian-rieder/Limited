@@ -15,11 +15,16 @@ public class GameTiles : MonoBehaviour
 
 	public GameObject healthBarTemplate;
 
+	[HideInInspector]
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
+	[HideInInspector]
 	public Dictionary<Vector3Int, FacilityTile> facilitiesTiles;
-
+	[HideInInspector]
 	public List<string> EnvironmentResourceNames;
+	[HideInInspector]
 	public List<string> FacilitiesResourceNames;
+
+	public AudioManager audioManager;
 
 	[SerializeField]
 	private CameraController cameraCtrl;
@@ -44,14 +49,16 @@ public class GameTiles : MonoBehaviour
 	{
 		// Get tile type definitions from JSON file
 		string environmentJSONContents = environmentTileTypesJSON.text;
-		// Get array of types
+		// Get types root
 		EnvironmentTileTypeRoot environmentRoot = JsonUtility.FromJson<EnvironmentTileTypeRoot>(environmentJSONContents);
 
 		return environmentRoot;
 	}
 	public FacilitiesTileTypeRoot GetFacilitiesTypes()
 	{
+		// Get tile type definitions from JSON file
 		string facilitiesJSONContents = facilitiesTileTypesJSON.text;
+		// Get types root
 		FacilitiesTileTypeRoot facilitiesRoot = JsonUtility.FromJson<FacilitiesTileTypeRoot>(facilitiesJSONContents);
 
 		return facilitiesRoot;
@@ -142,6 +149,11 @@ public class GameTiles : MonoBehaviour
 					PollutionRadius = tileType.PollutionRadius
 				};
 
+				if (facilityTile.PollutionRadius > 0)
+				{
+					ApplyPollution(facilityTile);
+				}
+
 				facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
 			}
 		}
@@ -186,30 +198,21 @@ public class GameTiles : MonoBehaviour
 		// apply pollution
 		if (facilityTile.PollutionRadius > 0)
 		{
-			List<Vector3Int> pollutedTiles = GameSystem.FindInRange(facilityTile.LocalPlace, facilityTile.PollutionRadius);
-
-			// iterate through all tiles in the pollution radius
-			foreach (Vector3Int pos in pollutedTiles)
-			{
-				EnvironmentTile tileToPollute;
-				if (GameTiles.instance.environmentTiles.TryGetValue(pos, out tileToPollute))
-				{
-					if (tileToPollute.Name != "Water")
-					{
-						tileToPollute.Pollute();
-					}
-				}
-			}
+			ApplyPollution(facilityTile);
 		}
 
 		facilitiesTiles.Add(facilityTile.LocalPlace, facilityTile);
 
 		// start screenshake
-		if(facilityTile.Name == "City"){
+		if (facilityTile.Name == "City")
+		{
 			cameraCtrl.TriggerShake(0.2f);
+			audioManager.Play("city_built");
 		}
-		else {
+		else
+		{
 			cameraCtrl.TriggerShake(0.1f);
+			audioManager.Play("facility_built");
 		}
 	}
 
@@ -292,5 +295,23 @@ public class GameTiles : MonoBehaviour
 			if (entry.Value.Name == "City") cities[entry.Key] = entry.Value;
 		}
 		return cities;
+	}
+
+	private void ApplyPollution(FacilityTile ft)
+	{
+		List<Vector3Int> pollutedTiles = GameSystem.FindInRange(ft.LocalPlace, ft.PollutionRadius);
+
+		// iterate through all tiles in the pollution radius
+		foreach (Vector3Int pos in pollutedTiles)
+		{
+			EnvironmentTile tileToPollute;
+			if (GameTiles.instance.environmentTiles.TryGetValue(pos, out tileToPollute))
+			{
+				if (tileToPollute.Name != "Water")
+				{
+					tileToPollute.Pollute();
+				}
+			}
+		}
 	}
 }

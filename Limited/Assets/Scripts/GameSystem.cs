@@ -19,7 +19,6 @@ public class GameSystem : MonoBehaviour
 		return (a && !b) || (!a && b);
 	}
 
-	// in Vector3Int
 	public static int ManhattanDistance(Vector3Int a, Vector3Int b)
 	{
 		checked
@@ -30,7 +29,7 @@ public class GameSystem : MonoBehaviour
 
 	public static float EuclideanDistance(Vector3 a, Vector3 b)
 	{
-		/* returns the euclidean Distance over x and y axis between to vectors */
+		/* returns the euclidean distance over x and y axis between to vectors */
 		checked
 		{
 			return Mathf.Pow(a.x - b.x, 2) + Mathf.Pow(a.y - b.y, 2);
