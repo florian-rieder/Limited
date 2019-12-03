@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
 	public float scrollSpeed = 2f;
 	public float scrollLimitMin = 2f;
 	public float scrollLimitMax = 5f;
+	private int currentZoom = 1;
 
 	// screenshake
 	private float shakeDuration = 0f;
@@ -108,7 +109,8 @@ public class CameraController : MonoBehaviour
 			}
 			else
 			{
-				cameraObject.orthographicSize -= scroll * scrollSpeed * 64f * Time.deltaTime;
+				currentZoom = Mathf.RoundToInt(Mathf.Clamp(currentZoom + (scroll * 10), scrollLimitMin, scrollLimitMax));
+				cameraObject.orthographicSize = CalculateOrthographicSizeForZoom(currentZoom);
 			}
 
 		}
@@ -126,7 +128,6 @@ public class CameraController : MonoBehaviour
 		// Limit camera movement
 		position.x = Mathf.Clamp(position.x, -panLimit.x, panLimit.x);
 		position.y = Mathf.Clamp(position.y, -panLimit.y, panLimit.y);
-		cameraObject.orthographicSize = Mathf.Clamp(cameraObject.orthographicSize, scrollLimitMin, scrollLimitMax);
 
 		// screen shake
 		if (shakeDuration > 0)
@@ -174,5 +175,10 @@ public class CameraController : MonoBehaviour
 			transform.position = Vector3.Lerp(moveInitial, moveDestination, t / moveDuration);
 			yield return null;
 		}
+	}
+
+	private float CalculateOrthographicSizeForZoom(float zoom){
+		var zoomedPPU = 16 * zoom;
+		return (Screen.height / zoomedPPU) * 0.5f;
 	}
 }

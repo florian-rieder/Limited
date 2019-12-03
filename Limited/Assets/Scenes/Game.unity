@@ -6457,7 +6457,7 @@ MonoBehaviour:
   resourcesSpritesheet: {fileID: 2800000, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
     type: 3}
   resourceDisplayTemplate: {fileID: 1066748167}
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 1897253616}
 --- !u!114 &506328969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6808,8 +6808,8 @@ MonoBehaviour:
   panBorderThickness: 20
   panLimit: {x: 10, y: 10}
   scrollSpeed: 2
-  scrollLimitMin: 3
-  scrollLimitMax: 8
+  scrollLimitMin: 2
+  scrollLimitMax: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -6837,7 +6837,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.025
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6907,6 +6907,7 @@ MonoBehaviour:
   healthBarTemplate: {fileID: 1676553321}
   EnvironmentResourceNames: []
   FacilitiesResourceNames: []
+  audioManager: {fileID: 859912659}
   cameraCtrl: {fileID: 519420030}
   PollutionColor: {r: 0.8594899, g: 0.5058824, b: 0.78431374, a: 1}
 --- !u!156049354 &704622023
@@ -6971,14 +6972,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 85a2f58b4dafefb438caa3eeba922b68, type: 3}
     volume: 1
     pitch: 1
+    source: {fileID: 0}
   - name: city_built
     clip: {fileID: 8300000, guid: 939ab7c8f123e614086f57d8996b045a, type: 3}
     volume: 1
     pitch: 1
+    source: {fileID: 0}
   - name: new_city
     clip: {fileID: 8300000, guid: dfbdba6dbaf40c04fa247ba12ca3840d, type: 3}
     volume: 1
     pitch: 1
+    source: {fileID: 0}
 --- !u!4 &859912660
 Transform:
   m_ObjectHideFlags: 0
@@ -7918,7 +7922,7 @@ MonoBehaviour:
   positiveColor: {r: 0.12820399, g: 0.6320754, b: 0.16179538, a: 1}
   famineTimerBase: 30
   growthTimerBase: 30
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 1897253616}
   notificationBig: {fileID: 1733361286}
   tilemapInteraction: {fileID: 1296332054}
   gameOverPanel: {fileID: 1728207892}
@@ -7927,6 +7931,7 @@ MonoBehaviour:
   buildDialog: {fileID: 495423473}
   growthBar: {fileID: 317318669}
   topBar: {fileID: 1443648009}
+  audioManager: {fileID: 859912659}
 --- !u!4 &1296332053
 Transform:
   m_ObjectHideFlags: 0
@@ -8597,7 +8602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5481dafdc18124f85d3c3397caf3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 1897253616}
   itemTemplate: {fileID: 1255984310}
   oilIcon: {fileID: -5650137688854127968, guid: e80bc8a2d88ee0b499207d57bf35d1a7,
     type: 3}
@@ -10389,6 +10394,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891969333}
   m_CullTransparentMesh: 0
+--- !u!1 &1897253615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897253617}
+  - component: {fileID: 1897253616}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1897253616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897253615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8c57def87c65647a02c398e1ce0064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1897253617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897253615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1898069562
 GameObject:
   m_ObjectHideFlags: 0
