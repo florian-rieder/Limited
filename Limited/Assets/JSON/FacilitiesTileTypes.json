@@ -72,7 +72,7 @@
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 0,
-			"Extractor": false,
+			"Extractor": true,
 			"ScorePoints": 25
 		},
 		{

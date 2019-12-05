@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour
 	public Color negativeColor;
 	public Color positiveColor;
 	public float famineTimerBase = 30f; // duration of famine in [s] until the game is lost
-	public float growthTimerBase = 40f;
 	public PlayerInventory playerInventory;
 	public BigNotificationAPI notificationBig;
 	public TilemapInteraction tilemapInteraction;
@@ -135,6 +134,7 @@ public class GameController : MonoBehaviour
 
 		// start extracting resources every x second
 		InvokeRepeating("ExtractResources", 0, 5);
+		InvokeRepeating("RenewResources", 0, 5);
 	}
 
 	public void NewCity()
@@ -157,7 +157,7 @@ public class GameController : MonoBehaviour
 		}
 
 		// move the camera to the center of the city (but only if there is a city)
-		if(GameTiles.instance.GetCities().Count != 0) 
+		if (GameTiles.instance.GetCities().Count != 0)
 		{
 			cameraController.MoveTo(GetCityCenter());
 			audioManager.Play("new_city");
@@ -172,7 +172,7 @@ public class GameController : MonoBehaviour
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in cities)
 		{
 			Vector3Int position = entry.Key;
-			
+
 			cityCenter += position;
 		}
 
@@ -203,15 +203,15 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float steepness = 30f;
+		float mildness = 20f;
+		float baseTime = 90f; // time in [s]
+		int cities = GameTiles.instance.GetCities().Count;
 
 		float time = 0f;
 
-		int cities = GameTiles.instance.GetCities().Count;
-
-		// get the time before the next expansion of the city
+		// get the time in [s] before the next expansion of the city
 		// in function of the number of cities owned and our parameters
-		time = growthTimerBase / (1 + cities / steepness);
+		time = baseTime / (1 + (cities / mildness));
 
 		return time;
 	}
@@ -233,12 +233,23 @@ public class GameController : MonoBehaviour
 			}
 		}
 	}
+	private void RenewResources()
+	{
+		var environmentTiles = GameTiles.instance.environmentTiles;
+		foreach (KeyValuePair<Vector3Int, EnvironmentTile> entry in environmentTiles)
+		{
+			var tile = entry.Value;
+			if (tile.Name == "Forest")
+			{
+				tile.Resources["Wood"] += 1;
+			}
+		}
+	}
 	public void EnableTimer(bool value)
 	{
 		growthBar.Enable(value);
 		updateTimer = value;
 	}
-
 	public void ResetTimer()
 	{
 		timer = 0f;
