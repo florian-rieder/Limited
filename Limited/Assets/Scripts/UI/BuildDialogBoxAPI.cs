@@ -35,12 +35,12 @@ public class BuildDialogBoxAPI : MonoBehaviour
 	void Update()
 	{
 		// always stay the same size
-		var osize = Camera.main.orthographicSize;
+		/* var osize = Camera.main.orthographicSize;
 		if (orthoCurr != osize)
 		{
 			transform.localScale = scaleOrg * osize / orthoOrg;
 			orthoCurr = osize;
-		}
+		} */
 	}
 	public void MoveTo(Vector3Int destination)
 	{

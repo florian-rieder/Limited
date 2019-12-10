@@ -22,10 +22,10 @@ public class BuildTooltip : MonoBehaviour
 
 	void Start()
 	{
-		orthoOrg = Camera.main.orthographicSize;
+		/* orthoOrg = Camera.main.orthographicSize;
 		orthoCurr = orthoOrg;
 		scaleOrg = transform.localScale;
-		posOrg = Camera.main.WorldToViewportPoint(transform.position);
+		posOrg = Camera.main.WorldToViewportPoint(transform.position); */
 	}
 
 	void Awake()
@@ -36,12 +36,12 @@ public class BuildTooltip : MonoBehaviour
 	void Update()
 	{
 		// always stay the same size
-		var osize = Camera.main.orthographicSize;
+		/* var osize = Camera.main.orthographicSize;
 		if (orthoCurr != osize)
 		{
 			transform.localScale = scaleOrg * osize / orthoOrg;
 			orthoCurr = osize;
-		}
+		} */
 	}
 
 
