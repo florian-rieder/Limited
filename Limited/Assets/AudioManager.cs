@@ -1,29 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+	public Sound[] sounds;
 
-    // Use this for initialization
-    void Awake()
-    {
-        // create an audio source for each sound we set in the inspector
-        foreach (Sound sound in sounds)
-        {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-        }
-    }
+	// Use this for initialization
+	void Awake()
+	{
+		// create an audio source for each sound we set in the inspector
+		foreach (Sound sound in sounds)
+		{
+			sound.source = gameObject.AddComponent<AudioSource>();
+			sound.source.clip = sound.clip;
+			sound.source.volume = sound.volume;
+			sound.source.pitch = sound.pitch;
+		}
+	}
 
-    public void Play(string soundName)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == soundName);
-        if (s != null) s.source.Play();
-    }
+	public void Play(string soundName)
+	{
+		Sound s = Array.Find(sounds, sound => sound.name == soundName);
+		if (s != null) s.source.Play();
+	}
 }
