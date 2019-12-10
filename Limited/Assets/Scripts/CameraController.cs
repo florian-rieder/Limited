@@ -105,7 +105,7 @@ public class CameraController : MonoBehaviour
 			// prevents scrolling through UI (mostly for the scroll menu in BuildDialogBox)
 			if (EventSystem.current.IsPointerOverGameObject())
 			{
-				//Debug.Log("Scrolled on UI.");
+				//Debug.Log("Scrolled on UI. ");
 			}
 			else
 			{
@@ -177,7 +177,8 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	private float CalculateOrthographicSizeForZoom(float zoom){
+	private float CalculateOrthographicSizeForZoom(float zoom)
+	{
 		var zoomedPPU = 16 * zoom;
 		return (Screen.height / zoomedPPU) * 0.5f;
 	}

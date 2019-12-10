@@ -20,14 +20,17 @@ public class BuildTooltip : MonoBehaviour
 	private Vector3 scaleOrg;
 	private Vector3 posOrg;
 
-	void Awake()
+	void Start()
 	{
-		GenerateResourcesDisplays();
-
 		orthoOrg = Camera.main.orthographicSize;
 		orthoCurr = orthoOrg;
 		scaleOrg = transform.localScale;
 		posOrg = Camera.main.WorldToViewportPoint(transform.position);
+	}
+
+	void Awake()
+	{
+		GenerateResourcesDisplays();
 	}
 
 	void Update()

@@ -5,12 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class TileSelector : MonoBehaviour
 {
-
-	private float orthoOrg;
-	private float orthoCurr;
-	private Vector3 scaleOrg;
-	private Vector3 posOrg;
-
 	public static TileSelector instance;
 	public Tilemap environmentTilemap;
 	private bool locked = false;
@@ -29,13 +23,6 @@ public class TileSelector : MonoBehaviour
 	void Start()
 	{
 		lastPosition = transform.position;
-
-		// used to make it so that this object doesn't scale with the zoom
-		// stays scaled with tilemap
-		orthoOrg = Camera.main.orthographicSize;
-		orthoCurr = orthoOrg;
-		scaleOrg = transform.localScale;
-		posOrg = Camera.main.WorldToViewportPoint(transform.position);
 	}
 
 	void Update()
@@ -54,16 +41,6 @@ public class TileSelector : MonoBehaviour
 			transform.position = newPos;
 			lastPosition = newPos;
 		}
-
-		// don't scale
-		var osize = Camera.main.orthographicSize;
-		if (orthoCurr != osize)
-		{
-			transform.localScale = scaleOrg * orthoOrg / osize;
-			orthoCurr = osize;
-			transform.position = Camera.main.ViewportToWorldPoint(posOrg);
-		}
-
 	}
 	private void Awake()
 	{

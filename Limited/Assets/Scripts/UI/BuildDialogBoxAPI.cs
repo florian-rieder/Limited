@@ -20,7 +20,7 @@ public class BuildDialogBoxAPI : MonoBehaviour
 	private Vector3 scaleOrg;
 	private Vector3 posOrg;
 
-	void Awake()
+	void Start()
 	{
 		// store references to other components of this gameobject
 		image = GetComponent<Image>();

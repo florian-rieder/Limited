@@ -31,7 +31,7 @@ public class GameTiles : MonoBehaviour
 
 	public Color PollutionColor;
 
-	private void Awake()
+	void Awake()
 	{
 		if (instance == null)
 		{
