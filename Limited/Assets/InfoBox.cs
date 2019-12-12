@@ -12,7 +12,7 @@ public class InfoBox : MonoBehaviour
 	void Update()
 	{
 		// close info box on first click since it has been awaken
-		if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+		if (Input.GetMouseButtonDown(0))
 		{
 
 			// start game by activating the gamecontroller

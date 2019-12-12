@@ -12,6 +12,7 @@ public class TopBarResourceDisplay : MonoBehaviour
 	private TextMeshProUGUI text;
 	[SerializeField]
 	private SpriteRenderer iconRenderer;
+	public TopBarTooltip tooltip;
 
 	public void SetValue(int value)
 	{
@@ -34,5 +35,20 @@ public class TopBarResourceDisplay : MonoBehaviour
 	public string GetName()
 	{
 		return Name;
+	}
+
+	public void OnPointerEnter()
+	{
+		Debug.Log("enter "+Name);
+		tooltip.SetText(Name);
+		tooltip.MoveTo(transform.position);
+		tooltip.gameObject.SetActive(true);
+	}
+
+	public void OnPointerExit()
+	{
+		Debug.Log("exit "+Name);
+		// close tooltip
+		tooltip.gameObject.SetActive(false);
 	}
 }

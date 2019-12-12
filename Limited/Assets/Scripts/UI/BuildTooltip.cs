@@ -15,10 +15,10 @@ public class BuildTooltip : MonoBehaviour
 	private Dictionary<string, BuildButtonResourceDisplay> resourceDisplays;
 
 	// don't scale with zoom
-	private float orthoOrg;
+	/* private float orthoOrg;
 	private float orthoCurr;
 	private Vector3 scaleOrg;
-	private Vector3 posOrg;
+	private Vector3 posOrg; */
 
 	void Start()
 	{
@@ -72,8 +72,6 @@ public class BuildTooltip : MonoBehaviour
 			string name = entry.Key;
 			int value = entry.Value;
 
-			//Debug.Log("set: " + name + ": " + value);
-
 			var display = resourceDisplays[name];
 
 			// don't show resources with a value of 0 (resources not used in the facility)
@@ -99,7 +97,6 @@ public class BuildTooltip : MonoBehaviour
 		{
 			string name = entry.Key;
 			int value = entry.Value;
-			//Debug.Log("gen: " + name + ": " + value);
 
 			// get sprite
 			var names = new Dictionary<string, int>{
