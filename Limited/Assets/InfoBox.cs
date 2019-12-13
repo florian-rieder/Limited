@@ -14,7 +14,6 @@ public class InfoBox : MonoBehaviour
 		// close info box on first click since it has been awaken
 		if (Input.GetMouseButtonDown(0))
 		{
-
 			// start game by activating the gamecontroller
 			gameController.SetActive(true);
 			// show top bar

@@ -39,7 +39,6 @@ public class TopBarResourceDisplay : MonoBehaviour
 
 	public void OnPointerEnter()
 	{
-		Debug.Log("enter "+Name);
 		tooltip.SetText(Name);
 		tooltip.MoveTo(transform.position);
 		tooltip.gameObject.SetActive(true);
@@ -47,7 +46,6 @@ public class TopBarResourceDisplay : MonoBehaviour
 
 	public void OnPointerExit()
 	{
-		Debug.Log("exit "+Name);
 		// close tooltip
 		tooltip.gameObject.SetActive(false);
 	}

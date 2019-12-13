@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
 	private bool firstCityBuilt = false;
 	private bool gameOver = false;
 
+	private int pollutionRenewCounter = 0;
+
 	void Awake()
 	{
 		if (instance == null)
@@ -133,8 +135,8 @@ public class GameController : MonoBehaviour
 		NewCity();
 
 		// start extracting resources every x second
-		InvokeRepeating("ExtractResources", 0, 5);
-		InvokeRepeating("RenewResources", 0, 5);
+		InvokeRepeating("ExtractResources", 0, 10);
+		InvokeRepeating("RenewResources", 0, 10);
 	}
 
 	public void NewCity()
@@ -203,8 +205,8 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float mildness = 20f;
-		float baseTime = 90f; // time in [s]
+		float baseTime = 70f; // time in [s]
+		float mildness = 10f;
 		int cities = GameTiles.instance.GetCities().Count;
 
 		float time = 0f;
@@ -241,9 +243,19 @@ public class GameController : MonoBehaviour
 			var tile = entry.Value;
 			if (tile.Name == "Forest")
 			{
-				tile.Resources["Wood"] += 1;
+				if (tile.Polluted && pollutionRenewCounter == 2)
+				{
+					tile.Resources["Woods"] += 1;
+					pollutionRenewCounter = 0;
+				}
+				else
+				{
+					tile.Resources["Woods"] += 1;
+				}
 			}
 		}
+
+		pollutionRenewCounter++;
 	}
 	public void EnableTimer(bool value)
 	{
