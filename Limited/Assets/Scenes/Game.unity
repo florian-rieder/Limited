@@ -9475,7 +9475,7 @@ MonoBehaviour:
   - Object: {fileID: 1296332051}
     Enabled: 0
   - Object: {fileID: 23640037}
-    Enabled: 1
+    Enabled: 0
   cameraController: {fileID: 519420030}
 --- !u!1 &839514900
 GameObject:
@@ -10344,6 +10344,7 @@ MonoBehaviour:
   topBar: {fileID: 1443648004}
   gameController: {fileID: 1296332051}
   cameraController: {fileID: 519420030}
+  tileSelector: {fileID: 23640037}
   animator: {fileID: 1133501409}
 --- !u!114 &1133501408
 MonoBehaviour:

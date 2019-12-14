@@ -67,7 +67,6 @@ public class TilemapInteraction : MonoBehaviour
 					else if (eTile.Name != "Water" && !facilityTileHere && highlightedPositions.Count == 0)
 					{
 						doBuildDialogBox(tilePos);
-
 					}
 					else
 					{
@@ -76,8 +75,6 @@ public class TilemapInteraction : MonoBehaviour
 							dialogBox.Enabled(false);
 						}
 					}
-
-
 				}
 				else
 				{
@@ -86,10 +83,7 @@ public class TilemapInteraction : MonoBehaviour
 						dialogBox.Enabled(false);
 					}
 				}
-
-
 			}
-
 		}
 	}
 
