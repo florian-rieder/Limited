@@ -20,9 +20,12 @@ public class FacilityTile
 	public int ScorePoints { get; set; }
 
 	public HealthBar HealthBar;
+	public Cross cross;
+	public bool IsWorking = true;
 
-	public void Extract()
+	public void Produce()
 	{
+		// extractors
 		if (Extractor)
 		{
 			EnvironmentTile eTile = GameTiles.instance.environmentTiles[LocalPlace];
@@ -43,9 +46,41 @@ public class FacilityTile
 				HealthBar.SetValue(ratio);
 			}
 		}
+		// other production facilities
 		else
 		{
-			Debug.LogError(Name + " can't extract resources.");
+			var inventory = GameController.instance.playerInventory.getCount();
+
+			var consumedResources = new List<string>();
+
+			foreach (KeyValuePair<string, int> entry in Resources)
+			{
+				if (entry.Value < 0) consumedResources.Add(entry.Key);
+			}
+
+			string action = "continue";
+
+			foreach (string name in consumedResources)
+			{
+				int howMuchWeHave = inventory[name];
+				int howMuchWeWouldHaveIfStartedWorking = inventory[name] + Resources[name];
+				int howMuchWeWouldHaveIfStoppedWorking = inventory[name] - Resources[name];
+
+				if (IsWorking && howMuchWeHave < 0)
+				{
+					action = "stop";
+				}
+				else if (!IsWorking && howMuchWeHave > 0)
+				{
+					if (howMuchWeWouldHaveIfStartedWorking >= 0)
+					{
+						action = "start";
+					}
+				}
+			}
+
+			if (action == "start" && !IsWorking) StartWorking();
+			else if (action == "stop" && IsWorking) StopWorking();
 		}
 	}
 
@@ -106,6 +141,17 @@ public class FacilityTile
 
 		return groundTotal / groundMax;
 	}
+	public void StopWorking()
+	{
+		cross.gameObject.SetActive(true);
+		IsWorking = false;
+	}
+	private void StartWorking()
+	{
+		cross.gameObject.SetActive(false);
+		IsWorking = true;
+	}
+
 }
 
 // Classes used to retrieve tile data from JSON file
@@ -249,7 +295,7 @@ public class FacilitiesTileType
 		return canBuild;
 	}
 
-	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar)
+	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar, Cross cross)
 	{
 		return new FacilityTile
 		{
@@ -264,6 +310,7 @@ public class FacilitiesTileType
 
 			Extractor = Extractor,
 			HealthBar = healthBar,
+			cross = cross,
 			PollutionRadius = PollutionRadius,
 			ScorePoints = ScorePoints
 		};

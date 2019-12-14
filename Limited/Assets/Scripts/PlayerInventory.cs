@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
 {
-
 	public Dictionary<string, int> getCount()
 	{
 		var inventory = new Dictionary<string, int>();
@@ -23,8 +23,8 @@ public class PlayerInventory : MonoBehaviour
 		{
 			var facility = entry.Value;
 
-			// if the facility is an extractor and has resources in its ground
-			if ((facility.Extractor && facility.GroundHasResources()) || !facility.Extractor)
+			// check if the facility is working before adding its production to our total
+			if ((facility.Extractor && facility.GroundHasResources()) || (!facility.Extractor && facility.IsWorking))
 			{
 				// iterate through the resource consumption/production and add its value to our total
 				foreach (string resourceName in resourceNames)
@@ -32,7 +32,6 @@ public class PlayerInventory : MonoBehaviour
 					inventory[resourceName] += facility.Resources[resourceName];
 				}
 			}
-
 		}
 
 		return inventory;

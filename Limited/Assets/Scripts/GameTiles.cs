@@ -14,6 +14,7 @@ public class GameTiles : MonoBehaviour
 	public Texture2D facilitiesTileset;
 
 	public GameObject healthBarTemplate;
+	public GameObject crossTemplate;
 
 	[HideInInspector]
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
@@ -131,7 +132,6 @@ public class GameTiles : MonoBehaviour
 					HealthBar script = bar.GetComponent<HealthBar>();
 					script.MoveTo(localPlace);
 					healthBar = script;
-
 				}
 
 				var facilityTile = new FacilityTile
@@ -181,19 +181,25 @@ public class GameTiles : MonoBehaviour
 		facilitiesTilemap.SetTile(position, tile);
 
 		HealthBar healthBar = null;
+		Cross cross = null;
 
 		// Attach healthbar if facility is an extractor
 		if (facilityType.Extractor)
 		{
 			var bar = Instantiate(healthBarTemplate);
 			bar.SetActive(true);
-			HealthBar healthBarController = bar.GetComponent<HealthBar>();
-			healthBarController.MoveTo(position);
-			healthBar = healthBarController;
+			healthBar = bar.GetComponent<HealthBar>();
+			healthBar.MoveTo(position);
 		}
 
+		// Attach cross
+		var crossInstance = Instantiate(crossTemplate);
+		cross = crossInstance.GetComponent<Cross>();
+		cross.MoveTo(position);
+		crossInstance.SetActive(false);
+
 		// create virtual representation of the new tile
-		var facilityTile = facilityType.GenerateTile(environmentTilemap, position, healthBar);
+		var facilityTile = facilityType.GenerateTile(environmentTilemap, position, healthBar, cross);
 
 		// apply pollution
 		if (facilityTile.PollutionRadius > 0)

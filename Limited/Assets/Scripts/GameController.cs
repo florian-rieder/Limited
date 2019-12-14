@@ -135,8 +135,8 @@ public class GameController : MonoBehaviour
 		NewCity();
 
 		// start extracting resources every x second
-		InvokeRepeating("ExtractResources", 0, 10);
-		InvokeRepeating("RenewResources", 0, 10);
+		InvokeRepeating("ProduceResources", 1, 0.1f);
+		InvokeRepeating("RenewResources", 10, 10);
 	}
 
 	public void NewCity()
@@ -218,7 +218,7 @@ public class GameController : MonoBehaviour
 		return time;
 	}
 
-	private void ExtractResources()
+	private void ProduceResources()
 	{
 		var facilities = GameTiles.instance.facilitiesTiles;
 
@@ -226,13 +226,7 @@ public class GameController : MonoBehaviour
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilities)
 		{
 			var facility = entry.Value;
-
-			// if the facility extracts natural resources
-			if (facility.Extractor)
-			{
-				// extract resources
-				facility.Extract();
-			}
+			if (facility.Name != "City") facility.Produce();
 		}
 	}
 	private void RenewResources()
@@ -245,12 +239,12 @@ public class GameController : MonoBehaviour
 			{
 				if (tile.Polluted && pollutionRenewCounter == 2)
 				{
-					tile.Resources["Woods"] += 1;
+					tile.Resources["Wood"] += 1;
 					pollutionRenewCounter = 0;
 				}
-				else
+				if (!tile.Polluted)
 				{
-					tile.Resources["Woods"] += 1;
+					tile.Resources["Wood"] += 1;
 				}
 			}
 		}
