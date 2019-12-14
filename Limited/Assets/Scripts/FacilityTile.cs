@@ -51,36 +51,66 @@ public class FacilityTile
 		{
 			var inventory = GameController.instance.playerInventory.getCount();
 
+			// get the list of different resources that are consumed by this facility
 			var consumedResources = new List<string>();
-
 			foreach (KeyValuePair<string, int> entry in Resources)
 			{
 				if (entry.Value < 0) consumedResources.Add(entry.Key);
 			}
 
-			string action = "continue";
-
-			foreach (string name in consumedResources)
+			// if this facility consumes any resources
+			if (consumedResources.Count > 0)
 			{
-				int howMuchWeHave = inventory[name];
-				int howMuchWeWouldHaveIfStartedWorking = inventory[name] + Resources[name];
-				int howMuchWeWouldHaveIfStoppedWorking = inventory[name] - Resources[name];
+				// here, we get an "action" (it can be either:
+				//
+				// "stop": the facility needs to stop working because there are not enough of the resource it consumes
+				// "start": the facility can start working again because there are enough of the resource it consumes
+				// "continue": the facility stays in the same state as before
+				//
+				// ) for each individual resources consumed by the facility, and store it in a list of the actions 
+				// for this facility.
 
-				if (IsWorking && howMuchWeHave < 0)
+				var actionsForConsumedResources = new List<string>();
+				foreach (string name in consumedResources)
 				{
-					action = "stop";
-				}
-				else if (!IsWorking && howMuchWeHave > 0)
-				{
-					if (howMuchWeWouldHaveIfStartedWorking >= 0)
+					int howMuchWeHave = inventory[name];
+					int howMuchWeWouldHaveIfStartedWorking = inventory[name] + Resources[name];
+					int howMuchWeWouldHaveIfStoppedWorking = inventory[name] - Resources[name];
+
+					if (IsWorking && howMuchWeHave < 0)
 					{
-						action = "start";
+						actionsForConsumedResources.Add("stop");
+					}
+					else if (!IsWorking && howMuchWeHave > 0 && howMuchWeWouldHaveIfStartedWorking >= 0)
+					{
+						actionsForConsumedResources.Add("start");
+					}
+					else
+					{
+						actionsForConsumedResources.Add("continue");
 					}
 				}
-			}
 
-			if (action == "start" && !IsWorking) StartWorking();
-			else if (action == "stop" && IsWorking) StopWorking();
+				// now that we have a list of actions, we use that list to determine the action to actually take
+
+				string action = "continue";
+
+				// if actions for all resources are "start", we can restart the facility
+				// otherwise, it means that at least one resource is not sufficient to allow
+				// the facility to work again.
+				for (int i = 0; i < actionsForConsumedResources.Count; i++)
+				{
+					if (actionsForConsumedResources[i] != "start") break;
+					if (i == actionsForConsumedResources.Count - 1) action = "start";
+				}
+
+				// if only one action for a resource is "stop", then we stop the facility
+				if (actionsForConsumedResources.Contains("stop")) action = "stop";
+
+				// apply determined action
+				if (action == "start" && !IsWorking) StartWorking();
+				else if (action == "stop" && IsWorking) StopWorking();
+			}
 		}
 	}
 

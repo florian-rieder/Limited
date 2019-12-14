@@ -135,8 +135,8 @@ public class GameController : MonoBehaviour
 		NewCity();
 
 		// start extracting resources every x second
-		InvokeRepeating("ProduceResources", 1, 0.1f);
-		InvokeRepeating("RenewResources", 10, 10);
+		InvokeRepeating("ProduceResources", 8, 8);
+		InvokeRepeating("RenewResources", 8, 8);
 	}
 
 	public void NewCity()
