@@ -49,9 +49,6 @@ public class TilemapInteraction : MonoBehaviour
 				{
 					// Debug
 					Debug.Log(createEnvironmentLog(eTile));
-
-
-
 					environmentTileHere = true;
 				}
 
@@ -66,12 +63,17 @@ public class TilemapInteraction : MonoBehaviour
 
 						removeHighlights();
 					}
-					else if (eTile.Name != "Water")
+					// don't allow to open when choosing the city expansion
+					else if (eTile.Name != "Water" && !facilityTileHere && highlightedPositions.Count == 0)
 					{
-						// don't allow to open when choosing the city expansion
-						if (!facilityTileHere && highlightedPositions.Count == 0)
+						doBuildDialogBox(tilePos);
+
+					}
+					else
+					{
+						if (dialogBox.IsOpen())
 						{
-							doBuildDialogBox(tilePos);
+							dialogBox.Enabled(false);
 						}
 					}
 

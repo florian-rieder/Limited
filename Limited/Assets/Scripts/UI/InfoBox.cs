@@ -6,6 +6,7 @@ public class InfoBox : MonoBehaviour
 	public GameObject topBar;
 	public GameObject gameController;
 	public CameraController cameraController;
+	public GameObject tileSelector;
 	public Animator animator;
 
 	// Update is called once per frame
@@ -18,6 +19,8 @@ public class InfoBox : MonoBehaviour
 			gameController.SetActive(true);
 			// show top bar
 			topBar.SetActive(true);
+			// show tile selector
+			tileSelector.SetActive(true);
 			// allow camera movement
 			cameraController.enabled = true;
 
