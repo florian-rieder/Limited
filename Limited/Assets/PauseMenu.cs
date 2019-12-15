@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
     public GameObject topBarUI;
+	public GameObject tileSelector;
 
 	// Update is called once per frame
 	void Update()
@@ -28,6 +29,7 @@ public class PauseMenu : MonoBehaviour
 
 	public void Resume()
 	{
+		tileSelector.SetActive(true);
         topBarUI.SetActive(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -36,6 +38,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Pause()
 	{
+		tileSelector.SetActive(false);
         topBarUI.SetActive(false);
         pauseMenuUI.SetActive(true);
 
