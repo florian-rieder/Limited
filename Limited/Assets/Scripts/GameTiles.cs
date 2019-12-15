@@ -122,6 +122,7 @@ public class GameTiles : MonoBehaviour
 				var TileBase = facilitiesTilemap.GetTile(localPlace);
 				FacilitiesTileType tileType = facilitiesRoot.FindType(TileBase.name); // find the type of this tile by the name of its sprite
 				HealthBar healthBar = null;
+				Cross cross = null;
 
 				if (tileType.Extractor)
 				{
@@ -133,6 +134,12 @@ public class GameTiles : MonoBehaviour
 					script.MoveTo(localPlace);
 					healthBar = script;
 				}
+
+				// Attach cross
+				var crossInstance = Instantiate(crossTemplate);
+				cross = crossInstance.GetComponent<Cross>();
+				cross.MoveTo(localPlace);
+				crossInstance.SetActive(false);
 
 				var facilityTile = new FacilityTile
 				{

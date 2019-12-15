@@ -135,8 +135,8 @@ public class GameController : MonoBehaviour
 		NewCity();
 
 		// start extracting resources every x second
-		InvokeRepeating("ProduceResources", 8, 8);
-		InvokeRepeating("RenewResources", 8, 8);
+		InvokeRepeating("ProduceResources", 1, 1);
+		InvokeRepeating("RenewResources", 1, 1);
 	}
 
 	public void NewCity()
@@ -221,12 +221,14 @@ public class GameController : MonoBehaviour
 	private void ProduceResources()
 	{
 		var facilities = GameTiles.instance.facilitiesTiles;
+		bool stopCheckingProduction = false;
 
 		// for each facility
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilities)
 		{
 			var facility = entry.Value;
-			if (facility.Name != "City") facility.Produce();
+			if (facility.Extractor) facility.Extract();
+			else if (facility.Name != "City" && !stopCheckingProduction) stopCheckingProduction = facility.Produce();
 		}
 	}
 	private void RenewResources()
