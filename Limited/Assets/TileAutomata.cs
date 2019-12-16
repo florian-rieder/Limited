@@ -13,10 +13,10 @@ public class TileAutomata : MonoBehaviour
 	[Range(1, 8)]
 	public int deathLimit;
 	[Range(1, 10)]
-	public int numRepet;
+	public int iterations;
 
 	private int[,] terrainMap;
-	public Vector3Int tmapSize;
+	public Vector3Int tilemapSize;
 
 	public Tilemap tilemap;
 	public RuleTile groundTile;
@@ -24,11 +24,11 @@ public class TileAutomata : MonoBehaviour
 	int width;
 	int height;
 
-	public void doSim(int numRepet)
+	public void doSim(int iterations)
 	{
 		clearMap(false);
-		width = tmapSize.x;
-		height = tmapSize.y;
+		width = tilemapSize.x;
+		height = tilemapSize.y;
 
 		// initialize grid
 		if (terrainMap == null)
@@ -38,7 +38,7 @@ public class TileAutomata : MonoBehaviour
 		}
 
 		// run simulation for numRepet iterations
-		for (int i = 0; i < numRepet; i++)
+		for (int i = 0; i < iterations; i++)
 		{
 			terrainMap = genTilePos(terrainMap);
 		}
@@ -118,7 +118,7 @@ public class TileAutomata : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
-			doSim(numRepet);
+			doSim(iterations);
 		}
 
 		if (Input.GetMouseButtonDown(1))
