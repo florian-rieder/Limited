@@ -99,7 +99,7 @@ public class GameTiles : MonoBehaviour
 			{
 				// Find its type according to our parsed JSON data
 				var TileBase = environmentTilemap.GetTile(localPlace);
-				EnvironmentTileType tileType = environmentRoot.FindType(TileBase.name); // find the type of this tile by the name of its sprite
+				EnvironmentTileType tileType = environmentRoot.FindType(environmentTilemap.GetSprite(localPlace).name); // find the type of this tile by the name of its sprite
 
 				// Assign type defined variables to actual tile representation that is to be stored in our dictionary of tiles
 				var environmentTile = new EnvironmentTile

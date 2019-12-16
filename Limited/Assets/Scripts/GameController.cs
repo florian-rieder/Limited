@@ -228,7 +228,7 @@ public class GameController : MonoBehaviour
 		{
 			var facility = entry.Value;
 			if (facility.Extractor) facility.Extract();
-			else if (facility.Name != "City" && !stopCheckingProduction) stopCheckingProduction = facility.Produce();
+			else if (facility.Name != "City" && (!stopCheckingProduction || !facility.IsWorking)) stopCheckingProduction = facility.Produce();
 		}
 	}
 	private void RenewResources()
