@@ -70,8 +70,7 @@ public class FacilityTile
 		}
 
 		// if this facility consumes any resources
-		// and all resource conflicts have not been resolved (no resource in the negative)
-		if (consumedResources.Count > 0 && !conflictsResolved)
+		if (consumedResources.Count > 0)
 		{
 			// here, we get an "action" (it can be either:
 			//
