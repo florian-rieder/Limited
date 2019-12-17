@@ -42,8 +42,6 @@ public class GameTiles : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
-		GetWorldTiles();
 	}
 
 	public EnvironmentTileTypeRoot GetEnvironmentTypes()
@@ -65,7 +63,7 @@ public class GameTiles : MonoBehaviour
 		return facilitiesRoot;
 	}
 
-	private void GetWorldTiles()
+	public void GetWorldTiles()
 	{
 		/* initialize tiles dictionaries */
 
@@ -99,7 +97,7 @@ public class GameTiles : MonoBehaviour
 			{
 				// Find its type according to our parsed JSON data
 				var TileBase = environmentTilemap.GetTile(localPlace);
-				EnvironmentTileType tileType = environmentRoot.FindType(TileBase.name); // find the type of this tile by the name of its sprite
+				EnvironmentTileType tileType = environmentRoot.FindType(environmentTilemap.GetSprite(localPlace).name); // find the type of this tile by the name of its sprite
 
 				// Assign type defined variables to actual tile representation that is to be stored in our dictionary of tiles
 				var environmentTile = new EnvironmentTile
