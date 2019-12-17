@@ -24,6 +24,10 @@ public class TileAutomata : MonoBehaviour
 	int width;
 	int height;
 
+	public string plainTileSpriteName = "Tileset_environment_10";
+
+	public TileVarietiesObject[] tileVarieties;
+
 	public void doSim(int iterations)
 	{
 		clearMap(false);
@@ -43,7 +47,7 @@ public class TileAutomata : MonoBehaviour
 			terrainMap = genTilePos(terrainMap);
 		}
 
-        // apply to tilemap
+		// apply to tilemap
 		for (int x = 0; x < width; x++)
 		{
 			for (int y = 0; y < height; y++)
@@ -51,6 +55,36 @@ public class TileAutomata : MonoBehaviour
 				if (terrainMap[x, y] == 1)
 				{
 					tilemap.SetTile(new Vector3Int(-x + width / 2, -y + height / 2, 0), groundTile);
+				}
+			}
+		}
+
+		ConvertRuleTilesToTiles();
+
+		// scatter resources around the map
+		foreach (var variety in tileVarieties)
+		{
+			// copy groundTile because otherwise, this tile will be considered an other tile than ground tile,
+			// and the texture connections will be broken
+
+			foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+			{
+				// if this is a tile of plain
+				if (tilemap.HasTile(pos))
+				{
+					if (tilemap.GetSprite(pos).name == plainTileSpriteName)
+					{
+						// insert resource in tilemap with a certain chance
+						int rando = Random.Range(1, 101);
+
+						if (variety.chance >= rando)
+						{
+							var newTile = ScriptableObject.CreateInstance<Tile>();
+							newTile.sprite = variety.sprite;
+
+							tilemap.SetTile(pos, newTile);
+						}
+					}
 				}
 			}
 		}
@@ -112,21 +146,7 @@ public class TileAutomata : MonoBehaviour
 			}
 		}
 	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			doSim(iterations);
-		}
-
-		if (Input.GetMouseButtonDown(1))
-		{
-			clearMap(true);
-		}
-	}
-
+	
 	public void clearMap(bool complete)
 	{
 		tilemap.ClearAllTiles();
@@ -136,4 +156,40 @@ public class TileAutomata : MonoBehaviour
 			terrainMap = null;
 		}
 	}
+
+	private void ConvertRuleTilesToTiles()
+	{
+		/* converts all ruletiles in the tilemap into regular tiles, so that we can later change tiles in the tilemap without
+		   breaking tile connections */
+
+		Dictionary<Vector3Int, Sprite> tilesSprites = new Dictionary<Vector3Int, Sprite>();
+
+		// get all sprites on the tilemap
+		foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+		{
+			if (tilemap.HasTile(pos))
+			{
+				var tile = tilemap.GetTile(pos);
+				tilesSprites.Add(pos, tilemap.GetSprite(pos));
+
+			}
+		}
+
+		foreach (KeyValuePair<Vector3Int, Sprite> entry in tilesSprites)
+		{
+			// create new regular tile with old ruletile sprite
+			var newTile = ScriptableObject.CreateInstance<Tile>();
+			newTile.sprite = entry.Value;
+
+			// replace tile
+			tilemap.SetTile(entry.Key, newTile);
+		}
+	}
+}
+
+[System.Serializable]
+public class TileVarietiesObject
+{
+	public Sprite sprite;
+	public int chance;
 }

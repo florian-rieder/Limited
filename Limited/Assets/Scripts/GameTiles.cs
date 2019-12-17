@@ -42,8 +42,6 @@ public class GameTiles : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
-		GetWorldTiles();
 	}
 
 	public EnvironmentTileTypeRoot GetEnvironmentTypes()
@@ -65,7 +63,7 @@ public class GameTiles : MonoBehaviour
 		return facilitiesRoot;
 	}
 
-	private void GetWorldTiles()
+	public void GetWorldTiles()
 	{
 		/* initialize tiles dictionaries */
 
