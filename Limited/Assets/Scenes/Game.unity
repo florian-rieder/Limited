@@ -7843,10 +7843,12 @@ MonoBehaviour:
   birthLimit: 4
   deathLimit: 4
   iterations: 1
+  minBuildableTiles: 200
   tilemapSize: {x: 40, y: 20, z: 0}
   tilemap: {fileID: 427235166}
   groundTile: {fileID: 11400000, guid: a35095f5255e314488c21d40b410284f, type: 2}
-  plainTileSpriteName: Tileset_environment_10
+  plainTileSprite: {fileID: -5565644614066263826, guid: 15dbbb9be192b3c4ca42d477d17d8017,
+    type: 3}
   tileVarieties:
   - sprite: {fileID: 7829367115482806860, guid: 15dbbb9be192b3c4ca42d477d17d8017,
       type: 3}

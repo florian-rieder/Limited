@@ -14,6 +14,7 @@ public class TileAutomata : MonoBehaviour
 	public int deathLimit;
 	[Range(1, 10)]
 	public int iterations;
+	public int minBuildableTiles;
 
 	private int[,] terrainMap;
 	public Vector3Int tilemapSize;
@@ -24,7 +25,7 @@ public class TileAutomata : MonoBehaviour
 	int width;
 	int height;
 
-	public string plainTileSpriteName = "Tileset_environment_10";
+	public Sprite plainTileSprite;
 
 	public TileVarietiesObject[] tileVarieties;
 
@@ -34,27 +35,32 @@ public class TileAutomata : MonoBehaviour
 		width = tilemapSize.x;
 		height = tilemapSize.y;
 
-		// initialize grid
-		if (terrainMap == null)
+		// generate a new map while there are not a minimum of buildable tiles
+		// (prevents generation of maps that are too small)
+		while (GetBuildableTilesCount() < minBuildableTiles)
 		{
-			terrainMap = new int[width, height];
-			initPos();
-		}
-
-		// run simulation for numRepet iterations
-		for (int i = 0; i < iterations; i++)
-		{
-			terrainMap = genTilePos(terrainMap);
-		}
-
-		// apply to tilemap
-		for (int x = 0; x < width; x++)
-		{
-			for (int y = 0; y < height; y++)
+			// initialize grid
+			if (terrainMap == null)
 			{
-				if (terrainMap[x, y] == 1)
+				terrainMap = new int[width, height];
+				initPos();
+			}
+
+			// run simulation for n iterations
+			for (int i = 0; i < iterations; i++)
+			{
+				terrainMap = genTilePos(terrainMap);
+			}
+
+			// apply to tilemap
+			for (int x = 0; x < width; x++)
+			{
+				for (int y = 0; y < height; y++)
 				{
-					tilemap.SetTile(new Vector3Int(-x + width / 2, -y + height / 2, 0), groundTile);
+					if (terrainMap[x, y] == 1)
+					{
+						tilemap.SetTile(new Vector3Int(-x + width / 2, -y + height / 2, 0), groundTile);
+					}
 				}
 			}
 		}
@@ -64,18 +70,15 @@ public class TileAutomata : MonoBehaviour
 		// scatter resources around the map
 		foreach (var variety in tileVarieties)
 		{
-			// copy groundTile because otherwise, this tile will be considered an other tile than ground tile,
-			// and the texture connections will be broken
-
 			foreach (var pos in tilemap.cellBounds.allPositionsWithin)
 			{
 				// if this is a tile of plain
 				if (tilemap.HasTile(pos))
 				{
-					if (tilemap.GetSprite(pos).name == plainTileSpriteName)
+					if (tilemap.GetSprite(pos).name == plainTileSprite.name)
 					{
 						// insert resource in tilemap with a certain chance
-						int rando = Random.Range(1, 101);
+						int rando = Random.Range(0, 100);
 
 						if (variety.chance >= rando)
 						{
@@ -146,7 +149,7 @@ public class TileAutomata : MonoBehaviour
 			}
 		}
 	}
-	
+
 	public void clearMap(bool complete)
 	{
 		tilemap.ClearAllTiles();
@@ -184,6 +187,24 @@ public class TileAutomata : MonoBehaviour
 			// replace tile
 			tilemap.SetTile(entry.Key, newTile);
 		}
+	}
+
+	private int GetBuildableTilesCount()
+	{
+		int count = 0;
+
+		foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+		{
+			if (tilemap.HasTile(pos))
+			{
+				if (tilemap.GetSprite(pos).name == plainTileSprite.name)
+				{
+					count++;
+				}
+			}
+		}
+
+		return count;
 	}
 }
 
