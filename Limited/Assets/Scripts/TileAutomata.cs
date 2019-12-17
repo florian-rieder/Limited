@@ -12,8 +12,6 @@ public class TileAutomata : MonoBehaviour
 	public int birthLimit;
 	[Range(1, 8)]
 	public int deathLimit;
-	[Range(1, 10)]
-	public int iterations;
 	public int minBuildableTiles;
 
 	private int[,] terrainMap;
