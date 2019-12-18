@@ -217,12 +217,12 @@ public class GameTiles : MonoBehaviour
 		// start screenshake
 		if (facilityTile.Name == "City")
 		{
-			cameraCtrl.TriggerShake(0.2f);
+			cameraCtrl.TriggerShake(0.2f, 0.2f);
 			audioManager.Play("city_built");
 		}
 		else
 		{
-			cameraCtrl.TriggerShake(0.1f);
+			cameraCtrl.TriggerShake(0.1f, 0.1f);
 			audioManager.Play("facility_built");
 		}
 	}

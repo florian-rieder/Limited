@@ -3299,17 +3299,17 @@ MonoBehaviour:
   sounds:
   - name: facility_built
     clip: {fileID: 8300000, guid: 85a2f58b4dafefb438caa3eeba922b68, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: city_built
     clip: {fileID: 8300000, guid: 939ab7c8f123e614086f57d8996b045a, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     source: {fileID: 0}
   - name: new_city
     clip: {fileID: 8300000, guid: dfbdba6dbaf40c04fa247ba12ca3840d, type: 3}
-    volume: 1
+    volume: 0.4
     pitch: 1
     source: {fileID: 0}
 --- !u!4 &859912660
@@ -7842,7 +7842,7 @@ MonoBehaviour:
   initChance: 56
   birthLimit: 4
   deathLimit: 4
-  minBuildableTiles: 150
+  minBuildableTiles: 128
   tilemapSize: {x: 40, y: 20, z: 0}
   tilemap: {fileID: 427235166}
   groundTile: {fileID: 11400000, guid: a35095f5255e314488c21d40b410284f, type: 2}

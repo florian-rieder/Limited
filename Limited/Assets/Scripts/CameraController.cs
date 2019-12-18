@@ -35,37 +35,100 @@ public class CameraController : MonoBehaviour
 		bool isMoving = false;
 
 		// Get input and apply movement
-		if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+		if (Input.GetKey("w"))
 		{
+			if (currentPanSpeed.y < 0)
+			{
+				currentPanSpeed.y += 4 * accelerationRate;
+			}
 			currentPanSpeed.y += accelerationRate;
+
 			isMoving = true;
 		}
-		if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
+		if (Input.GetKey("s"))
 		{
+			if (currentPanSpeed.y > 0)
+			{
+				currentPanSpeed.y -= 4 * accelerationRate;
+			}
 			currentPanSpeed.y -= accelerationRate;
+
 			isMoving = true;
 		}
-		if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+		if (Input.GetKey("a"))
 		{
+			if (currentPanSpeed.x > 0)
+			{
+				currentPanSpeed.x -= 4 * accelerationRate;
+			}
 			currentPanSpeed.x -= accelerationRate;
+
 			isMoving = true;
 		}
-		if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+		if (Input.GetKey("d"))
 		{
+			if (currentPanSpeed.x < 0)
+			{
+				currentPanSpeed.x += 4 * accelerationRate;
+			}
 			currentPanSpeed.x += accelerationRate;
+
 			isMoving = true;
 		}
 
+
+		// Get mouse input and apply movement
+		if (Input.mousePosition.y >= Screen.height - panBorderThickness)
+		{
+			if (currentPanSpeed.y < 0)
+			{
+				currentPanSpeed.y += 2 * accelerationRate;
+			}
+			currentPanSpeed.y += accelerationRate;
+
+			isMoving = true;
+		}
+		if (Input.mousePosition.y <= panBorderThickness)
+		{
+			if (currentPanSpeed.y > 0)
+			{
+				currentPanSpeed.y -= 2 * accelerationRate;
+			}
+			currentPanSpeed.y -= accelerationRate;
+
+			isMoving = true;
+		}
+		if (Input.mousePosition.x <= panBorderThickness)
+		{
+			if (currentPanSpeed.x > 0)
+			{
+				currentPanSpeed.x -= 2 * accelerationRate;
+			}
+			currentPanSpeed.x -= accelerationRate;
+
+			isMoving = true;
+		}
+		if (Input.mousePosition.x >= Screen.width - panBorderThickness)
+		{
+			if (currentPanSpeed.x < 0)
+			{
+				currentPanSpeed.x += 2 * accelerationRate;
+			}
+			currentPanSpeed.x += accelerationRate;
+
+			isMoving = true;
+		}
+
+		// limit moving speed
 		if (currentPanSpeed.magnitude > maxPanSpeed)
 		{
 			Vector2.ClampMagnitude(currentPanSpeed, maxPanSpeed);
 		}
-		position.x += currentPanSpeed.x * Time.deltaTime;
-		position.y += currentPanSpeed.y * Time.deltaTime;
 
+		// decelerate once button is not pressed anymore
 		if (currentPanSpeed.x > 0 && !isMoving)
 		{
-			currentPanSpeed.x -= accelerationRate;
+			currentPanSpeed.x -= 2 * accelerationRate;
 			// prevent oscillation
 			if (currentPanSpeed.x < 0)
 			{
@@ -74,7 +137,7 @@ public class CameraController : MonoBehaviour
 		}
 		if (currentPanSpeed.x < 0 && !isMoving)
 		{
-			currentPanSpeed.x += accelerationRate;
+			currentPanSpeed.x += 2 * accelerationRate;
 			if (currentPanSpeed.x > 0)
 			{
 				currentPanSpeed.x = 0;
@@ -82,7 +145,7 @@ public class CameraController : MonoBehaviour
 		}
 		if (currentPanSpeed.y > 0 && !isMoving)
 		{
-			currentPanSpeed.y -= accelerationRate;
+			currentPanSpeed.y -= 2 * accelerationRate;
 			if (currentPanSpeed.y < 0)
 			{
 				currentPanSpeed.y = 0;
@@ -90,12 +153,15 @@ public class CameraController : MonoBehaviour
 		}
 		if (currentPanSpeed.y < 0 && !isMoving)
 		{
-			currentPanSpeed.y += accelerationRate;
+			currentPanSpeed.y += 2 * accelerationRate;
 			if (currentPanSpeed.y > 0)
 			{
 				currentPanSpeed.y = 0;
 			}
 		}
+
+		position.x += currentPanSpeed.x * Time.deltaTime;
+		position.y += currentPanSpeed.y * Time.deltaTime;
 
 		// Get scroll input to zoom in and out
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
