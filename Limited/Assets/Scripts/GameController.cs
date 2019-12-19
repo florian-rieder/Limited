@@ -150,7 +150,12 @@ public class GameController : MonoBehaviour
 		// Get all possible tiles to found a city
 		var possibleLocations = GameTiles.instance.GetPossibleCityTiles();
 
-		if (possibleLocations.Count == 0) GameOver("Your city ran out of space to expand on !");
+		if (possibleLocations.Count == 0)
+		{
+			GameOver("Your city ran out of space to expand on !");
+
+			return;
+		}
 
 		// highlight them in green
 		foreach (EnvironmentTile eTile in possibleLocations)
