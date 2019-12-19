@@ -17,6 +17,7 @@ public class GameOverPanel : MonoBehaviour
 	public void BackToMainMenu()
 	{
 		// go to main menu
+		PlayerPrefs.SetString("LastScene", "Game");
 		SceneManager.LoadScene("MainMenu");
 	}
 

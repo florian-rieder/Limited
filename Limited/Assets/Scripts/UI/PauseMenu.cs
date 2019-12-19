@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu(){
         Time.timeScale = 1f;
+		PlayerPrefs.SetString("LastScene", "Game");
         SceneManager.LoadScene("MainMenu");
     }
 
