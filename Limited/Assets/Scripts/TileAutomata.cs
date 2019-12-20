@@ -13,6 +13,7 @@ public class TileAutomata : MonoBehaviour
 	[Range(1, 8)]
 	public int deathLimit;
 	public int minBuildableTiles;
+	public int maxIterations;
 
 	private int[,] terrainMap;
 	public Vector3Int tilemapSize;
@@ -35,7 +36,7 @@ public class TileAutomata : MonoBehaviour
 
 		// generate a new map while there are not a minimum of buildable tiles
 		// (prevents generation of maps that are too small)
-		while (GetBuildableTilesCount() < minBuildableTiles)
+		for (int idx = 0; GetBuildableTilesCount() < minBuildableTiles && idx < maxIterations; idx++)
 		{
 			// initialize grid
 			if (terrainMap == null)
@@ -76,7 +77,7 @@ public class TileAutomata : MonoBehaviour
 					if (tilemap.GetSprite(pos).name == plainTileSprite.name)
 					{
 						// insert resource in tilemap with a certain chance
-						int rando = Random.Range(0, 100);
+						int rando = Random.Range(0, 1000);
 
 						if (variety.chance >= rando)
 						{

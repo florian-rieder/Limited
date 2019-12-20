@@ -9,13 +9,14 @@
 				"Tileset_environment_5",
 				"Tileset_environment_6",
 				"Tileset_environment_7",
-				"Tileset_environment_9",
+				"Tileset_environment_10",
 				"Tileset_environment_11",
 				"Tileset_environment_12",
 				"Tileset_environment_13",
 				"Tileset_environment_14",
 				"Tileset_environment_15",
-				"Tileset_environment_16"
+				"Tileset_environment_16",
+				"Tileset_environment_17"
 			],
 			"Oil": 0,
 			"Coal": 0,
@@ -30,7 +31,7 @@
 			"Oil": 0,
 			"Coal": 1000,
 			"Wood": 0,
-			"Metal": 1000
+			"Metal": 0
 		},
 		{
 			"Name": "Oil Pocket",
@@ -40,7 +41,7 @@
 			"Oil": 2000,
 			"Coal": 0,
 			"Wood": 0,
-			"Metal": 1000
+			"Metal": 0
 		},
 		{
 			"Name": "Forest",
@@ -50,13 +51,23 @@
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 1000,
-			"Metal": 1000
+			"Metal": 0
 			
 		},
 		{
 			"Name": "Plain",
 			"SpriteNames": [
-				"Tileset_environment_10"
+				"Tileset_environment_11"
+			],
+			"Oil": 0,
+			"Coal": 0,
+			"Wood": 0,
+			"Metal": 0
+		},
+		{
+			"Name": "Metal Vein",
+			"SpriteNames": [
+				"Tileset_environment_9"
 			],
 			"Oil": 0,
 			"Coal": 0,
