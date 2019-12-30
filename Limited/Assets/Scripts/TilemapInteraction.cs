@@ -8,6 +8,7 @@ public class TilemapInteraction : MonoBehaviour
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
 	public BuildDialogBoxAPI dialogBox;
+	public CameraController cameraController;
 
 	// registry of highlighted tiles
 	private List<Vector3Int> highlightedPositions = new List<Vector3Int>();
@@ -119,6 +120,9 @@ public class TilemapInteraction : MonoBehaviour
 			dialogBox.Enabled(true);
 			dialogBox.MoveTo(pos);
 			dialogBox.UpdateButtons(pos);
+
+			// center camera on clicked tile when opening dialog box
+			cameraController.MoveTo(pos);
 		}
 	}
 

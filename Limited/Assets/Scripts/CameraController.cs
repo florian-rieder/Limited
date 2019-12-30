@@ -230,7 +230,6 @@ public class CameraController : MonoBehaviour
 		moveDuration = distanceToCover > maxDuration / divider ? maxDuration : distanceToCover / divider;
 
 		StartCoroutine("MoveToRoutine");
-
 	}
 
 	private IEnumerator MoveToRoutine()

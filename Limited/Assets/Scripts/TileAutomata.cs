@@ -64,28 +64,66 @@ public class TileAutomata : MonoBehaviour
 			}
 		}
 
+		// convert rule tiles to tiles, because we want to then modify the terrain created using the rule
+		// tiles. If we didn't, each resource tile we are going to randomly insert will disrupt the textures connections
+		// of the terrain
 		ConvertRuleTilesToTiles();
+
+		var resourcesScattered = new Dictionary<string, int>();
 
 		// scatter resources around the map
 		foreach (var variety in tileVarieties)
 		{
+			// initialize a registry of the number of this resource placed on the map
+			resourcesScattered.Add(variety.name, 0);
+
 			foreach (var pos in tilemap.cellBounds.allPositionsWithin)
 			{
-				// if this is a tile of plain
-				if (tilemap.HasTile(pos))
+				// if there is no tile here, skip
+				if (!tilemap.HasTile(pos)) continue;
+
+				// if the tile is a plain
+				if (tilemap.GetSprite(pos).name != plainTileSprite.name) continue;
+
+				// insert resource in tilemap with a certain chance
+				int rando = Random.Range(0, 1000);
+
+				if (variety.chance >= rando)
 				{
-					if (tilemap.GetSprite(pos).name == plainTileSprite.name)
+					// create a new regular tile with our resource's sprite
+					var newTile = ScriptableObject.CreateInstance<Tile>();
+					newTile.sprite = variety.sprite;
+
+					// replace the tile with our new tile
+					tilemap.SetTile(pos, newTile);
+
+					// register that one of this ressource has been placed
+					resourcesScattered[variety.name]++;
+				}
+			}
+
+			// insure a minimal amount of resources on the map
+			if (resourcesScattered[variety.name] >= variety.minimalQuantity) continue;
+
+			for (int i = 0; i < variety.minimalQuantity - resourcesScattered[variety.name]; i++)
+			{
+				// place another tile of this resource randomly on the map
+				while (true)
+				{
+					// randomly select a tile within the bounds of the map
+					var randomPosition = GameSystem.RandomInsideBoundsInt(tilemap.cellBounds);
+
+					if (!tilemap.HasTile(randomPosition)) continue;
+
+					if (tilemap.GetSprite(randomPosition).name == plainTileSprite.name)
 					{
-						// insert resource in tilemap with a certain chance
-						int rando = Random.Range(0, 1000);
+						// create a new regular tile with our resource's sprite
+						var newTile = ScriptableObject.CreateInstance<Tile>();
+						newTile.sprite = variety.sprite;
 
-						if (variety.chance >= rando)
-						{
-							var newTile = ScriptableObject.CreateInstance<Tile>();
-							newTile.sprite = variety.sprite;
-
-							tilemap.SetTile(pos, newTile);
-						}
+						// replace the tile with our new tile
+						tilemap.SetTile(randomPosition, newTile);
+						break;
 					}
 				}
 			}
@@ -169,12 +207,10 @@ public class TileAutomata : MonoBehaviour
 		// get all sprites on the tilemap
 		foreach (var pos in tilemap.cellBounds.allPositionsWithin)
 		{
-			if (tilemap.HasTile(pos))
-			{
-				var tile = tilemap.GetTile(pos);
-				tilesSprites.Add(pos, tilemap.GetSprite(pos));
+			if (!tilemap.HasTile(pos)) continue;
 
-			}
+			var tile = tilemap.GetTile(pos);
+			tilesSprites.Add(pos, tilemap.GetSprite(pos));
 		}
 
 		foreach (KeyValuePair<Vector3Int, Sprite> entry in tilesSprites)
@@ -194,13 +230,8 @@ public class TileAutomata : MonoBehaviour
 
 		foreach (var pos in tilemap.cellBounds.allPositionsWithin)
 		{
-			if (tilemap.HasTile(pos))
-			{
-				if (tilemap.GetSprite(pos).name == plainTileSprite.name)
-				{
-					count++;
-				}
-			}
+			if (!tilemap.HasTile(pos)) continue;
+			if (tilemap.GetSprite(pos).name == plainTileSprite.name) count++;
 		}
 
 		return count;
@@ -210,6 +241,8 @@ public class TileAutomata : MonoBehaviour
 [System.Serializable]
 public class TileVarietiesObject
 {
+	public string name;
 	public Sprite sprite;
 	public int chance;
+	public int minimalQuantity;
 }

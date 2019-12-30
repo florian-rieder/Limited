@@ -76,6 +76,14 @@ public class GameSystem : MonoBehaviour
 		}
 
 		return color;
+	}
 
+	public static Vector3Int RandomInsideBoundsInt(BoundsInt bounds)
+	{
+		return new Vector3Int(
+			Random.Range(bounds.x, bounds.xMax),
+			Random.Range(bounds.y, bounds.yMax),
+			Random.Range(bounds.z, bounds.zMax)
+		);
 	}
 }

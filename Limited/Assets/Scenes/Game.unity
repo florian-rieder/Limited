@@ -5102,6 +5102,7 @@ MonoBehaviour:
   environmentTilemap: {fileID: 427235166}
   facilitiesTilemap: {fileID: 1429783464}
   dialogBox: {fileID: 495423473}
+  cameraController: {fileID: 519420030}
 --- !u!1 &1377765204
 GameObject:
   m_ObjectHideFlags: 0
@@ -8476,17 +8477,25 @@ MonoBehaviour:
   plainTileSprite: {fileID: 1647607576667491951, guid: 15dbbb9be192b3c4ca42d477d17d8017,
     type: 3}
   tileVarieties:
-  - sprite: {fileID: 7829367115482806860, guid: 15dbbb9be192b3c4ca42d477d17d8017,
+  - name: Coal
+    sprite: {fileID: 7829367115482806860, guid: 15dbbb9be192b3c4ca42d477d17d8017,
       type: 3}
-    chance: 15
-  - sprite: {fileID: 7185652635412157954, guid: 15dbbb9be192b3c4ca42d477d17d8017,
+    chance: 20
+    minimalQuantity: 5
+  - name: Oil
+    sprite: {fileID: 7185652635412157954, guid: 15dbbb9be192b3c4ca42d477d17d8017,
       type: 3}
     chance: 5
-  - sprite: {fileID: 545331949580346323, guid: 15dbbb9be192b3c4ca42d477d17d8017, type: 3}
+    minimalQuantity: 2
+  - name: Wood
+    sprite: {fileID: 545331949580346323, guid: 15dbbb9be192b3c4ca42d477d17d8017, type: 3}
     chance: 50
-  - sprite: {fileID: 4780152641127355319, guid: 15dbbb9be192b3c4ca42d477d17d8017,
+    minimalQuantity: 15
+  - name: Metal
+    sprite: {fileID: 4780152641127355319, guid: 15dbbb9be192b3c4ca42d477d17d8017,
       type: 3}
-    chance: 17
+    chance: 25
+    minimalQuantity: 10
 --- !u!4 &1949507768
 Transform:
   m_ObjectHideFlags: 0
