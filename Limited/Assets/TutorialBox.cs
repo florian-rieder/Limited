@@ -27,7 +27,7 @@ public class TutorialBox : MonoBehaviour
 
 	public void OnExitAnimationEnd()
 	{
-        Debug.Log("Animation End");
+		Debug.Log("Animation End");
 		// when the animation is finished, it will call the NextMessage function of TutorialController
 		controller.NextBox();
 	}

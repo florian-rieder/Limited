@@ -210,8 +210,8 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float baseTime = 70f; // time in [s]
-		float mildness = 10f;
+		float baseTime = 50f; // time in [s]
+		float mildness = 25f;
 		int cities = GameTiles.instance.GetCities().Count;
 
 		float time = 0f;

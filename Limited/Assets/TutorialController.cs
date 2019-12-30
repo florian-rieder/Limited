@@ -6,7 +6,8 @@ public class TutorialController : MonoBehaviour
 {
 	public TutorialBox tutorialBox;
 
-	[SerializeField]
+	[SerializeField] // makes private attribute appear in the editor
+	[TextArea(5, 5)] // makes the text box in the editor bigger (5 lines high)
 	private string[] messages;
 	private int currentMessageIndex = 0;
 
@@ -17,13 +18,12 @@ public class TutorialController : MonoBehaviour
 			// if the key has not been initialized, initialize it to true
 			// (Enable tutorial by default since this is the first launch of the game)
 			PlayerPrefs.SetInt("TutorialEnabled", 1);
-			return;
 		}
 
 		// tutorial is enabled
 		if (PlayerPrefs.GetInt("TutorialEnabled") == 1)
 		{
-            tutorialBox.gameObject.SetActive(true);
+			tutorialBox.gameObject.SetActive(true);
 			NextBox();
 		}
 		// tutorial is disabled
@@ -36,14 +36,14 @@ public class TutorialController : MonoBehaviour
 
 	public void NextBox()
 	{
-        Debug.Log("NextBox 1");
+		Debug.Log("NextBox 1");
 		if (currentMessageIndex > messages.Length) return;
-        Debug.Log("NextBox 2");
+		Debug.Log("NextBox 2");
 
 		// display current message
 		tutorialBox.SetText(messages[currentMessageIndex]);
 		// show the box
-        Debug.Log("OpenTrigger");
+		Debug.Log("OpenTrigger");
 		tutorialBox.animator.SetTrigger("OpenTrigger");
 		// set next message index
 		currentMessageIndex++;
