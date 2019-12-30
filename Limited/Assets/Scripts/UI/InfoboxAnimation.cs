@@ -7,6 +7,6 @@ public class InfoboxAnimation : StateMachineBehaviour
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		// close the object this animation is attached to
-		animator.gameObject.SetActive(false);
+		animator.gameObject.GetComponent<InfoBox>().OnExitAnimationEnd();
 	}
 }

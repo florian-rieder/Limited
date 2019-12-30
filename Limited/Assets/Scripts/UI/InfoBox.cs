@@ -8,6 +8,7 @@ public class InfoBox : MonoBehaviour
 	public CameraController cameraController;
 	public GameObject tileSelector;
 	public Animator animator;
+	public TutorialController tutorialController;
 
 	// Update is called once per frame
 	void Update()
@@ -27,5 +28,13 @@ public class InfoBox : MonoBehaviour
 			// trigger closing animation
 			animator.SetTrigger("CloseTrigger");
 		}
+	}
+
+	public void OnExitAnimationEnd()
+	{
+		// start tutorial
+		tutorialController.Initialize();
+		// disable this script
+		gameObject.SetActive(false);
 	}
 }
