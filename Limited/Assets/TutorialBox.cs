@@ -14,21 +14,15 @@ public class TutorialBox : MonoBehaviour
 		// set message of the box
 		textBox.text = text;
 	}
-	public void Enable(bool value)
-	{
-		gameObject.SetActive(value);
-	}
 
 	public void OnClick()
 	{
-		// trigger closing animation
-		animator.SetTrigger("CloseTrigger");
+		controller.NextBox();
 	}
 
 	public void OnExitAnimationEnd()
 	{
-		Debug.Log("Animation End");
-		// when the animation is finished, it will call the NextMessage function of TutorialController
-		controller.NextBox();
+		// when the animation is finished, disable this object
+		gameObject.SetActive(false);
 	}
 }

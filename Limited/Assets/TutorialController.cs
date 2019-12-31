@@ -36,15 +36,16 @@ public class TutorialController : MonoBehaviour
 
 	public void NextBox()
 	{
-		Debug.Log("NextBox 1");
-		if (currentMessageIndex > messages.Length) return;
-		Debug.Log("NextBox 2");
+		// if we finished the list of messages, close the tutorial box with an animation
+		if (currentMessageIndex >= messages.Length)
+		{
+			tutorialBox.animator.SetTrigger("CloseTrigger");
+			return;
+		}
 
 		// display current message
 		tutorialBox.SetText(messages[currentMessageIndex]);
-		// show the box
-		Debug.Log("OpenTrigger");
-		tutorialBox.animator.SetTrigger("OpenTrigger");
+
 		// set next message index
 		currentMessageIndex++;
 	}

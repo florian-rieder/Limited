@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.Audio;
+using TMPro;
 
 public class OptionSlider : MonoBehaviour
 {
@@ -10,11 +10,23 @@ public class OptionSlider : MonoBehaviour
 	public TextMeshProUGUI percentage;
 	public AudioMixer mixer;
 
+	void Start()
+	{
+		if (!PlayerPrefs.HasKey(optionName)) return;
+
+		// initialize slider at the correct value
+		float value = PlayerPrefs.GetFloat(optionName);
+
+		slider.value = value;
+		percentage.text = Mathf.RoundToInt(value * 100) + "%";
+
+	}
+
 	public void OnValueChanged()
 	{
 		/* function called when there is a change on the slider associated.
-           triggered by the slider element
-         */
+		   triggered by the slider element
+		 */
 
 		PlayerPrefs.SetFloat(optionName, slider.value);
 
