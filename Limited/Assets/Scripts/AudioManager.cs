@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
 	public Sound[] sounds;
+	public AudioMixer mixer;
 
 	// Use this for initialization
 	void Awake()
@@ -15,7 +17,12 @@ public class AudioManager : MonoBehaviour
 			sound.source.clip = sound.clip;
 			sound.source.volume = sound.volume;
 			sound.source.pitch = sound.pitch;
+			
+			// route the output of this source to the "Effects" group in the game's audio mixer
+			sound.source.outputAudioMixerGroup = mixer.FindMatchingGroups("Effects")[0];
 		}
+
+		mixer.SetFloat("SoundVolume", Mathf.Log10(PlayerPrefs.GetFloat("SoundVolume", 1f)) * 20);
 	}
 
 	public void Play(string soundName)

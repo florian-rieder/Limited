@@ -2,16 +2,10 @@
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
-{	
-	public Animation panelAnimation;
-	void Awake(){
-		if (PlayerPrefs.GetString("LastScene") == "Credits") {
-			panelAnimation.Play();
-		}
-	}
+{
 	public void NewGame()
 	{
-        PlayerPrefs.SetString("LastScene", "MainMenu");
+		PlayerPrefs.SetString("LastScene", "MainMenu");
 		SceneManager.LoadScene("Game");
 	}
 

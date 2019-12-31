@@ -3897,6 +3897,7 @@ MonoBehaviour:
     volume: 0.4
     pitch: 1
     source: {fileID: 0}
+  mixer: {fileID: 24100000, guid: c1637f20653690e4197da05a9bea88d9, type: 2}
 --- !u!4 &859912660
 Transform:
   m_ObjectHideFlags: 0
