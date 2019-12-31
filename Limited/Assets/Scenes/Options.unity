@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d44f5b610057484e992433287a97eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionName: SoundVolume
+  optionName: MasterVolume
   slider: {fileID: 1709214500}
   percentage: {fileID: 1471897792}
   mixer: {fileID: 24100000, guid: c1637f20653690e4197da05a9bea88d9, type: 2}

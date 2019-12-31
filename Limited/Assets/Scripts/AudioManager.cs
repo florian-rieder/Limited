@@ -19,10 +19,10 @@ public class AudioManager : MonoBehaviour
 			sound.source.pitch = sound.pitch;
 			
 			// route the output of this source to the "Effects" group in the game's audio mixer
-			sound.source.outputAudioMixerGroup = mixer.FindMatchingGroups("Effects")[0];
+			sound.source.outputAudioMixerGroup = mixer.FindMatchingGroups("SoundEffects")[0];
 		}
 
-		mixer.SetFloat("SoundVolume", Mathf.Log10(PlayerPrefs.GetFloat("SoundVolume", 1f)) * 20);
+		mixer.SetFloat("SoundEffectsVolume", Mathf.Log10(PlayerPrefs.GetFloat("SoundEffectsVolume", 1f)) * 20);
 	}
 
 	public void Play(string soundName)
