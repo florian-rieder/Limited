@@ -6,6 +6,7 @@ public class InfoBox : MonoBehaviour
 	public GameObject topBar;
 	public GameObject gameController;
 	public CameraController cameraController;
+	public GameObject famineDisplay;
 	public GameObject tileSelector;
 	public Animator animator;
 	public TutorialController tutorialController;
@@ -22,6 +23,7 @@ public class InfoBox : MonoBehaviour
 			topBar.SetActive(true);
 			// show tile selector
 			tileSelector.SetActive(true);
+			famineDisplay.SetActive(true);
 			// allow camera movement
 			cameraController.enabled = true;
 

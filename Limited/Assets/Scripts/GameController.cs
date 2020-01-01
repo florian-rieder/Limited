@@ -292,12 +292,10 @@ public class GameController : MonoBehaviour
 		// if the game is already over, ignore this call
 		if (gameOver) return;
 
-		// stop time
-		Time.timeScale = 0f;
-
 		// hide some UI elements
 		TileSelector.instance.Enabled(false);
 		growthBar.Enable(false);
+		famineDisplay.gameObject.SetActive(false);
 		topBar.Enable(false);
 
 		// open game over panel
@@ -307,8 +305,16 @@ public class GameController : MonoBehaviour
 		// Shake the camera
 		cameraController.TriggerShake(1f, 0.2f);
 
+		// Wait until the end of the screenshake to pause the time
+		// otherwise, the screen keeps shaking forever
+		Invoke("PauseTime", 0.5f);
+
 		gameOver = true;
 
 		Debug.Log("Game Over.");
+	}
+	public void pauseTime()
+	{
+		Time.timeScale = 0f;
 	}
 }
