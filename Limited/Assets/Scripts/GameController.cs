@@ -11,10 +11,10 @@ public class GameController : MonoBehaviour
 	public BigNotificationAPI notificationBig;
 	public TilemapInteraction tilemapInteraction;
 	public GameOverPanel gameOverPanel;
-	public FamineTimerDisplay famineTimerDisplay;
+	public FamineDisplay famineDisplay;
 	public CameraController cameraController;
 	public BuildDialogBoxAPI buildDialog;
-	public GrowthBar growthBar;
+	public UIBar growthBar;
 	public TopBar topBar;
 	public AudioManager audioManager;
 
@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
 
 	void Awake()
 	{
+		// Singleton
 		if (instance == null)
 		{
 			instance = this;
@@ -43,19 +44,12 @@ public class GameController : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		// load savegame (eventually)
-
-		// ...
-
 		StartGame();
 	}
 
 	void Update()
 	{
-		// do stuff
-
-		// ...
-
+		// tutorial logic
 		if (!firstCityBuilt && GameTiles.instance.GetCities().Count == 1)
 		{
 			bool cityNeedsSatisfied = true;
@@ -95,6 +89,7 @@ public class GameController : MonoBehaviour
 
 		bool hasCityNeeds = playerInventory.hasCityNeeds();
 
+		// tutorial logic
 		if (firstCityBuilt)
 		{
 			// if needs aren't met and famine timer is not running
@@ -141,7 +136,7 @@ public class GameController : MonoBehaviour
 
 	public void NewCity()
 	{
-		// if a dialog box is open, close it
+		// if a build dialog box is open, close it
 		if (buildDialog.IsOpen())
 		{
 			buildDialog.Enabled(false);
@@ -150,10 +145,10 @@ public class GameController : MonoBehaviour
 		// Get all possible tiles to found a city
 		var possibleLocations = GameTiles.instance.GetPossibleCityTiles();
 
+		// Loose if there is no space to expand the city on
 		if (possibleLocations.Count == 0)
 		{
 			GameOver("Your city ran out of space to expand on !");
-
 			return;
 		}
 
@@ -173,21 +168,23 @@ public class GameController : MonoBehaviour
 
 	private Vector3 GetCityCenter()
 	{
+		/* Get the center of the city based on all the city tiles positions */
+
 		Vector3 cityCenter = Vector3.zero;
 		var cities = GameTiles.instance.GetCities();
 
+		// compute mean position of all cities
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in cities)
 		{
-			Vector3Int position = entry.Key;
-
-			cityCenter += position;
+			// Add all position vectors
+			cityCenter += entry.Key;
 		}
-
+		// divide the position components by the total amount of cities
 		cityCenter.x = cityCenter.x / cities.Count;
 		cityCenter.y = cityCenter.y / cities.Count;
 
+		// return the mean position
 		return cityCenter;
-
 	}
 
 	public void CityBuilt()
@@ -233,6 +230,9 @@ public class GameController : MonoBehaviour
 		{
 			var facility = entry.Value;
 			if (facility.Extractor) facility.Extract();
+
+			// don't check facilities if all the resources are in the green, except for the facilities that are already stopped,
+			// for which we need to check if they can be enabled again
 			else if (facility.Name != "City" && (!stopCheckingProduction || !facility.IsWorking)) stopCheckingProduction = facility.Produce();
 		}
 	}
@@ -244,6 +244,7 @@ public class GameController : MonoBehaviour
 			var tile = entry.Value;
 			if (tile.Name == "Forest")
 			{
+				// Forests grow, but this growth is impacted by pollution
 				if (tile.Polluted && pollutionRenewCounter == 2)
 				{
 					tile.Resources["Wood"] += 1;
@@ -270,7 +271,7 @@ public class GameController : MonoBehaviour
 	public void EnableFamineTimer(bool value)
 	{
 		updateFamineTimer = value;
-		famineTimerDisplay.Enable(value);
+		famineDisplay.Enable(value);
 	}
 	public void ResetFamineTimer()
 	{
@@ -288,21 +289,26 @@ public class GameController : MonoBehaviour
 	}
 	public void GameOver(string reason = "No reason specified.")
 	{
-		if (!gameOver)
-		{
-			Debug.Log("Game Over.");
+		// if the game is already over, ignore this call
+		if (gameOver) return;
 
-			// hide some UI elements
-			TileSelector.instance.Enabled(false);
-			growthBar.Enable(false);
-			topBar.Enable(false);
+		// stop time
+		Time.timeScale = 0f;
 
-			// open game over panel
-			gameOverPanel.SetReason(reason);
-			gameOverPanel.gameObject.SetActive(true);
+		// hide some UI elements
+		TileSelector.instance.Enabled(false);
+		growthBar.Enable(false);
+		topBar.Enable(false);
 
-			cameraController.TriggerShake(1f, 0.2f);
-			gameOver = true;
-		}
+		// open game over panel
+		gameOverPanel.SetReason(reason);
+		gameOverPanel.gameObject.SetActive(true);
+
+		// Shake the camera
+		cameraController.TriggerShake(1f, 0.2f);
+
+		gameOver = true;
+
+		Debug.Log("Game Over.");
 	}
 }

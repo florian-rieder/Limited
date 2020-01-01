@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
 			sound.source.outputAudioMixerGroup = mixer.FindMatchingGroups("SoundEffects")[0];
 		}
 
-		mixer.SetFloat("SoundEffectsVolume", Mathf.Log10(PlayerPrefs.GetFloat("SoundEffectsVolume", 1f)) * 20);
 	}
 
 	public void Play(string soundName)
