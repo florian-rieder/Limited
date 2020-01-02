@@ -232,13 +232,14 @@ public class FacilitiesTileType
 		};
 	}
 
-	public bool IsBuildable(EnvironmentTile tile)
+	public IsBuildableReport IsBuildable(EnvironmentTile tile)
 	{
 		PlayerInventory playerInventory = GameController.instance.playerInventory;
 		Dictionary<string, int> inventory = playerInventory.getCount();
 		Dictionary<string, int> typeResourcesDictionary = GenerateResourcesDictionary();
 
 		bool canBuild = true;
+		string cantBuildMessage = "";
 
 		if (Name == "City")
 		{
@@ -271,6 +272,7 @@ public class FacilitiesTileType
 						if (inventory[resourceName] < typeAmountForThisRessource)
 						{
 							canBuild = false;
+							cantBuildMessage = "Not enough resources";
 							break;
 						}
 					}
@@ -283,6 +285,7 @@ public class FacilitiesTileType
 						if (tileAmountOfThisRessource < typeAmountForThisRessource)
 						{
 							canBuild = false;
+							cantBuildMessage = "Can't extract resources here";
 							break;
 						}
 					}
@@ -302,6 +305,7 @@ public class FacilitiesTileType
 					if (availableAmount < Mathf.Abs(typeAmountForThisRessource))
 					{
 						canBuild = false;
+						cantBuildMessage = "Not enough resources";
 						break;
 					}
 				}
@@ -322,6 +326,7 @@ public class FacilitiesTileType
 						if (facilityAtTheseCoordinates.Name == "City" || facilityAtTheseCoordinates.Name == "Farm")
 						{
 							canBuild = false;
+							cantBuildMessage = "Can't pollute farms or cities";
 							break;
 						}
 					}
@@ -331,11 +336,17 @@ public class FacilitiesTileType
 			if (canBuild)
 			{
 				// custom rules
-				if (Name == "Farm" && tile.Polluted == true) canBuild = false;
+				if (Name == "Farm" && tile.Polluted == true){
+					canBuild = false;
+					cantBuildMessage = "Terrain is polluted";
+				}
 			}
 		}
 
-		return canBuild;
+		return new IsBuildableReport{
+			isBuildable = canBuild,
+			warningMessage = cantBuildMessage
+		};
 	}
 
 	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar, Cross cross)
@@ -399,4 +410,11 @@ public class FacilitiesTileTypeRoot
 		}
 		return returnType;
 	}
+}
+
+public class IsBuildableReport
+{
+	
+	public bool isBuildable;
+	public string warningMessage;
 }

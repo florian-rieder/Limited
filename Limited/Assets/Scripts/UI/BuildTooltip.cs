@@ -10,40 +10,15 @@ public class BuildTooltip : MonoBehaviour
 	public RectTransform transfo;
 	public Texture2D resourcesSpritesheet;
 	public GameObject resourceDisplayTemplate;
+	public TextMeshProUGUI warning;
 	public PlayerInventory playerInventory;
 
 	private Dictionary<string, BuildButtonResourceDisplay> resourceDisplays;
-
-	// don't scale with zoom
-	/* private float orthoOrg;
-	private float orthoCurr;
-	private Vector3 scaleOrg;
-	private Vector3 posOrg; */
-
-	void Start()
-	{
-		/* orthoOrg = Camera.main.orthographicSize;
-		orthoCurr = orthoOrg;
-		scaleOrg = transform.localScale;
-		posOrg = Camera.main.WorldToViewportPoint(transform.position); */
-	}
 
 	void Awake()
 	{
 		GenerateResourcesDisplays();
 	}
-
-	void Update()
-	{
-		// always stay the same size
-		/* var osize = Camera.main.orthographicSize;
-		if (orthoCurr != osize)
-		{
-			transform.localScale = scaleOrg * osize / orthoOrg;
-			orthoCurr = osize;
-		} */
-	}
-
 
 	public void SetTitle(string titleString)
 	{
@@ -63,6 +38,11 @@ public class BuildTooltip : MonoBehaviour
 	public void Enable(bool value)
 	{
 		gameObject.SetActive(value);
+	}
+
+	public void SetWarning(string warningMessage)
+	{
+		warning.text = warningMessage;
 	}
 
 	public void SetResourceDisplay(Dictionary<string, int> resources)

@@ -164,6 +164,9 @@ public class GameController : MonoBehaviour
 			cameraController.MoveTo(GetCityCenter());
 			audioManager.Play("new_city");
 		}
+
+		// stop time until player chooses where to expand the city
+		Time.timeScale = 0f;
 	}
 
 	private Vector3 GetCityCenter()
@@ -198,6 +201,9 @@ public class GameController : MonoBehaviour
 			// what was necessary to feed its first city.
 			return;
 		}
+
+		// unstop time
+		Time.timeScale = 1f;
 
 		nextGrowthTime = GetNextCityGrowthTime();
 

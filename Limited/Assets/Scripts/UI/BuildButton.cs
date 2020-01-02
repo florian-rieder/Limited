@@ -15,7 +15,9 @@ public class BuildButton : MonoBehaviour
 	public Color disabledColor;
 	private string m_textString;
 	private FacilitiesTileType m_type;
+
 	private bool isEnabled = false;
+	public string warningMessage;
 
 	public void SetType(FacilitiesTileType type)
 	{
@@ -39,9 +41,9 @@ public class BuildButton : MonoBehaviour
 		}
 	}
 
-	public void Enable(bool value)
+	public void Enable(IsBuildableReport value)
 	{
-		if (value)
+		if (value.isBuildable)
 		{
 			gameObject.GetComponent<Image>().color = Color.white;
 		}
@@ -50,7 +52,8 @@ public class BuildButton : MonoBehaviour
 			gameObject.GetComponent<Image>().color = disabledColor;
 		}
 
-		isEnabled = value;
+		isEnabled = value.isBuildable;
+		warningMessage = value.warningMessage;
 	}
 
 	public void OnPointerEnter()
@@ -58,6 +61,7 @@ public class BuildButton : MonoBehaviour
 		tooltip.MoveTo(gameObject.transform.position);
 		tooltip.Enable(true);
 		tooltip.SetTitle(m_type.Name);
+		tooltip.SetWarning(warningMessage);
 		tooltip.SetDescription(m_type.Description);
 		tooltip.SetResourceDisplay(m_type.GenerateResourcesDictionary());
 	}

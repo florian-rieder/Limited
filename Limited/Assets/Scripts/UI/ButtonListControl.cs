@@ -48,18 +48,8 @@ public class ButtonListControl : MonoBehaviour
 			}
 
 			btnScript.SetImage(matchingSprite);
-
 			btnScript.SetType(type);
-			//btnScript.GenerateResourcesDisplay();
-
-			if (type.IsBuildable(firstPosition))
-			{
-				btnScript.Enable(true);
-			}
-			else
-			{
-				btnScript.Enable(false);
-			}
+			btnScript.Enable(type.IsBuildable(firstPosition));
 
 			// set parent of the button with the parent of the button template's parent 
 			// (our content object)

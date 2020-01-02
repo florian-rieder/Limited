@@ -245,7 +245,7 @@ public class GameTiles : MonoBehaviour
 				var position = environmentEntry.Key;
 				EnvironmentTile eTile = environmentEntry.Value;
 
-				if (cityType.IsBuildable(eTile))
+				if (cityType.IsBuildable(eTile).isBuildable)
 				{
 					possibleLocations.Add(eTile);
 				}
@@ -281,7 +281,7 @@ public class GameTiles : MonoBehaviour
 								if (environmentTiles.TryGetValue(currPos, out eTile))
 								{
 									// if the city can be built here
-									if (cityType.IsBuildable(eTile))
+									if (cityType.IsBuildable(eTile).isBuildable)
 									{
 										possibleLocations.Add(eTile);
 									}
