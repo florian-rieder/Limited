@@ -9,12 +9,14 @@ public class GameTiles : MonoBehaviour
 	public static GameTiles instance;
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
+	public Tilemap pollutionTilemap;
 	public TextAsset environmentTileTypesJSON;
 	public TextAsset facilitiesTileTypesJSON;
 	public Texture2D facilitiesTileset;
 
 	public GameObject healthBarTemplate;
 	public GameObject crossTemplate;
+	public RuleTile pollutionTile;
 
 	[HideInInspector]
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
@@ -320,8 +322,26 @@ public class GameTiles : MonoBehaviour
 			{
 				if (tileToPollute.Name != "Water")
 				{
-					tileToPollute.Pollute();
+					PolluteTile(tileToPollute);
 				}
+			}
+		}
+	}
+
+	private void PolluteTile(EnvironmentTile tile)
+	{
+		// save tile state
+		tile.Polluted = true;
+
+		// display pollution cloud
+
+		// add a pollution rule tile to this tile and all of its 8 adjacent tiles (necessary to render nice borders)
+		for (int x = -1; x <= 1; x++)
+		{
+			for (int y = -1; y <= 1; y++)
+			{
+				Vector3Int newPlace = new Vector3Int(tile.LocalPlace.x + x, tile.LocalPlace.y + y, tile.LocalPlace.z);
+				pollutionTilemap.SetTile(newPlace, pollutionTile);
 			}
 		}
 	}
