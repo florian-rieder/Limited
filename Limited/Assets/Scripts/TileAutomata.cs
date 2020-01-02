@@ -20,6 +20,7 @@ public class TileAutomata : MonoBehaviour
 
 	public Tilemap tilemap;
 	public RuleTile groundTile;
+	public Tile waterTile;
 
 	int width;
 	int height;
@@ -56,9 +57,15 @@ public class TileAutomata : MonoBehaviour
 			{
 				for (int y = 0; y < height; y++)
 				{
+					var newPos = new Vector3Int(-x + width / 2, -y + height / 2, 0);
+
 					if (terrainMap[x, y] == 1)
 					{
-						tilemap.SetTile(new Vector3Int(-x + width / 2, -y + height / 2, 0), groundTile);
+						tilemap.SetTile(newPos, groundTile);
+					} 
+					else
+					{
+						tilemap.SetTile(newPos, waterTile);
 					}
 				}
 			}

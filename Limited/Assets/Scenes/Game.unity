@@ -8859,6 +8859,7 @@ MonoBehaviour:
   tilemapSize: {x: 40, y: 20, z: 0}
   tilemap: {fileID: 427235166}
   groundTile: {fileID: 11400000, guid: a35095f5255e314488c21d40b410284f, type: 2}
+  waterTile: {fileID: 11400000, guid: 6cc6b2f24b7b271488363db48e3a9f1a, type: 2}
   plainTileSprite: {fileID: 1647607576667491951, guid: 15dbbb9be192b3c4ca42d477d17d8017,
     type: 3}
   tileVarieties:

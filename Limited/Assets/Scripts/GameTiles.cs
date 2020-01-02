@@ -320,10 +320,7 @@ public class GameTiles : MonoBehaviour
 			EnvironmentTile tileToPollute;
 			if (GameTiles.instance.environmentTiles.TryGetValue(pos, out tileToPollute))
 			{
-				if (tileToPollute.Name != "Water")
-				{
-					PolluteTile(tileToPollute);
-				}
+				PolluteTile(tileToPollute);
 			}
 		}
 	}
