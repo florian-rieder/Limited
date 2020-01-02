@@ -12,11 +12,11 @@ public class OptionSlider : MonoBehaviour
 
 	void Start()
 	{
+		// stop if there is no key corresponding to this slider
 		if (!PlayerPrefs.HasKey(optionName)) return;
 
-		// initialize slider at the correct value
+		// initialize slider and text display at the correct value
 		float value = PlayerPrefs.GetFloat(optionName);
-
 		slider.value = value;
 		percentage.text = Mathf.RoundToInt(value * 100) + "%";
 
@@ -28,10 +28,13 @@ public class OptionSlider : MonoBehaviour
 		   triggered by the slider element
 		 */
 
+		// save value
 		PlayerPrefs.SetFloat(optionName, slider.value);
 
+		// change volume
 		mixer.SetFloat(optionName, Mathf.Log10(slider.value) * 20);
 
+		// change percentage text
 		percentage.text = Mathf.RoundToInt(slider.value * 100) + "%";
 	}
 }

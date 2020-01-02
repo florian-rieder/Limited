@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
 			// route the output of this source to the "Effects" group in the game's audio mixer
 			sound.source.outputAudioMixerGroup = mixer.FindMatchingGroups("SoundEffects")[0];
 		}
-
 	}
 
 	public void Play(string soundName)

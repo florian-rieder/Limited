@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+	/* Buttons OnClick functions */
 	public void NewGame()
 	{
 		PlayerPrefs.SetString("LastScene", "MainMenu");
