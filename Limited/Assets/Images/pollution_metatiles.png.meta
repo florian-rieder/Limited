@@ -1,43 +1,46 @@
 fileFormatVersion: 2
-guid: 3aec6ff17401e05499730c848da25c9a
+guid: 64870eddddc79054ba73c54fe15a939f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2921995293085360789
-    second: Tileset_facilities_0
+      213: -7418326324692839535
+    second: pollution_metatiles_0
   - first:
-      213: -8304425628571050840
-    second: Tileset_facilities_1
+      213: -3465846053131162614
+    second: pollution_metatiles_1
   - first:
-      213: -3342253344376037895
-    second: Tileset_facilities_2
+      213: 4454949914729661906
+    second: pollution_metatiles_2
   - first:
-      213: -1626595920614496745
-    second: Tileset_facilities_3
+      213: -8617837907052563823
+    second: pollution_metatiles_3
   - first:
-      213: -7023803575732585826
-    second: Tileset_facilities_4
+      213: -7051789340988692422
+    second: pollution_metatiles_4
   - first:
-      213: 5956751918563812807
-    second: Tileset_facilities_5
+      213: 4190970699885808623
+    second: pollution_metatiles_5
   - first:
-      213: -2539481351880377753
-    second: Tileset_facilities_6
+      213: -4687525743786039373
+    second: pollution_metatiles_6
   - first:
-      213: 1612823247703272668
-    second: Tileset_facilities_7
+      213: 6886663261640433192
+    second: pollution_metatiles_7
   - first:
-      213: 3600910567200219440
-    second: Tileset_facilities_8
+      213: 8886996783851820523
+    second: pollution_metatiles_8
   - first:
-      213: 6552513281101127371
-    second: Tileset_facilities_9
+      213: 6616760006892594331
+    second: pollution_metatiles_9
   - first:
-      213: 7855367317447381513
-    second: Tileset_facilities_10
+      213: -9155353310995789171
+    second: pollution_metatiles_10
   - first:
-      213: 668697182549142147
-    second: Tileset_facilities_11
+      213: 5138098467082968681
+    second: pollution_metatiles_11
+  - first:
+      213: -8066100916396618378
+    second: pollution_metatiles_12
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -99,7 +102,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +114,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tileset_facilities_0
+      name: pollution_metatiles_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 16
-        height: 16
+        y: 24
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +139,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e06b924420f77b4f8f47d8bf01b3c48
-      internalID: -2921995293085360789
+      spriteID: 3fdaf3b0d0875e94983389aef5647538
+      internalID: -7418326324692839535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_facilities_1
+      name: pollution_metatiles_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2efb74e136d4f804194cb7cc4d42e851
+      internalID: -3465846053131162614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_2
       rect:
         serializedVersion: 2
         x: 16
-        y: 112
-        width: 16
-        height: 16
+        y: 24
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96c4abd34103c594795c4a7eb7809c34
-      internalID: -8304425628571050840
+      spriteID: b6d2a1d241a1adc469701e3b2a396b15
+      internalID: 4454949914729661906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_facilities_2
+      name: pollution_metatiles_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 16
+        x: 24
+        y: 24
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,125 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3feb47b5dca8814db4d0db68dab4fc7
-      internalID: -3342253344376037895
+      spriteID: 5b80340d82173d2469305fcdadf90fde
+      internalID: -8617837907052563823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_facilities_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a702f925e9a87934196b259b5569a3c7
-      internalID: -1626595920614496745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tileset_facilities_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b23a3bb22fb939e45b2c572fe8071656
-      internalID: -7023803575732585826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tileset_facilities_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e83e35d3d3411746ab916558a5924d1
-      internalID: 5956751918563812807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tileset_facilities_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e52904fdfc9cd8540b90b2c305aa9edb
-      internalID: -2539481351880377753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tileset_facilities_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2837a0ea27a5d34393f82ad9b4fd967
-      internalID: 1612823247703272668
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tileset_facilities_8
+      name: pollution_metatiles_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 16
-        height: 16
+        y: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,20 +223,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6e94b74c056a9140a15687577eebe3b
-      internalID: 3600910567200219440
+      spriteID: 3b732022de6cccf448e2fee3438aba29
+      internalID: -7051789340988692422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_facilities_9
+      name: pollution_metatiles_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7de26ca658a69f847939e9b40bedc6fa
+      internalID: 4190970699885808623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_6
       rect:
         serializedVersion: 2
         x: 16
-        y: 96
-        width: 16
-        height: 16
+        y: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,20 +265,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d4ccfd6f1a0b2e49a684c3c931d29c0
-      internalID: 6552513281101127371
+      spriteID: 6acbf9e2a79adee48b1732f6ed858bb5
+      internalID: -4687525743786039373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_facilities_10
+      name: pollution_metatiles_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 16
-        height: 16
+        x: 0
+        y: 8
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,20 +286,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc19f14ed88b30447b242bdfb6eea5ac
-      internalID: 7855367317447381513
+      spriteID: 6dc21ed416a9dd54598b6e3f310e2871
+      internalID: 6886663261640433192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_facilities_11
+      name: pollution_metatiles_8
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
-        width: 16
-        height: 16
+        x: 8
+        y: 8
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,8 +307,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2129587d474dca246adabe6c04583874
-      internalID: 668697182549142147
+      spriteID: 8d7a25d2ffd5e8845b256d0ffc39bfde
+      internalID: 8886996783851820523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d431d00fe61bf7644b298b58a120ebe7
+      internalID: 6616760006892594331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54d3143655261fb408eca74370cbb81e
+      internalID: -9155353310995789171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_11
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13f7a4eb37339944fb13031dd3db1eb8
+      internalID: 5138098467082968681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f37abe0a8050747861ce4a285482bf
+      internalID: -8066100916396618378
       vertices: []
       indices: 
       edges: []

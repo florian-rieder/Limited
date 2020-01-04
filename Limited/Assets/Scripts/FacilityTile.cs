@@ -311,10 +311,10 @@ public class FacilitiesTileType
 				}
 			}
 
-			// can't build if there is a city or a farm in the pollution range of this tile
+			// can't build if there is a city or a farm in the pollution range of this facility on this tile
 			if (canBuild && PollutionRadius > 0)
 			{
-				List<Vector3Int> tilesInRange = GameSystem.FindInRange(tile.LocalPlace, PollutionRadius);
+				List<Vector3Int> tilesInRange = GameSystem.FindInRangeManhattan(tile.LocalPlace, PollutionRadius);
 
 				// iterate through all tiles in range
 				foreach (Vector3Int tilePos in tilesInRange)

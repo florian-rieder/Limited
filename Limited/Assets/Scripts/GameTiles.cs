@@ -16,7 +16,7 @@ public class GameTiles : MonoBehaviour
 
 	public GameObject healthBarTemplate;
 	public GameObject crossTemplate;
-	public RuleTile pollutionTile;
+	public PollutionController pollutionController;
 
 	[HideInInspector]
 	public Dictionary<Vector3Int, EnvironmentTile> environmentTiles;
@@ -312,7 +312,7 @@ public class GameTiles : MonoBehaviour
 
 	private void ApplyPollution(FacilityTile ft)
 	{
-		List<Vector3Int> pollutedTiles = GameSystem.FindInRange(ft.LocalPlace, ft.PollutionRadius);
+		List<Vector3Int> pollutedTiles = GameSystem.FindInRangeManhattan(ft.LocalPlace, ft.PollutionRadius);
 
 		// iterate through all tiles in the pollution radius
 		foreach (Vector3Int pos in pollutedTiles)
@@ -320,25 +320,8 @@ public class GameTiles : MonoBehaviour
 			EnvironmentTile tileToPollute;
 			if (GameTiles.instance.environmentTiles.TryGetValue(pos, out tileToPollute))
 			{
-				PolluteTile(tileToPollute);
-			}
-		}
-	}
-
-	private void PolluteTile(EnvironmentTile tile)
-	{
-		// save tile state
-		tile.Polluted = true;
-
-		// display pollution cloud
-
-		// add a pollution rule tile to this tile and all of its 8 adjacent tiles (necessary to render nice borders)
-		for (int x = -1; x <= 1; x++)
-		{
-			for (int y = -1; y <= 1; y++)
-			{
-				Vector3Int newPlace = new Vector3Int(tile.LocalPlace.x + x, tile.LocalPlace.y + y, tile.LocalPlace.z);
-				pollutionTilemap.SetTile(newPlace, pollutionTile);
+				tileToPollute.Polluted = true;
+				pollutionController.PolluteTile(tileToPollute.LocalPlace);
 			}
 		}
 	}

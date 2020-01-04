@@ -168,7 +168,7 @@
 		{
 			"Name": "Hydroponics Farm",
 			"Description": "Uses advanced fertilizers and a controlled environment to make plants grow bigger and faster.",
-			"SpriteName": "Tileset_facilities_1",
+			"SpriteName": "Tileset_facilities_11",
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 0,

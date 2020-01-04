@@ -36,7 +36,7 @@ public class GameSystem : MonoBehaviour
 		}
 	}
 
-	public static List<Vector3Int> FindInRange(Vector3Int originalPosition, int range)
+	public static List<Vector3Int> FindInRangeManhattan(Vector3Int originalPosition, int range)
 	{
 		/* Get all positions within manhattan distance of an origin position */
 
