@@ -86,7 +86,7 @@
 			"Power": -1,
 			"Goods": 2,
 			"Food": 0,
-			"PollutionRadius": 1,
+			"PollutionRadius": 2,
 			"Extractor": false,
 			"ScorePoints": 20
 		},
@@ -146,7 +146,7 @@
 			"Power": 3,
 			"Goods": 0,
 			"Food": 0,
-			"PollutionRadius": 2,
+			"PollutionRadius": 3,
 			"Extractor": false,
 			"ScorePoints": 20
 		},
@@ -161,7 +161,7 @@
 			"Power": 5,
 			"Goods": 0,
 			"Food": 0,
-			"PollutionRadius": 3,
+			"PollutionRadius": 4,
 			"Extractor": false,
 			"ScorePoints": 30
 		},

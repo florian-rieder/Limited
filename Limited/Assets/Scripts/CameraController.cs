@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.y < 0)
 			{
-				currentPanSpeed.y += 4 * accelerationRate;
+				currentPanSpeed.y += 2 * accelerationRate;
 			}
 			currentPanSpeed.y += accelerationRate;
 
@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.y > 0)
 			{
-				currentPanSpeed.y -= 4 * accelerationRate;
+				currentPanSpeed.y -= 2 * accelerationRate;
 			}
 			currentPanSpeed.y -= accelerationRate;
 
@@ -59,7 +59,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.x > 0)
 			{
-				currentPanSpeed.x -= 4 * accelerationRate;
+				currentPanSpeed.x -= 2 * accelerationRate;
 			}
 			currentPanSpeed.x -= accelerationRate;
 
@@ -69,7 +69,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.x < 0)
 			{
-				currentPanSpeed.x += 4 * accelerationRate;
+				currentPanSpeed.x += 2 * accelerationRate;
 			}
 			currentPanSpeed.x += accelerationRate;
 
@@ -82,7 +82,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.y < 0)
 			{
-				currentPanSpeed.y += 2 * accelerationRate;
+				currentPanSpeed.y += accelerationRate;
 			}
 			currentPanSpeed.y += accelerationRate;
 
@@ -92,7 +92,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.y > 0)
 			{
-				currentPanSpeed.y -= 2 * accelerationRate;
+				currentPanSpeed.y -= accelerationRate;
 			}
 			currentPanSpeed.y -= accelerationRate;
 
@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.x > 0)
 			{
-				currentPanSpeed.x -= 2 * accelerationRate;
+				currentPanSpeed.x -= accelerationRate;
 			}
 			currentPanSpeed.x -= accelerationRate;
 
@@ -112,7 +112,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (currentPanSpeed.x < 0)
 			{
-				currentPanSpeed.x += 2 * accelerationRate;
+				currentPanSpeed.x += accelerationRate;
 			}
 			currentPanSpeed.x += accelerationRate;
 
