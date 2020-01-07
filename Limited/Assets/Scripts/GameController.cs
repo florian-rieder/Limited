@@ -207,14 +207,13 @@ public class GameController : MonoBehaviour
 	private float GetNextCityGrowthTime()
 	{
 		// parameters
-		float baseTime = 50f; // time in [s]
-		float mildness = 25f;
+		float baseTime = 40f; // time in [s]
+		float mildness = 50f;
 		int cities = GameTiles.instance.GetCities().Count;
 		float difficulty = PlayerPrefs.GetFloat("difficulty");
-		Debug.Log(difficulty);
 
 		// apply difficulty
-		float newBaseTime = baseTime / 4 + baseTime * (1 - difficulty);
+		float newBaseTime = baseTime / 2 + baseTime * (1 - difficulty);
 		float newMildness = mildness / 4 + mildness * (1 - difficulty);
 
 		float time = 0f;

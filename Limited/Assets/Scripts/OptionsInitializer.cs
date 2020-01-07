@@ -16,6 +16,9 @@ public class OptionsInitializer : MonoBehaviour
 		if (!PlayerPrefs.HasKey("SoundEffectsVolume")) PlayerPrefs.SetFloat("SoundEffectsVolume", 1f);
 		mixer.SetFloat("SoundEffectsVolume", Mathf.Log10(PlayerPrefs.GetFloat("SoundEffectsVolume")) * 20);
 
+		if (!PlayerPrefs.HasKey("MusicVolume")) PlayerPrefs.SetFloat("MusicVolume", 1f);
+		mixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20);
+
 		if (!PlayerPrefs.HasKey("TutorialEnabled")) PlayerPrefs.SetInt("TutorialEnabled", 1);
 
 		if (!PlayerPrefs.HasKey("difficulty")) PlayerPrefs.SetFloat("Difficulty", 0.5f);

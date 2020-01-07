@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+	void Awake()
+	{
+		GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMusic();
+	}
+
 	/* Buttons OnClick functions */
 	public void NewGame()
 	{
