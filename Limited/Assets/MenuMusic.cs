@@ -8,24 +8,14 @@ public class MenuMusic : MonoBehaviour
 	private MenuMusic instance;
 	private void Awake()
 	{
-		/* // Singleton
-		if (instance == null)
-		{
-			instance = this;
-		}
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-            return;
-		} */
-
+		// prevent gameobject from duplicating because of the DontDestroyOnLoad
 		int numMusicPlayers = FindObjectsOfType<MenuMusic>().Length;
 		if (numMusicPlayers != 1)
 		{
 			Destroy(this.gameObject);
 		}
 		// if more then one music player is in the scene
-		//destroy ourselves
+		// destroy ourselves
 		else
 		{
 			DontDestroyOnLoad(gameObject);

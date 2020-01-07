@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
 			sound.source.clip = sound.clip;
 			sound.source.volume = sound.volume;
 			sound.source.pitch = sound.pitch;
-			
+
 			// route the output of this source to the "Effects" group in the game's audio mixer
 			sound.source.outputAudioMixerGroup = mixer.FindMatchingGroups("SoundEffects")[0];
 		}
