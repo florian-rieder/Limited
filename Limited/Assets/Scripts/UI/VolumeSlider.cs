@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
 
-public class OptionSlider : MonoBehaviour
+public class VolumeSlider : MonoBehaviour
 {
 	public string optionName;
 	public Slider slider;

@@ -210,12 +210,18 @@ public class GameController : MonoBehaviour
 		float baseTime = 50f; // time in [s]
 		float mildness = 25f;
 		int cities = GameTiles.instance.GetCities().Count;
+		float difficulty = PlayerPrefs.GetFloat("difficulty");
+		Debug.Log(difficulty);
+
+		// apply difficulty
+		float newBaseTime = baseTime / 4 + baseTime * (1 - difficulty);
+		float newMildness = mildness / 4 + mildness * (1 - difficulty);
 
 		float time = 0f;
 
 		// get the time in [s] before the next expansion of the city
 		// in function of the number of cities owned and our parameters
-		time = baseTime / (1 + (cities / mildness));
+		time = newBaseTime / (1 + (cities / newMildness));
 
 		return time;
 	}
@@ -316,5 +322,7 @@ public class GameController : MonoBehaviour
 	public void pauseTime()
 	{
 		Time.timeScale = 0f;
+		// disable camera controls
+		cameraController.enabled = false;
 	}
 }
