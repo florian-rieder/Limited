@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
 	void Awake()
 	{
-		GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMusic();
+		GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMenu();
 	}
 
 	/* Buttons OnClick functions */

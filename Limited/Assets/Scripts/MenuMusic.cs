@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MenuMusic : MonoBehaviour
 {
-	private AudioSource _audioSource;
+	[SerializeField]
+	private AudioSource menuSource;
+	[SerializeField]
+	private AudioSource gameSource;
 	private MenuMusic instance;
 	private void Awake()
 	{
@@ -20,18 +23,17 @@ public class MenuMusic : MonoBehaviour
 		{
 			DontDestroyOnLoad(gameObject);
 		}
-
-		_audioSource = GetComponent<AudioSource>();
 	}
 
-	public void PlayMusic()
+	public void PlayMenu()
 	{
-		if (_audioSource.isPlaying) return;
-		_audioSource.Play();
+		if (gameSource.isPlaying) gameSource.Stop();
+		if (!menuSource.isPlaying) menuSource.Play();
 	}
 
-	public void StopMusic()
+	public void PlayGame()
 	{
-		_audioSource.Stop();
+		if (menuSource.isPlaying) menuSource.Stop();
+		if (!gameSource.isPlaying) gameSource.Play();
 	}
 }
