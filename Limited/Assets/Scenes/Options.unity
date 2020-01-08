@@ -506,7 +506,7 @@ MonoBehaviour:
   m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.01
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1794,13 +1794,13 @@ MonoBehaviour:
   difficultyLevels:
   - Name: Easy
     color: {r: 0.3224012, g: 0.6509434, b: 0.3564024, a: 1}
-    threshold: 0.4
+    threshold: 0
   - Name: Normal
     color: {r: 0.6603774, g: 0.6229546, b: 0.2772339, a: 1}
-    threshold: 0.6
+    threshold: 0.3
   - Name: Hard
     color: {r: 0.5943396, g: 0.23829654, b: 0.23829654, a: 1}
-    threshold: 1
+    threshold: 0.6
 --- !u!114 &1290175588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3793,8 +3793,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282884008
+  m_fontColor: {r: 0.65882355, g: 0.62352943, b: 0.2784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
