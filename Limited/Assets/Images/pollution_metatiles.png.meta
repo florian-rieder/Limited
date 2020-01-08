@@ -41,6 +41,15 @@ TextureImporter:
   - first:
       213: -8066100916396618378
     second: pollution_metatiles_12
+  - first:
+      213: -2305950535936632122
+    second: pollution_metatiles_13
+  - first:
+      213: 4470618046792074289
+    second: pollution_metatiles_14
+  - first:
+      213: 2913224815018333449
+    second: pollution_metatiles_15
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -139,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fdaf3b0d0875e94983389aef5647538
+      spriteID: f0fedd19837ee3f4fb12978a10ab547d
       internalID: -7418326324692839535
       vertices: []
       indices: 
@@ -160,7 +169,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2efb74e136d4f804194cb7cc4d42e851
+      spriteID: d39d567d803e3b54291b9d5c98999050
       internalID: -3465846053131162614
       vertices: []
       indices: 
@@ -181,7 +190,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6d2a1d241a1adc469701e3b2a396b15
+      spriteID: a9f45822bf407974da075d9a7440b88b
       internalID: 4454949914729661906
       vertices: []
       indices: 
@@ -202,7 +211,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b80340d82173d2469305fcdadf90fde
+      spriteID: 965d4d04d603031468e768d2709d5d8c
       internalID: -8617837907052563823
       vertices: []
       indices: 
@@ -223,7 +232,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b732022de6cccf448e2fee3438aba29
+      spriteID: ca3725aba4616ae40823d377834d8f06
       internalID: -7051789340988692422
       vertices: []
       indices: 
@@ -244,7 +253,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7de26ca658a69f847939e9b40bedc6fa
+      spriteID: 5c738d4b18662c240957f358ae7859ba
       internalID: 4190970699885808623
       vertices: []
       indices: 
@@ -265,7 +274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6acbf9e2a79adee48b1732f6ed858bb5
+      spriteID: b428e367cf6c72d468ca11f07685be09
       internalID: -4687525743786039373
       vertices: []
       indices: 
@@ -275,8 +284,8 @@ TextureImporter:
       name: pollution_metatiles_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
+        x: 24
+        y: 16
         width: 8
         height: 8
       alignment: 0
@@ -286,7 +295,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dc21ed416a9dd54598b6e3f310e2871
+      spriteID: ac45d93ed5bbec04baa4c7b3bbbf2e47
       internalID: 6886663261640433192
       vertices: []
       indices: 
@@ -296,6 +305,27 @@ TextureImporter:
       name: pollution_metatiles_8
       rect:
         serializedVersion: 2
+        x: 0
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38163697c7867c94c8922cc618856a51
+      internalID: 8886996783851820523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_9
+      rect:
+        serializedVersion: 2
         x: 8
         y: 8
         width: 8
@@ -307,14 +337,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d7a25d2ffd5e8845b256d0ffc39bfde
-      internalID: 8886996783851820523
+      spriteID: 8ee5743a435a57d4c887e6f20e35dede
+      internalID: 6616760006892594331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pollution_metatiles_9
+      name: pollution_metatiles_10
       rect:
         serializedVersion: 2
         x: 16
@@ -328,14 +358,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d431d00fe61bf7644b298b58a120ebe7
-      internalID: 6616760006892594331
+      spriteID: 84697ccc869a68348bbeb6eb782a560c
+      internalID: -9155353310995789171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pollution_metatiles_10
+      name: pollution_metatiles_11
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6621ca7c78ad24b8b4e22882fbd5b4
+      internalID: 5138098467082968681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_12
       rect:
         serializedVersion: 2
         x: 0
@@ -349,14 +400,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54d3143655261fb408eca74370cbb81e
-      internalID: -9155353310995789171
+      spriteID: 2fc1e7ff05cb18c42a278c317964bb8f
+      internalID: -8066100916396618378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pollution_metatiles_11
+      name: pollution_metatiles_13
       rect:
         serializedVersion: 2
         x: 8
@@ -370,14 +421,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13f7a4eb37339944fb13031dd3db1eb8
-      internalID: 5138098467082968681
+      spriteID: 1a6b8d04145c7b04287f16b348d04a5b
+      internalID: -2305950535936632122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pollution_metatiles_12
+      name: pollution_metatiles_14
       rect:
         serializedVersion: 2
         x: 16
@@ -391,8 +442,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00f37abe0a8050747861ce4a285482bf
-      internalID: -8066100916396618378
+      spriteID: 1e46a304d7d63074fad43f8680eaaba9
+      internalID: 4470618046792074289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pollution_metatiles_15
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc11368bcc50182498f1a92f7e41e5cb
+      internalID: 2913224815018333449
       vertices: []
       indices: 
       edges: []

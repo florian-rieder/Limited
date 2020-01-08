@@ -67,7 +67,7 @@
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 0,
-			"Metal": 2,
+			"Metal": 1,
 			"Power": 0,
 			"Goods": 0,
 			"Food": 0,
@@ -183,7 +183,7 @@
 		{
 			"Name": "Plastics Factory",
 			"Description": "An advanced factory that uses oil and metal to mass produce consumption goods.",
-			"SpriteName": "Tileset_facilities_5",
+			"SpriteName": "Tileset_facilities_12",
 			"Oil": -1,
 			"Coal": 0,
 			"Wood": 0,
@@ -191,7 +191,7 @@
 			"Power": -2,
 			"Goods": 6,
 			"Food": 0,
-			"PollutionRadius": 2,
+			"PollutionRadius": 3,
 			"Extractor": false,
 			"ScorePoints": 50
 		}
