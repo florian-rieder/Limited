@@ -323,7 +323,11 @@ public class FacilitiesTileType
 					FacilityTile facilityAtTheseCoordinates;
 					if (GameTiles.instance.facilitiesTiles.TryGetValue(tilePos, out facilityAtTheseCoordinates))
 					{
-						if (facilityAtTheseCoordinates.Name == "City" || facilityAtTheseCoordinates.Name == "Farm")
+						if (
+							facilityAtTheseCoordinates.Name == "City" ||
+							facilityAtTheseCoordinates.Name == "Farm" ||
+							facilityAtTheseCoordinates.Name == "Hydroponics Farm"
+							)
 						{
 							canBuild = false;
 							cantBuildMessage = "Can't pollute farms or cities";
@@ -336,14 +340,16 @@ public class FacilitiesTileType
 			if (canBuild)
 			{
 				// custom rules
-				if (Name == "Farm" && tile.Polluted == true){
+				if ((Name == "Farm" || Name == "Hydroponics Farm") && tile.Polluted == true)
+				{
 					canBuild = false;
 					cantBuildMessage = "Terrain is polluted";
 				}
 			}
 		}
 
-		return new IsBuildableReport{
+		return new IsBuildableReport
+		{
 			isBuildable = canBuild,
 			warningMessage = cantBuildMessage
 		};
@@ -414,7 +420,7 @@ public class FacilitiesTileTypeRoot
 
 public class IsBuildableReport
 {
-	
+
 	public bool isBuildable;
 	public string warningMessage;
 }
