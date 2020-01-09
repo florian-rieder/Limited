@@ -5884,13 +5884,12 @@ MonoBehaviour:
     <color=green>Power</color>, <color=green>Goods</color> and <color=green>Food</color>
 
 '
-  - Your <color=red>City</color> <voffset=0.5em><sprite index=0> will expand on adjacent
-    tiles, so plan ahead !
+  - Your <color=red>City</color> <voffset=0.5em><sprite index=0></voffset> will expand
+    on adjacent tiles, so plan ahead !
   - <color=green>Goods</color> are produced using <color=green>Metal</color> and <color=green>Wood</color>
     in a <color=red>Factory</color> <voffset=0.5em><sprite index=5></voffset>
-  - Some facilities produce pollution, which render polluted tiles unusable to grow
-    <color=green>Food</color> or build a <color=red>City</color> <voffset=0.5em><sprite
-    index=0></voffset> on.
+  - Some facilities produce pollution, which render tiles unusable to grow <color=green>Food</color>
+    or build a <color=red>City</color> <voffset=0.5em><sprite index=0></voffset> on.
 --- !u!4 &952507428
 Transform:
   m_ObjectHideFlags: 0
