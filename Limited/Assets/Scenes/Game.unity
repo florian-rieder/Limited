@@ -5281,6 +5281,16 @@ MonoBehaviour:
     volume: 0.4
     pitch: 1
     source: {fileID: 0}
+  - name: game_over
+    clip: {fileID: 8300000, guid: 40666b49738bc8841a3d64c255b89726, type: 3}
+    volume: 0.8
+    pitch: 1
+    source: {fileID: 0}
+  - name: click_error
+    clip: {fileID: 8300000, guid: 663e9e1a0f5201e4e8a260d688731874, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
   mixer: {fileID: 24100000, guid: c1637f20653690e4197da05a9bea88d9, type: 2}
 --- !u!4 &859912660
 Transform:
@@ -5878,6 +5888,9 @@ MonoBehaviour:
     tiles, so plan ahead !
   - <color=green>Goods</color> are produced using <color=green>Metal</color> and <color=green>Wood</color>
     in a <color=red>Factory</color> <voffset=0.5em><sprite index=5></voffset>
+  - Some facilities produce pollution, which render polluted tiles unusable to grow
+    <color=green>Food</color> or build a <color=red>City</color> <voffset=0.5em><sprite
+    index=0></voffset> on.
 --- !u!4 &952507428
 Transform:
   m_ObjectHideFlags: 0
@@ -7808,8 +7821,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Each <color=red>City</color> <voffset=0.5em><sprite index=0></voffset>
-    consumes <color=green>Power</color>, <color=green>Goods</color> and <color=green>Food</color>.
+  m_text: 'Each <color=#B3325F>City</color> <voffset=0.5em><sprite index=0></voffset>
+    consumes <color=#49B853>Power</color>, <color=green>Goods</color> and <color=green>Food</color>.
 
     <color=green>Goods</color> are produced using <color=green>Metal</color> and <color=green>Wood</color>
     in a <color=red>Factory</color> <voffset=0.5em><sprite index=5></voffset>'
@@ -8187,11 +8200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99c5f8fe9bad254d987c1d2b292729e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_text: {fileID: 0}
   btnControl: {fileID: 495423475}
   m_icon: {fileID: 1875411912}
   tooltip: {fileID: 506328968}
   disabledColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  audioManager: {fileID: 859912659}
   warningMessage: 
 --- !u!114 &1556919567
 MonoBehaviour:

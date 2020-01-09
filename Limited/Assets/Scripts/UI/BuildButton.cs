@@ -7,16 +7,16 @@ using UnityEngine.EventSystems;
 public class BuildButton : MonoBehaviour
 {
 	[SerializeField]
-	private TextMeshProUGUI m_text; // the text component of our button
-	[SerializeField]
 	private ButtonListControl btnControl;
 	public Image m_icon;
 	public BuildTooltip tooltip;
 	public Color disabledColor;
+	public AudioManager audioManager;
 	private string m_textString;
 	private FacilitiesTileType m_type;
 
 	private bool isEnabled = false;
+	[HideInInspector]
 	public string warningMessage;
 
 	public void SetType(FacilitiesTileType type)
@@ -38,6 +38,10 @@ public class BuildButton : MonoBehaviour
 		if (isEnabled)
 		{
 			btnControl.ButtonClicked(m_type);
+		}
+		else
+		{
+			audioManager.Play("click_error");
 		}
 	}
 

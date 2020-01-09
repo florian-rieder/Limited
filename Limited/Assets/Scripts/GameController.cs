@@ -310,6 +310,9 @@ public class GameController : MonoBehaviour
 		// Shake the camera
 		cameraController.TriggerShake(1f, 0.2f);
 
+		// play game over sound
+		audioManager.Play("game_over");
+
 		// Wait until the end of the screenshake to pause the time
 		// otherwise, the screen keeps shaking forever
 		Invoke("PauseTime", 0.5f);
