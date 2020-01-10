@@ -1,3 +1,5 @@
+![](Images/banner.png)
+
 # Limited
 Projet de jeu vidéo 2D pour les cours [Développement de Jeux Vidéo 2D](https://applicationspub.unil.ch/interpub/noauth/php/Ud/ficheCours.php?v_enstyid=73011&v_langue=fr) donné par Isaac Pante au semestre d'Automne 2019 à l'[Université de Lausanne (UNIL)](https://www.unil.ch/index.html).
 
@@ -21,3 +23,8 @@ Le jeu a été réalisé avec le moteur de jeu Unity, en C#.
 Ce jeu est assez similaire en essence à [Reactor Energy Sector Tycoon](https://play.google.com/store/apps/details?id=com.rsgapps.reactor&hl=en), un jeu incrémental dont le but est de remplir des îles d'aménagements pour produire le plus d'énergie possible et la vendre. La série des [Sid Meyer’s Civilization](https://en.wikipedia.org/wiki/Civilization_(video_game)) a également été importante, notamment pour son économie de ressources.
 
 Des inspirations plus abstraites peuvent être tirées de jeux tels que [Papers Please](https://en.wikipedia.org/wiki/Papers,_Please) ou encore [This War of Mine](https://en.wikipedia.org/wiki/This_War_of_Mine), dans lesquels la rareté des ressources crée un sentiment de danger, d'insécurité.
+
+# Captures d'écran
+![](Images/screenshot1.png)
+![](Images/screenshot2.png)
+![](Images/screenshot3.png)
