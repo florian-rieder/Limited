@@ -22,9 +22,6 @@ La pollution est une autre mécanique importante du jeu; elle réduit l'espace d
 
 Pour permettre une rejouabilité plus grande, la carte du jeu est générée procéduralement à chaque partie.
 
-# Détails techniques
-Le jeu a été réalisé avec le moteur de jeu Unity, en C#.
-
 # Influences
 Ce jeu est assez similaire en essence à [Reactor Energy Sector Tycoon](https://play.google.com/store/apps/details?id=com.rsgapps.reactor&hl=en), un jeu incrémental dont le but est de remplir des îles d'aménagements pour produire le plus d'énergie possible et la vendre. La série des [Sid Meyer’s Civilization](https://en.wikipedia.org/wiki/Civilization_(video_game)) a également été importante, notamment pour son économie de ressources. Enfin, [Banished](https://en.wikipedia.org/wiki/Banished_(video_game)) m'aura sans doute influencé par ses carrières et mines qui elles aussi ne pouvaient être détruites et ne possédaient qu'une quantité limitée de pierre, de charbon, ou de fer.
 
@@ -35,17 +32,21 @@ Des inspirations plus abstraites peuvent être tirées de jeux tels que [Papers 
 ![](Images/screenshot2.png)
 ![](Images/screenshot3.png)
 
-# Credits
+# Détails techniques
+Le jeu a été réalisé avec le moteur de jeu Unity, en C#.
 
+# Credits
 ### Design, Programmation:
 Florian Rieder
 
 ### Art:
 Sébastien Rieder
+
 Florian Rieder
 
 ### Musiques:
 Kyra Gedall
+
 Florian Rieder
 
 ### Effets sonores:
