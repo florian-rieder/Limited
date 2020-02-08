@@ -5,10 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - UI_NotificationBig
-  - UI_BuildDialogBox
-  - UI_TileSelector
   - PlayerInventory
   - MenuMusic
+  - HUD
   layers:
   - Default
   - TransparentFX

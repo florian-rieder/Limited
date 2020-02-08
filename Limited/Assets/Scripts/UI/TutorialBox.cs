@@ -5,9 +5,10 @@ using TMPro;
 
 public class TutorialBox : MonoBehaviour
 {
-	public TextMeshProUGUI textBox;
-	public TutorialController controller;
-	public Animator animator;
+	[SerializeField] private TextMeshProUGUI textBox;
+	[SerializeField] private TutorialController controller;
+	[SerializeField] private Animator animator;
+	[SerializeField] private GameObject dots;
 
 	public void SetText(string text)
 	{
@@ -24,5 +25,15 @@ public class TutorialBox : MonoBehaviour
 	{
 		// when the animation is finished, disable this object
 		gameObject.SetActive(false);
+	}
+
+	public void TriggerClosingAnimation()
+	{
+		animator.SetTrigger("CloseTrigger");
+	}
+
+	public void ShowDots(bool value)
+	{
+		dots.SetActive(value);
 	}
 }

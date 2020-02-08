@@ -29,9 +29,6 @@ public class ButtonListControl : MonoBehaviour
 			button.SetActive(true);
 			BuildButton btnScript = button.GetComponent<BuildButton>();
 
-			// change text of the button
-			//btnScript.SetText(type.Name);
-
 			// change the icon of the button
 			// get all sliced tiles from our tileset
 			Sprite[] tileSprites = Resources.LoadAll<Sprite>(facilitiesTileset.name);
@@ -69,7 +66,7 @@ public class ButtonListControl : MonoBehaviour
 			{
 				BuildButton buildButton = button.GetComponent<BuildButton>();
 				var type = buildButton.GetTileType();
-				
+
 				// hide/show buttons according to if they are buildable on this tile
 				buildButton.Enable(type.IsBuildable(tile));
 			}
@@ -90,7 +87,7 @@ public class ButtonListControl : MonoBehaviour
 		GameTiles.instance.BuildFacility(type, pos);
 
 		// close dialog box
-		var dialogBox = GameObject.FindWithTag("UI_BuildDialogBox").GetComponent<BuildDialogBoxAPI>();
+		var dialogBox = gameObject.GetComponent<BuildDialogBoxAPI>();
 		dialogBox.Enabled(false);
 	}
 

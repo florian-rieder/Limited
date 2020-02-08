@@ -29,10 +29,10 @@ public class GameSystem : MonoBehaviour
 
 	public static float EuclideanDistance(Vector3 a, Vector3 b)
 	{
-		/* returns the euclidean distance over x and y axis between to vectors */
+		/* returns the euclidean distance over x and y axis between two vectors */
 		checked
 		{
-			return Mathf.Pow(a.x - b.x, 2) + Mathf.Pow(a.y - b.y, 2);
+			return (a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y);
 		}
 	}
 

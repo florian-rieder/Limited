@@ -39,8 +39,14 @@ public class TutorialController : MonoBehaviour
 		// if we finished the list of messages, close the tutorial box with an animation
 		if (currentMessageIndex >= messages.Length)
 		{
-			tutorialBox.animator.SetTrigger("CloseTrigger");
+			tutorialBox.TriggerClosingAnimation();
+			Debug.Log("End of tutorial boxes reached.");
 			return;
+		}
+
+		if (currentMessageIndex == messages.Length - 1)
+		{
+			tutorialBox.ShowDots(false);
 		}
 
 		// display current message
