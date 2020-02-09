@@ -7935,7 +7935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.06}
+  m_AnchoredPosition: {x: -0.09, y: -0.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1542557435
@@ -10631,7 +10631,7 @@ MonoBehaviour:
     minimalQuantity: 3
   - name: Wood
     sprite: {fileID: 545331949580346323, guid: 15dbbb9be192b3c4ca42d477d17d8017, type: 3}
-    chance: 50
+    chance: 70
     minimalQuantity: 15
   - name: Metal
     sprite: {fileID: 4780152641127355319, guid: 15dbbb9be192b3c4ca42d477d17d8017,

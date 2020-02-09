@@ -44,6 +44,10 @@ public class FacilityTile
 				float ratio = GetResourcesRatio();
 				HealthBar.SetValue(ratio);
 			}
+			else
+			{
+				StopWorking();
+			}
 		}
 	}
 	public bool Produce()
