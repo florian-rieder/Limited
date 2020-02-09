@@ -315,14 +315,10 @@ public class GameTiles : MonoBehaviour
 		List<Vector3Int> pollutedTiles = GameSystem.FindInRangeManhattan(ft.LocalPlace, ft.PollutionRadius);
 
 		// iterate through all tiles in the pollution radius
-		foreach (Vector3Int pos in pollutedTiles)
+		foreach (Vector3Int position in pollutedTiles)
 		{
-			EnvironmentTile tileToPollute;
-			if (GameTiles.instance.environmentTiles.TryGetValue(pos, out tileToPollute))
-			{
-				tileToPollute.Polluted = true;
-				pollutionController.PolluteTile(tileToPollute.LocalPlace);
-			}
+			// add pollution tile at this position
+			pollutionController.PolluteTile(position);
 		}
 	}
 }
