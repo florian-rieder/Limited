@@ -1,6 +1,5 @@
 ![](Images/banner.png)
 
-# Limited
 Projet de jeu vidéo 2D pour les cours [Développement de Jeux Vidéo 2D](https://applicationspub.unil.ch/interpub/noauth/php/Ud/ficheCours.php?v_enstyid=73011&v_langue=fr) donné par Isaac Pante au semestre d'Automne 2019 à l'[Université de Lausanne (UNIL)](https://www.unil.ch/index.html).
 
 Le jeu a été publié et est téléchargeable sur [itch.io](https://sergenti.itch.io/limited) et est disponible pour Windows et MacOS.
