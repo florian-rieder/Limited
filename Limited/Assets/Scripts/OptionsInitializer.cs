@@ -22,5 +22,7 @@ public class OptionsInitializer : MonoBehaviour
 		if (!PlayerPrefs.HasKey("TutorialEnabled")) PlayerPrefs.SetInt("TutorialEnabled", 1);
 
 		if (!PlayerPrefs.HasKey("difficulty")) PlayerPrefs.SetFloat("Difficulty", 0.5f);
+		if (!PlayerPrefs.HasKey("Highscore")) PlayerPrefs.SetInt("Highscore", 0);
+
 	}
 }

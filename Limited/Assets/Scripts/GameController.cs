@@ -303,8 +303,20 @@ public class GameController : MonoBehaviour
 		famineDisplay.gameObject.SetActive(false);
 		topBar.Enable(false);
 
-		// open game over panel
+		// calculate score
+		int score = GetScore();
+
+		if (score > PlayerPrefs.GetInt("Highscore"))
+		{
+			// shows that the player has achieved a high score
+			gameOverPanel.HighScore();
+			PlayerPrefs.SetInt("Highscore", score);
+		}
+
+		gameOverPanel.SetScore(score);
 		gameOverPanel.SetReason(reason);
+
+		// open game over panel
 		gameOverPanel.gameObject.SetActive(true);
 
 		// Shake the camera
@@ -327,4 +339,22 @@ public class GameController : MonoBehaviour
 		// disable camera controls
 		cameraController.enabled = false;
 	}
+	public int GetScore()
+	{
+		int score = 0;
+
+		Dictionary<Vector3Int, FacilityTile> facilities = GameTiles.instance.facilitiesTiles;
+
+		// Add points to the score according to different metrics
+
+		// get points for each facility built
+		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilities)
+		{
+			FacilityTile fTile = entry.Value;
+			score += fTile.ScorePoints;
+		}
+
+		return score;
+	}
+
 }
