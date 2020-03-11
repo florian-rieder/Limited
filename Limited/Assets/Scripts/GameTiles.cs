@@ -317,6 +317,11 @@ public class GameTiles : MonoBehaviour
 		// iterate through all tiles in the pollution radius
 		foreach (Vector3Int position in pollutedTiles)
 		{
+			EnvironmentTile tileToPollute;
+			if (GameTiles.instance.environmentTiles.TryGetValue(position, out tileToPollute))
+			{
+				tileToPollute.Polluted = true;
+			}
 			// add pollution tile at this position
 			pollutionController.PolluteTile(position);
 		}
