@@ -54,4 +54,21 @@ public class PlayerInventory : MonoBehaviour
 
 		return hasNeeds;
 	}
+
+	public List<string> GetMissingBasicResources()
+	{
+		var inventory = getCount();
+		List<string> basicNeeds = new List<string>() { "Food", "Goods", "Power" };
+		List<string> missingResources = new List<string>();
+
+		foreach (KeyValuePair<string, int> entry in inventory)
+		{
+			if (basicNeeds.Contains(entry.Key) && entry.Value < 0)
+			{
+				missingResources.Add(entry.Key);
+			}
+		}
+
+		return missingResources;
+	}
 }

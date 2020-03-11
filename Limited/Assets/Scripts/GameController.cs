@@ -114,7 +114,63 @@ public class GameController : MonoBehaviour
 			if (famineTimer > famineTimerBase)
 			{
 				EnableFamineTimer(false);
-				GameOver("The need for basic resources turned your city into chaos.");
+
+				// create game over message
+
+				var inv = playerInventory.getCount();
+				var missingResources = playerInventory.GetMissingBasicResources();
+
+				string reasonText = "";
+
+				// if there is only one resource we ran out of
+				if (missingResources.Count == 1)
+				{
+					// Personalized message
+					string r = missingResources[0];
+					switch (r)
+					{
+						case "Food":
+							reasonText = "Food is the most important resource to humans. People will do anything if they are hungry.";
+							break;
+						case "Goods":
+							reasonText = "Without common consumption goods, discontent rises and revolutions arise.";
+							break;
+						case "Power":
+							reasonText = "Today, our societies are completely dependent on energy. From administration to agriculture, everything is disrupted without it.";
+							break;
+						default:
+							Debug.LogError("Something went wrong...");
+							break;
+					}
+				}
+				else
+				{
+					reasonText = "Your island simultaneously ran out of ";
+					for (int i = 0; i < missingResources.Count; i++)
+					{
+						string r = missingResources[i];
+
+						// last element
+						if (i == missingResources.Count - 1)
+						{
+							reasonText += " and " + r;
+						}
+						else
+						{
+							if (i > 0)
+							{
+								reasonText += " , " + r;
+							} else {
+								reasonText += r;
+							}
+						}
+					}
+					reasonText += ". Running out of one is already that bad. I can only let you imagine what it would do to a small island like yours.";
+				}
+
+				GameOver(reasonText);
+
+				// "The need for basic resources turned your city into chaos."
 			}
 
 			famineTimer += Time.deltaTime;

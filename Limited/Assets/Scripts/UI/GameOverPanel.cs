@@ -17,7 +17,7 @@ public class GameOverPanel : MonoBehaviour
 
 	public void SetScore(int score)
 	{
-		scoreText.text = score.ToString();
+		scoreText.text = "Score: " + score.ToString();
 	}
 
 	public void HighScore()
