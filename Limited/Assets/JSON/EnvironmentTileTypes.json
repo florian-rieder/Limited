@@ -31,7 +31,7 @@
 				"Tileset_environment_1"
 			],
 			"Oil": 0,
-			"Coal": 1000,
+			"Coal": 700,
 			"Wood": 0,
 			"Metal": 0
 		},
@@ -40,7 +40,7 @@
 			"SpriteNames": [
 				"Tileset_environment_2"
 			],
-			"Oil": 2000,
+			"Oil": 1700,
 			"Coal": 0,
 			"Wood": 0,
 			"Metal": 0
@@ -52,7 +52,7 @@
 			],
 			"Oil": 0,
 			"Coal": 0,
-			"Wood": 1000,
+			"Wood": 700,
 			"Metal": 0
 			
 		},
@@ -74,7 +74,7 @@
 			"Oil": 0,
 			"Coal": 0,
 			"Wood": 0,
-			"Metal": 1000
+			"Metal": 700
 		}
 	]
 }

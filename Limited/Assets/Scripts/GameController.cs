@@ -134,10 +134,10 @@ public class GameController : MonoBehaviour
 							reasonText = "Food is the most important resource to humans. Somebody once said that every society is only three meals away from chaos.";
 							break;
 						case "Goods":
-							reasonText = "Without common consumption goods, discontent rises and revolutions come.";
+							reasonText = "Without common consumption goods, discontent rises and causes chaos.";
 							break;
 						case "Power":
-							reasonText = "Today, our societies are completely dependent on energy. From administration to agriculture, everything is disrupted without it.";
+							reasonText = "Today, our societies are completely dependent on energy. From administration to agriculture, everything is disrupted without power.";
 							break;
 						default:
 							Debug.LogError("Something went wrong...");
