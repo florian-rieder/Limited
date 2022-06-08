@@ -42,7 +42,7 @@ TextureImporter:
       213: -2161897492698640326
     second: Tileset_facilities_12
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -62,6 +62,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -71,8 +73,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -93,9 +95,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -407,6 +413,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tileset_facilities_2: -3342253344376037895
+      Tileset_facilities_4: -7023803575732585826
+      Tileset_facilities_7: 1612823247703272668
+      Tileset_facilities_6: -2539481351880377753
+      Tileset_facilities_8: 3600910567200219440
+      Tileset_facilities_9: 6552513281101127371
+      Tileset_facilities_0: -2921995293085360789
+      Tileset_facilities_5: 5956751918563812807
+      Tileset_facilities_10: 7855367317447381513
+      Tileset_facilities_12: -2161897492698640326
+      Tileset_facilities_1: -8304425628571050840
+      Tileset_facilities_3: -1626595920614496745
+      Tileset_facilities_11: 668697182549142147
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

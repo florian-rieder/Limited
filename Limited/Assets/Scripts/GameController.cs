@@ -130,10 +130,10 @@ public class GameController : MonoBehaviour
 					switch (r)
 					{
 						case "Food":
-							reasonText = "Food is the most important resource to humans. People will do anything if they are hungry.";
+							reasonText = "Food is the most important resource to humans. Every society is only three meals away from chaos.";
 							break;
 						case "Goods":
-							reasonText = "Without common consumption goods, discontent rises and revolutions arise.";
+							reasonText = "Without common consumption goods, discontent rises and revolutions come.";
 							break;
 						case "Power":
 							reasonText = "Today, our societies are completely dependent on energy. From administration to agriculture, everything is disrupted without it.";
@@ -165,7 +165,7 @@ public class GameController : MonoBehaviour
 							}
 						}
 					}
-					reasonText += ". Running out of one is already that bad. I can only let you imagine what it would do to a small island like yours.";
+					reasonText += ". Running out of one is already that bad. You can only imagine what it would do to a small island like yours.";
 				}
 
 				GameOver(reasonText);
@@ -174,6 +174,7 @@ public class GameController : MonoBehaviour
 			}
 
 			famineTimer += Time.deltaTime;
+
 		}
 	}
 

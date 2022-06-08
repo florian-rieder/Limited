@@ -9,7 +9,6 @@ public class GameTiles : MonoBehaviour
 	public static GameTiles instance;
 	public Tilemap environmentTilemap;
 	public Tilemap facilitiesTilemap;
-	public Tilemap pollutionTilemap;
 	public TextAsset environmentTileTypesJSON;
 	public TextAsset facilitiesTileTypesJSON;
 	public Texture2D facilitiesTileset;

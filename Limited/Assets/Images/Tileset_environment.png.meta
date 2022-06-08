@@ -117,7 +117,7 @@ TextureImporter:
       213: 8136625456858038420
     second: Tileset_environment_19
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -137,6 +137,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -146,8 +148,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -168,9 +170,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -629,6 +635,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tileset_environment_1: 7829367115482806860
+      Tileset_environment_16: 6624641407423741270
+      Tileset_environment_8: 545331949580346323
+      Tileset_environment_15: 1461044921640595708
+      Tileset_environment_19: 8136625456858038420
+      Tileset_environment_11: 1647607576667491951
+      Tileset_environment_2: 7185652635412157954
+      Tileset_environment_0: 6526557938264842300
+      Tileset_environment_5: 1727986459955929707
+      Tileset_environment_4: -8391512559193295752
+      Tileset_environment_13: 9131677526631916660
+      Tileset_environment_7: 3668595080390140446
+      Tileset_environment_17: -1064187609434843414
+      Tileset_environment_12: -1470438361699074862
+      Tileset_environment_9: 4780152641127355319
+      Tileset_environment_6: -7257698435611979539
+      Tileset_environment_14: -1907830652458739855
+      Tileset_environment_3: -4148288242199938992
+      Tileset_environment_10: -5565644614066263826
+      Tileset_environment_18: -6783102786949149417
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
