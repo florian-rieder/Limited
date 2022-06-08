@@ -193,7 +193,7 @@ public class GameTiles : MonoBehaviour
 		if (facilityType.Extractor)
 		{
 			var bar = Instantiate(healthBarTemplate);
-			bar.SetActive(true);
+			bar.SetActive(false);
 			healthBar = bar.GetComponent<HealthBar>();
 			healthBar.MoveTo(position);
 		}

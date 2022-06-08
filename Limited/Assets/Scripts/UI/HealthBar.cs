@@ -3,13 +3,19 @@
 public class HealthBar : MonoBehaviour
 {
 	public GameObject bar;
-    private float currentValue;
+    private float currentValue = 1f;
 
 	public void SetValue(float value)
 	{
 		/* Value must be beween 0 and 1 */
 		if (value >= 0 && value <= 1 && value != currentValue)
 		{
+            if (value == 1){
+                //dont show the bar when it is full
+                gameObject.SetActive(false);
+            } else if (currentValue == 1 && value != 1){
+                gameObject.SetActive(true);
+            }
 			Vector3 scale = bar.transform.localScale;
 			Vector3 newScale = new Vector3(value, scale.y, scale.z);
 
