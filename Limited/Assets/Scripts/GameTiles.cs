@@ -205,7 +205,7 @@ public class GameTiles : MonoBehaviour
 		crossInstance.SetActive(false);
 
 		// create virtual representation of the new tile
-		var facilityTile = facilityType.GenerateTile(environmentTilemap, position, healthBar, cross, audioManager);
+		var facilityTile = facilityType.GenerateTile(environmentTilemap, position, healthBar, cross);
 
 		// apply pollution
 		if (facilityTile.PollutionRadius > 0)

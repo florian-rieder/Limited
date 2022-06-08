@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
 	private bool updateTimer = false;
 	private bool updateFamineTimer = false;
 	private float nextGrowthTime = 0f;
+    private int currentlyStoppedFacilities = 0;
 
 	private bool firstCityTutorialEnabled = true;
 	private bool firstCityBuilt = false;
@@ -286,17 +287,30 @@ public class GameController : MonoBehaviour
 	{
 		var facilities = GameTiles.instance.facilitiesTiles;
 		bool stopCheckingProduction = false;
+        int stoppedFacilities = 0;
 
 		// for each facility
 		foreach (KeyValuePair<Vector3Int, FacilityTile> entry in facilities)
 		{
 			var facility = entry.Value;
-			if (facility.Extractor) facility.Extract();
+			if (facility.Extractor) {
+                facility.Extract();
+            }
 
 			// don't check facilities if all the resources are in the green, except for the facilities that are already stopped,
 			// for which we need to check if they can be enabled again
 			else if (facility.Name != "City" && (!stopCheckingProduction || !facility.IsWorking)) stopCheckingProduction = facility.Produce();
+
+            if (!facility.IsWorking){
+                stoppedFacilities++;
+            }
 		}
+        // if a facility stops working and is the first one
+        // play cutting power sound
+        if (currentlyStoppedFacilities == 0 && stoppedFacilities > 0){
+            audioManager.Play("cutting_power");
+        }
+        currentlyStoppedFacilities = stoppedFacilities;
 	}
 	private void RenewResources()
 	{

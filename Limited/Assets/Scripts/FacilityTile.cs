@@ -19,7 +19,6 @@ public class FacilityTile
 	public bool Extractor { get; set; }
 	public int ScorePoints { get; set; }
 
-    public AudioManager audioManager;
 	public HealthBar HealthBar;
 	public Cross cross;
 	public bool IsWorking = true;
@@ -193,8 +192,6 @@ public class FacilityTile
 	{
         // show a cross over the tile
 		cross.gameObject.SetActive(true);
-        // play cutting power sound
-        audioManager.Play("cutting_power");
 		IsWorking = false;
 	}
 
@@ -364,7 +361,7 @@ public class FacilitiesTileType
 		};
 	}
 
-	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar, Cross cross, AudioManager am)
+	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar, Cross cross)
 	{
 		return new FacilityTile
 		{
@@ -380,7 +377,6 @@ public class FacilitiesTileType
 			Extractor = Extractor,
 			HealthBar = healthBar,
 			cross = cross,
-            audioManager = am,
 			PollutionRadius = PollutionRadius,
 			ScorePoints = ScorePoints
 		};
