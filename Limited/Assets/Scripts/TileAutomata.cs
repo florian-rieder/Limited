@@ -112,8 +112,11 @@ public class TileAutomata : MonoBehaviour
 			// insure a minimal amount of resources on the map
 			if (resourcesScattered[variety.name] >= variety.minimalQuantity) continue;
 
+            int max_iterations = 20;
+
 			for (int i = 0; i < variety.minimalQuantity - resourcesScattered[variety.name]; i++)
 			{
+                int iteration = 0;
 				// place another tile of this resource randomly on the map
 				while (true)
 				{
@@ -132,6 +135,10 @@ public class TileAutomata : MonoBehaviour
 						tilemap.SetTile(randomPosition, newTile);
 						break;
 					}
+
+                    if (iteration >= max_iterations) break;
+
+                    iteration++;
 				}
 			}
 		}
@@ -206,8 +213,8 @@ public class TileAutomata : MonoBehaviour
 
 	private void ConvertRuleTilesToTiles()
 	{
-		/* converts all ruletiles in the tilemap into regular tiles, so that we can later change tiles in the tilemap without
-		   breaking tile connections */
+		/* converts all ruletiles in the tilemap into regular tiles, so that we 
+           can later change tiles in the tilemap without breaking tile connections */
 
 		Dictionary<Vector3Int, Sprite> tilesSprites = new Dictionary<Vector3Int, Sprite>();
 

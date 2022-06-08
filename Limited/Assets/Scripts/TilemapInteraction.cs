@@ -16,76 +16,77 @@ public class TilemapInteraction : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			// prevents clicking through UI
-			if (EventSystem.current.IsPointerOverGameObject())
-			{
-				//Debug.Log("Clicked on the UI");
-			}
-			else
-			{
-				EnvironmentTile eTile;
-				FacilityTile fTile;
+        // if the left click isn't pressed, pass
+		if (!Input.GetMouseButtonDown(0)) return;
+		
+        // prevents clicking through UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            //Debug.Log("Clicked on the UI");
+        }
+        else
+        {
+            EnvironmentTile eTile;
+            FacilityTile fTile;
 
-				// get the position of the tile being clicked on
-				Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Vector3Int tilePos = environmentTilemap.WorldToCell(point);
+            // get the position of the tile being clicked on
+            Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int tilePos = environmentTilemap.WorldToCell(point);
 
-				var environmentTiles = GameTiles.instance.environmentTiles; // This is our Dictionary of tiles
-				var facilitiesTiles = GameTiles.instance.facilitiesTiles;
+            var environmentTiles = GameTiles.instance.environmentTiles; // This is our Dictionary of tiles
+            var facilitiesTiles = GameTiles.instance.facilitiesTiles;
 
-				bool environmentTileHere = false;
-				bool facilityTileHere = false;
+            bool environmentTileHere = false;
+            bool facilityTileHere = false;
 
-				if (facilitiesTiles.TryGetValue(tilePos, out fTile))
-				{
-					// debug
-					Debug.Log(createFacilityLog(fTile));
+            if (facilitiesTiles.TryGetValue(tilePos, out fTile))
+            {
+                // debug
+                Debug.Log(createFacilityLog(fTile));
 
-					facilityTileHere = true;
-				}
-				// if we have a tile registered at this position
-				if (environmentTiles.TryGetValue(tilePos, out eTile))
-				{
-					// Debug
-					Debug.Log(createEnvironmentLog(eTile));
-					environmentTileHere = true;
-				}
+                facilityTileHere = true;
+            }
+            // if we have a tile registered at this position
+            if (environmentTiles.TryGetValue(tilePos, out eTile))
+            {
+                // Debug
+                Debug.Log(createEnvironmentLog(eTile));
+                environmentTileHere = true;
+            }
 
-				if (environmentTileHere)
-				{
-					if (eTile.IsHighlighted())
-					{
-						// build new city
-						GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().FindTypeByName("City"), eTile.LocalPlace);
-						// send signal to controller that a new city has been built
-						GameController.instance.CityBuilt();
+            if (environmentTileHere)
+            {
+                if (eTile.IsHighlighted())
+                {
+                    // build new city
+                    GameTiles.instance.BuildFacility(GameTiles.instance.GetFacilitiesTypes().FindTypeByName("City"), eTile.LocalPlace);
+                    // send signal to controller that a new city has been built
+                    GameController.instance.CityBuilt();
 
-						removeHighlights();
-					}
-					// don't allow to open when choosing the city expansion
-					else if (eTile.Name != "Water" && !facilityTileHere && highlightedPositions.Count == 0)
-					{
-						doBuildDialogBox(tilePos);
-					}
-					else
-					{
-						if (dialogBox.IsOpen())
-						{
-							dialogBox.Enabled(false);
-						}
-					}
-				}
-				else
-				{
-					if (dialogBox.IsOpen())
-					{
-						dialogBox.Enabled(false);
-					}
-				}
-			}
-		}
+                    removeHighlights();
+                }
+                // don't allow to open when choosing the city expansion
+                else if (eTile.Name != "Water" && !facilityTileHere && highlightedPositions.Count == 0)
+                {
+                    doBuildDialogBox(tilePos);
+                }
+                else
+                {
+                    if (dialogBox.IsOpen())
+                    {
+                        dialogBox.Enabled(false);
+                    }
+                }
+            }
+            else
+            {
+                if (dialogBox.IsOpen())
+                {
+                    dialogBox.Enabled(false);
+                }
+            }
+        }
+    
 	}
 
 	public void HighlightTile(EnvironmentTile tile)

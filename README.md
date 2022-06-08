@@ -19,12 +19,12 @@ La finitude des ressources naturelles est également mise en scène; certains am
 
 La pollution est une autre mécanique importante du jeu; elle réduit l'espace disponible. Dans *Limited*, l'espace est une ressource cruciale, mais limitée et non renouvelable, car le joueur ne peut pas détruire un aménagement une fois construit. Lorsque le joueur décide de construire un aménagement polluant, il va polluer les cases aux alentours, rendant impossible la production de nourriture et l'expansion de villes sur ces cases, ajoutant aux choix stratégiques que le joueur doit faire.
 
-Pour permettre une rejouabilité plus grande, la carte du jeu est générée procéduralement à chaque partie.
+Pour permettre une rejouabilité plus grande, la carte du jeu est différente à chaque partie. Ces cartes sont générées par un [automate cellulaire](https://fr.wikipedia.org/wiki/Automate_cellulaire) similaire au [jeu de la vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie), mais avec des paramètres différents.
 
 # Influences
-Ce jeu est assez similaire en essence à [Reactor Energy Sector Tycoon](https://play.google.com/store/apps/details?id=com.rsgapps.reactor&hl=en), un jeu incrémental dont le but est de remplir des îles d'aménagements pour produire le plus d'énergie possible et la vendre. La série des [Sid Meyer’s Civilization](https://en.wikipedia.org/wiki/Civilization_(video_game)) a également été importante, notamment pour son économie de ressources. Enfin, [Banished](https://en.wikipedia.org/wiki/Banished_(video_game)) m'aura sans doute influencé par ses carrières et mines qui elles aussi ne pouvaient être détruites et ne possédaient qu'une quantité limitée de pierre, de charbon, ou de fer.
+Ce jeu est assez similaire en apparence à [Reactor Energy Sector Tycoon](https://play.google.com/store/apps/details?id=com.rsgapps.reactor&hl=en), un jeu incrémental dont le but est de remplir des îles d'aménagements pour produire le plus d'énergie possible et la vendre. La série des [Sid Meyer’s Civilization](https://en.wikipedia.org/wiki/Civilization_(video_game)) a également été importante, notamment pour son économie de ressources. Enfin, [Banished](https://en.wikipedia.org/wiki/Banished_(video_game)) m'aura sans doute influencé par ses carrières et mines qui elles aussi ne pouvaient être détruites et ne possédaient qu'une quantité limitée de ressources.
 
-Des inspirations plus abstraites peuvent être tirées de jeux tels que [Papers, Please](https://en.wikipedia.org/wiki/Papers,_Please) ou encore [This War of Mine](https://en.wikipedia.org/wiki/This_War_of_Mine), dans lesquels la rareté des ressources crée un sentiment d'insécurité constant qui s'accorde parfaitement aux propos du jeu.
+Des inspirations plus abstraites peuvent être tirées de jeux tels que [Papers, Please](https://en.wikipedia.org/wiki/Papers,_Please) ou encore [This War of Mine](https://en.wikipedia.org/wiki/This_War_of_Mine), dans lesquels la rareté des ressources crée un sentiment d'insécurité constant qui s'accorde aux propos du jeu.
 
 # Captures d'écran
 ![](Images/screenshot1.png)

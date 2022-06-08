@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
 					switch (r)
 					{
 						case "Food":
-							reasonText = "Food is the most important resource to humans. Every society is only three meals away from chaos.";
+							reasonText = "Food is the most important resource to humans. Somebody once said that every society is only three meals away from chaos.";
 							break;
 						case "Goods":
 							reasonText = "Without common consumption goods, discontent rises and revolutions come.";

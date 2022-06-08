@@ -19,6 +19,7 @@ public class FacilityTile
 	public bool Extractor { get; set; }
 	public int ScorePoints { get; set; }
 
+    public AudioManager audioManager;
 	public HealthBar HealthBar;
 	public Cross cross;
 	public bool IsWorking = true;
@@ -52,7 +53,6 @@ public class FacilityTile
 	}
 	public bool Produce()
 	{
-
 		var inventory = GameController.instance.playerInventory.getCount();
 
 		// get the list of different resources that are consumed by this facility
@@ -188,11 +188,16 @@ public class FacilityTile
 
 		return groundTotal / groundMax;
 	}
+
 	public void StopWorking()
 	{
+        // show a cross over the tile
 		cross.gameObject.SetActive(true);
+        // play cutting power sound
+        audioManager.Play("cutting_power");
 		IsWorking = false;
 	}
+
 	private void StartWorking()
 	{
 		cross.gameObject.SetActive(false);
@@ -359,7 +364,7 @@ public class FacilitiesTileType
 		};
 	}
 
-	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar, Cross cross)
+	public FacilityTile GenerateTile(Tilemap tilemap, Vector3Int position, HealthBar healthBar, Cross cross, AudioManager am)
 	{
 		return new FacilityTile
 		{
@@ -375,6 +380,7 @@ public class FacilitiesTileType
 			Extractor = Extractor,
 			HealthBar = healthBar,
 			cross = cross,
+            audioManager = am,
 			PollutionRadius = PollutionRadius,
 			ScorePoints = ScorePoints
 		};
