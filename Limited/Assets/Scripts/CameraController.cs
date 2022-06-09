@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
 		bool isMoving = false;
 
 		// Get input and apply movement
-		if (Input.GetKey("w"))
+		if (Input.GetAxisRaw("Vertical") > 0)
 		{
 			if (currentPanSpeed.y < 0)
 			{
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
 
 			isMoving = true;
 		}
-		if (Input.GetKey("s"))
+		if (Input.GetAxisRaw("Vertical") < 0)
 		{
 			if (currentPanSpeed.y > 0)
 			{
@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour
 
 			isMoving = true;
 		}
-		if (Input.GetKey("a"))
+		if (Input.GetAxisRaw("Horizontal") < 0)
 		{
 			if (currentPanSpeed.x > 0)
 			{
@@ -65,7 +65,7 @@ public class CameraController : MonoBehaviour
 
 			isMoving = true;
 		}
-		if (Input.GetKey("d"))
+		if (Input.GetAxisRaw("Horizontal") > 0)
 		{
 			if (currentPanSpeed.x < 0)
 			{
