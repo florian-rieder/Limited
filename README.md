@@ -7,6 +7,8 @@ Le jeu a été publié et est disponible sur [itch.io](https://sergenti.itch.io/
 # But de la médiation
 Sensibiliser aux enjeux relatifs à l’environnement et aux ressources naturelles au travers d’un jeu de gestion où le joueur doit gérer une île aux ressources limitées, et la faire survivre le plus longtemps possible.
 
+Les îles qui constituent le terrain de jeu se veulent être un modèle très simplifié de la Terre, vue comme une île au milieu de l'océan désertique de l'espace. Il faut noter toutefois ces simplifications faites pour gamifier la médiation: l'espace ne peut être réaménagé, la pollution est permanente, et aucune progression technologique n'existe. Il ne faut donc pas être trop découragé devant le pessimisme apparent du jeu :)
+
 Le jeu s'adresse à tous les publics et n'aborde aucun thème sensible, outre notre politique climatique.
 
 # Mécaniques de jeu
@@ -14,8 +16,6 @@ Le joueur intéragit avec le jeu principalement par la construction d'aménageme
 
 Pour faire ceci, il devra construire les bons aménagements et planifier l'exploitation de son île. Cependant, cette croissance infinie va finalement causer sa défaite à chaque partie.
 Ainsi j'espère provoquer chez le joueur un questionnement du bienfondé de cette croissance qui semble être un des objectifs principaux de nos sociétés modernes.
-
-Les îles qui constituent le terrain de jeu se veulent être un modèle très simplifié de la Terre, vue comme une île au milieu de l'océan désertique de l'espace. Il faut noter toutefois ces simplifications faites pour gamifier la médiation: l'espace ne peut être réaménagé, la pollution est permanente, et aucune progression technologique n'existe. Il ne faut donc pas être trop découragé devant le pessimisme apparent du jeu :)
 
 La finitude des ressources naturelles est mise en scène; certains aménagements les consomment, et certaines d'entre-elles sont non-renouvelables, comme le charbon ou le pétrole. Par cette mécanique, le joueur sera amené à faire des choix stratégiques pour profiter des avantages qu'elles confèrent tout en ne les épuisant pas trop vite.
 
