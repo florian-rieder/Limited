@@ -305,9 +305,9 @@ public class GameController : MonoBehaviour
                 stoppedFacilities++;
             }
 		}
-        // if a facility stops working and is the first one
+        // if there is an increase in stopped facilities,
         // play cutting power sound
-        if (currentlyStoppedFacilities == 0 && stoppedFacilities > 0){
+        if (currentlyStoppedFacilities < stoppedFacilities){
             audioManager.Play("cutting_power");
         }
         currentlyStoppedFacilities = stoppedFacilities;

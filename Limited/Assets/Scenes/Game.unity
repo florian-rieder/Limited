@@ -5725,7 +5725,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: cutting_power
     clip: {fileID: 8300000, guid: 8faa13ff7dff544fa8ca779f53a42c0a, type: 3}
-    volume: 0.5
+    volume: 0.627
     pitch: 1
     source: {fileID: 0}
   mixer: {fileID: 24100000, guid: c1637f20653690e4197da05a9bea88d9, type: 2}

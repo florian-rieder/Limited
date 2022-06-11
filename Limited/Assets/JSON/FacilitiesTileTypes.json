@@ -143,7 +143,7 @@
 			"Coal": -1,
 			"Wood": 0,
 			"Metal": 0,
-			"Power": 3,
+			"Power": 4,
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 3,
@@ -158,7 +158,7 @@
 			"Coal": 0,
 			"Wood": 0,
 			"Metal": 0,
-			"Power": 5,
+			"Power": 6,
 			"Goods": 0,
 			"Food": 0,
 			"PollutionRadius": 4,
@@ -191,7 +191,7 @@
 			"Power": -2,
 			"Goods": 6,
 			"Food": 0,
-			"PollutionRadius": 3,
+			"PollutionRadius": 4,
 			"Extractor": false,
 			"ScorePoints": 50
 		}
